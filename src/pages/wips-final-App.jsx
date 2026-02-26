@@ -1,8 +1,5 @@
 // src/pages/wips-final-App.jsx
 
-export default function WipsFinalApp() {
-  return <h1>Welcome to Wips Tech Ops Intelligence</h1>;
-}
 /* ═══════════════════════════════════════════════════════════
    WIPS TECH — COMPLETE PRODUCTION WEBSITE
    Brand: Deep Cobalt #1B365D · Emerald #2A9D6F · Gold #C8952A
