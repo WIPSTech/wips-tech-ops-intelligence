@@ -1801,3 +1801,4 @@ export default function App() {
     </>
   );
 }
+Move App.jsx into src/pages
