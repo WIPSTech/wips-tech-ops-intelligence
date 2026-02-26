@@ -1777,9 +1777,13 @@ function Footer({ onBooking }) {
 // ─────────────────────────────────────────────────────────
 // ROOT APP
 // ─────────────────────────────────────────────────────────
-export default function App() {
-  const [bookingOpen, setBookingOpen] = useState(false);
+export default function WipsFinalApp() {
   return (
+    <>
+      {/* your full design JSX here */}
+    </>
+  );
+}
     <>
       <style>{GLOBAL_CSS}</style>
       <Navigation onBooking={() => setBookingOpen(true)} />
