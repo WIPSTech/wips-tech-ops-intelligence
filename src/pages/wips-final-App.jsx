@@ -1,3 +1,7 @@
+export default function WipsFinalApp() {
+  return <h1>Welcome to Wips Tech Ops Intelligence</h1>;
+}
+
 import { useState, useEffect, useRef, useCallback } from "react";
 
 /* ═══════════════════════════════════════════════════════════
