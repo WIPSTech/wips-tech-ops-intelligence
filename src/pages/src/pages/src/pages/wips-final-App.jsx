@@ -1801,5 +1801,6 @@ export default function App() {
     </>
   );
 }
-Move App.jsx into src/pages
-Fix duplicate folder path for App.jsx
+// Move App.jsx into src/pages
+// Fix duplicate folder path for App.jsx
+
