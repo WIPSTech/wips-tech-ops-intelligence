@@ -1780,32 +1780,10 @@ function Footer({ onBooking }) {
 export default function WipsFinalApp() {
   return (
     <>
-      {/* your full design JSX here */}
+      {/* keep all your design JSX here */}
     </>
   );
 }
-    <>
-      <style>{GLOBAL_CSS}</style>
-      <Navigation onBooking={() => setBookingOpen(true)} />
-      <main>
-        <Hero onBooking={() => setBookingOpen(true)} />
-        <PositioningStrip />
-        <WasteCalculator onBooking={() => setBookingOpen(true)} />
-        <Approach onBooking={() => setBookingOpen(true)} />
-        <Industries onBooking={() => setBookingOpen(true)} />
-        <Roadmap />
-        <SocialProof />
-        <Guarantee onBooking={() => setBookingOpen(true)} />
-        <Insights onBooking={() => setBookingOpen(true)} />
-        <BookingSection />
-        <FAQ />
-      </main>
-      <Footer onBooking={() => setBookingOpen(true)} />
-      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
-    </>
-  );
-}
-// Move App.jsx into src/pages
-// Fix duplicate folder path for App.jsx
+
 
 
