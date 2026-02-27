@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 'use client';
 import React from 'react';
 import { useState, useEffect, useRef, useCallback } from "react";
@@ -824,7 +825,7 @@ function WasteCalculator({ onBooking }) {
                     Note on Your Inputs
                   </div>
                   <p style={{ fontSize: "13px", color: B.textS, lineHeight: 1.6 }}>
-                    At this scale, the Discovery Session will confirm whether a full Scan would produce a positive return. We'll tell you clearly — no obligation either way.
+                    At this scale, the Discovery Session will confirm whether a full Scan would produce a positive return. We&apos;ll tell you clearly — no obligation either way.
                   </p>
                 </>
               )}
