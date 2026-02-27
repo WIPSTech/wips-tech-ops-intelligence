@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { useState, useEffect, useRef, useCallback } from "react";
+import Image from 'next/image';
 
 /* ═══════════════════════════════════════════════════════════
    WIPS TECH — COMPLETE PRODUCTION WEBSITE
