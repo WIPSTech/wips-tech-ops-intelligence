@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest --watchAll", 
+    "ci:test": "jest --ci"
   },
   "dependencies": {
     "react": "^18.2.0",
