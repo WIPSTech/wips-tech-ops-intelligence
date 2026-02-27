@@ -1786,9 +1786,10 @@ export default function App() {
     <>
       <style>{GLOBAL_CSS}</style>
 
-      {/* Header logo */}
-      <header>
-        <Image src="/logo.png" alt="Logo" width={120} height={40} />
+      {/* Header with logo + text */}
+      <header style={{ display: 'flex', alignItems: 'center' }}>
+        <Image src="/logo.png" alt="Logo" width={200} height={80} />
+        <h1>WIPSTech</h1>
       </header>
 
       <Navigation onBooking={() => setBookingOpen(true)} />
@@ -1807,9 +1808,10 @@ export default function App() {
         <FAQ />
       </main>
 
-      {/* Footer logo */}
-      <footer>
-        <Image src="/logo.png" alt="Logo" width={120} height={40} />
+      {/* Footer with logo + text */}
+      <footer style={{ display: 'flex', alignItems: 'center' }}>
+        <Image src="/logo.png" alt="Logo" width={200} height={80} />
+        <span>WIPSTech</span>
       </footer>
 
       <Footer onBooking={() => setBookingOpen(true)} />
@@ -1817,4 +1819,3 @@ export default function App() {
     </>
   );
 }
-
