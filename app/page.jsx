@@ -1785,7 +1785,14 @@ export default function App() {
   return (
     <>
       <style>{GLOBAL_CSS}</style>
+
+      {/* Header logo */}
+      <header>
+        <Image src="/logo.png" alt="Logo" width={120} height={40} />
+      </header>
+
       <Navigation onBooking={() => setBookingOpen(true)} />
+
       <main>
         <Hero onBooking={() => setBookingOpen(true)} />
         <PositioningStrip />
@@ -1799,8 +1806,15 @@ export default function App() {
         <BookingSection />
         <FAQ />
       </main>
+
+      {/* Footer logo */}
+      <footer>
+        <Image src="/logo.png" alt="Logo" width={120} height={40} />
+      </footer>
+
       <Footer onBooking={() => setBookingOpen(true)} />
       <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
     </>
   );
 }
+
