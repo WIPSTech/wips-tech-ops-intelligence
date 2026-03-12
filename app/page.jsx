@@ -1,50 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WIPS Tech — Operations Intelligence Platform</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/WIPSTech/wips-tech-ops-intelligence/main/public/favicon-32.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{font-family:'Outfit',sans-serif;color:#1A202C;background:#fff;-webkit-font-smoothing:antialiased}
-    ::-webkit-scrollbar{width:5px}
-    ::-webkit-scrollbar-track{background:#F4F7FA}
-    ::-webkit-scrollbar-thumb{background:#1B365D;border-radius:3px}
-    #loading{position:fixed;inset:0;background:#0F1E35;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.6s ease}
-    .ldot{width:9px;height:9px;border-radius:50%;animation:ldp 1.2s ease-in-out infinite}
-    @keyframes ldp{0%,80%,100%{transform:scale(0.5);opacity:0.3}40%{transform:scale(1);opacity:1}}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    @keyframes chevFlow{0%,100%{transform:translateX(0);opacity:.07}50%{transform:translateX(8px);opacity:.11}}
-    @keyframes pulseSoft{0%,100%{opacity:1}50%{opacity:0.4}}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    @keyframes waPulse{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.4)}70%{box-shadow:0 0 0 12px rgba(37,211,102,0)}}
-  </style>
-</head>
-<body>
-<div id="loading">
-  <img src="https://raw.githubusercontent.com/WIPSTech/wips-tech-ops-intelligence/main/public/logo-transparent.png" 
-    alt="WIPS Tech" style="height:52px;width:auto;opacity:.92;object-fit:contain" 
-    onerror="this.style.opacity='0.85';this.onerror=function(){this.style.display='none';document.getElementById('ld-fallback').style.display='block';}"/>
-  <div id="ld-fallback" style="display:none;font-family:'Cormorant Garamond',Georgia,serif;font-size:1.4rem;color:rgba(255,255,255,.8);letter-spacing:.1em;font-weight:300">WIPS Tech</div>
-  <div style="display:flex;gap:8px;margin-top:18px">
-    <div class="ldot" style="background:#2A9D6F"></div>
-    <div class="ldot" style="background:#C8952A;animation-delay:.2s"></div>
-    <div class="ldot" style="background:#2A9D6F;animation-delay:.4s"></div>
-  </div>
-</div>
-<div id="root"></div>
-
-<script type="text/babel" data-presets="react">
-const { useState, useEffect, useRef, useCallback } = React;
+"use client";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 const B = {
   navy:"#1B365D", navyD:"#0F1E35", navyL:"#2A4A7A",
@@ -57,46 +12,11 @@ const B = {
 
 const WA_NUMBER = "+96170000000"; // Replace with real number
 
-const css = `
-.cg{font-family:'Cormorant Garamond',Georgia,serif}
-.stat-num{font-family:'Outfit',sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.mono{font-family:'JetBrains Mono',monospace}
-.nav-link{position:relative;color:#4A5568;font-size:13.5px;font-weight:500;text-decoration:none;cursor:pointer;transition:color .2s;background:none;border:none;font-family:'Outfit',sans-serif;padding:0}
-.nav-link::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1.5px;background:#2A9D6F;transform:scaleX(0);transform-origin:left;transition:transform .25s}
-.nav-link:hover{color:#1B365D}.nav-link:hover::after{transform:scaleX(1)}
-.btn-primary{display:inline-flex;align-items:center;gap:8px;background:#1B365D;color:#fff;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;letter-spacing:.02em;padding:13px 28px;border:2px solid #1B365D;border-radius:3px;cursor:pointer;transition:all .2s;text-decoration:none;white-space:nowrap}
-.btn-primary:hover{background:#0F1E35;border-color:#0F1E35;transform:translateY(-1px);box-shadow:0 8px 24px rgba(27,54,93,.25)}
-.btn-primary:disabled{opacity:.4;cursor:not-allowed;transform:none}
-.btn-emerald{display:inline-flex;align-items:center;gap:8px;background:#2A9D6F;color:#fff;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;padding:13px 28px;border:2px solid #2A9D6F;border-radius:3px;cursor:pointer;transition:all .2s;white-space:nowrap}
-.btn-emerald:hover{background:#1E7A52;transform:translateY(-1px);box-shadow:0 8px 24px rgba(42,157,111,.3)}
-.btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#1B365D;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;padding:12px 26px;border:2px solid #1B365D;border-radius:3px;cursor:pointer;transition:all .2s;white-space:nowrap}
-.btn-outline:hover{background:#1B365D;color:#fff;transform:translateY(-1px)}
-.btn-gold{display:inline-flex;align-items:center;gap:8px;background:#C8952A;color:#fff;font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;letter-spacing:.03em;padding:15px 34px;border:2px solid #C8952A;border-radius:3px;cursor:pointer;transition:all .2s;text-transform:uppercase;white-space:nowrap}
-.btn-gold:hover{background:#A37820;border-color:#A37820;transform:translateY(-2px);box-shadow:0 12px 32px rgba(200,149,42,.35)}
-.btn-gold:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.card{background:#fff;border:1px solid #D1DCE8;border-radius:8px;transition:all .25s}
-.card:hover{border-color:#2A9D6F;box-shadow:0 8px 32px rgba(27,54,93,.1);transform:translateY(-2px)}
-.section-label{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#2A9D6F}
-.divider-accent{width:48px;height:3px;background:linear-gradient(90deg,#2A9D6F,#1B365D);border-radius:2px;margin:14px 0}
-input,textarea,select{font-family:'Outfit',sans-serif;font-size:14px;color:#1A202C;background:#fff;border:1.5px solid #D1DCE8;border-radius:4px;padding:11px 14px;width:100%;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
-input:focus,textarea:focus,select:focus{border-color:#1B365D;box-shadow:0 0 0 3px rgba(27,54,93,.12)}
-input::placeholder,textarea::placeholder{color:#A0AEC0}
-label{font-size:12px;font-weight:700;color:#4A5568;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px;display:block}
-.range-track{height:4px;border-radius:2px;background:#D1DCE8;position:relative;margin:10px 0 4px;cursor:pointer}
-.range-fill{position:absolute;left:0;top:0;height:100%;border-radius:2px;background:linear-gradient(90deg,#2A9D6F,#1B365D);pointer-events:none;transition:width .15s}
-.range-thumb{position:absolute;top:50%;transform:translate(-50%,-50%);width:20px;height:20px;border-radius:50%;background:#1B365D;border:3px solid #fff;box-shadow:0 2px 8px rgba(27,54,93,.3);cursor:grab;transition:transform .15s;z-index:1}
-.range-thumb:active{cursor:grabbing;transform:translate(-50%,-50%) scale(1.2)}
-.wa-float{position:fixed;bottom:28px;right:28px;z-index:500;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 20px rgba(37,211,102,.45);animation:waPulse 2.5s infinite;transition:transform .2s;border:none}
-.wa-float:hover{transform:scale(1.08)}
-.wa-tooltip{position:absolute;right:70px;background:#1A202C;color:#fff;font-family:'Outfit',sans-serif;font-size:12px;font-weight:500;padding:7px 14px;border-radius:6px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .2s}
-.wa-float:hover .wa-tooltip{opacity:1}
-@media(max-width:768px){
-  .hide-mobile{display:none!important}
-  .grid-1-mobile{grid-template-columns:1fr!important}
-  .pad-mobile{padding:60px 20px!important}
-  .wa-float{bottom:20px;right:20px;width:54px;height:54px}
-}
-`;
+const BASE = "https://raw.githubusercontent.com/WIPSTech/wips-tech-ops-intelligence/main/public/";
+const LOGOS = {
+  desktop : BASE + "logo-transparent.png",
+  mobile  : BASE + "logo-mobile.png",
+};
 
 /* ── helpers ── */
 function useInView(threshold=0.12){
@@ -128,22 +48,11 @@ function AnimCounter({end,prefix="",suffix="",duration=1800}){
   return <span ref={ref} className="stat-num">{prefix}{count.toLocaleString()}{suffix}</span>;
 }
 
-/* ── LOGO — 4 images from GitHub public folder ── */
-const BASE = "https://raw.githubusercontent.com/WIPSTech/wips-tech-ops-intelligence/main/public/";
-
-// Logo files in GitHub /public folder:
-// logo-transparent.png  — full horizontal, transparent bg (desktop)
-// logo-mobile.png       — compact horizontal, transparent bg (mobile)
-// favicon-32.png — browser tab icon (PNG only)
-const LOGOS = {
-  desktop : BASE + "logo-transparent.png",
-  mobile  : BASE + "logo-mobile.png",
-};
-
 function WIPSLogo({light=false}){
-  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" && window.innerWidth < 769);
+  const [isMobile, setIsMobile] = useState(false);
   useEffect(()=>{
     const check = () => setIsMobile(window.innerWidth < 769);
+    check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   },[]);
@@ -160,7 +69,6 @@ function WIPSLogo({light=false}){
           if(e.target.nextSibling) e.target.nextSibling.style.display="flex";
         }}
       />
-      {/* Text fallback if images fail */}
       <div style={{display:"none",alignItems:"center",gap:8}}>
         <div className="cg" style={{fontSize:22,fontWeight:700,color:light?"#fff":B.navy}}>
           WIPS<span style={{fontWeight:300,color:light?"rgba(255,255,255,.6)":B.textT}}>Tech</span>
@@ -170,7 +78,6 @@ function WIPSLogo({light=false}){
   );
 }
 
-/* ── WhatsApp Floating Button ── */
 function WAFloat(){
   return(
     <button className="wa-float" onClick={()=>window.open(`https://wa.me/${WA_NUMBER.replace(/\D/g,'')}?text=Hello%20WIPS%20Tech,%20I'd%20like%20to%20learn%20more.`,'_blank')} aria-label="WhatsApp">
@@ -182,7 +89,6 @@ function WAFloat(){
   );
 }
 
-/* ── NAV ── */
 function Navigation({onBooking,onContact}){
   const [scrolled,setScrolled]=useState(false);
   const [mobileOpen,setMobileOpen]=useState(false);
@@ -230,7 +136,6 @@ function Navigation({onBooking,onContact}){
   );
 }
 
-/* ── HERO ── */
 function Hero({onBooking}){
   const scrollTo=(id)=>document.querySelector(id)?.scrollIntoView({behavior:"smooth"});
   const stats=[
@@ -241,7 +146,7 @@ function Hero({onBooking}){
   ];
   return(
     <section style={{minHeight:"100vh",background:`linear-gradient(158deg,${B.navyD} 0%,${B.navy} 52%,#1A4535 100%)`,display:"flex",flexDirection:"column",justifyContent:"center",position:"relative",overflow:"hidden",padding:"120px 40px 80px"}}>
-      <div style={{position:"absolute",inset:0,opacity:.04,backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E\")"}}/>
+      <div style={{position:"absolute",inset:0,opacity:.04,backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E\")"}}/}
       {[0,1,2,3].map(i=>(
         <svg key={i} width={220-i*28} height={340-i*44} viewBox="0 0 220 340" fill="none"
           style={{position:"absolute",right:-60+i*10,top:"50%",transform:`translateY(${-50+i*4}%)`,animation:`chevFlow ${2.6+i*.4}s ease-in-out infinite`,animationDelay:`${i*.25}s`,pointerEvents:"none"}}>
@@ -267,8 +172,6 @@ function Hero({onBooking}){
             <button className="btn-gold" onClick={onBooking}>Book Free 45-Min Discovery Session</button>
             <button className="btn-outline" style={{color:"#fff",borderColor:"rgba(255,255,255,.3)",padding:"14px 28px"}} onClick={()=>scrollTo("#calculator")}>Calculate Your Waste</button>
           </div>
-
-          {/* ── HERO STATS — clean, spaced ── */}
           <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))",gap:"0",marginTop:60,animation:"fadeUp .7s ease .45s both",borderTop:"1px solid rgba(255,255,255,.1)",paddingTop:40}}>
             {stats.map((s,i)=>(
               <div key={s.n} style={{padding:"0 24px 0",borderLeft:i>0?"1px solid rgba(255,255,255,.1)":"none"}}>
@@ -289,7 +192,6 @@ function Hero({onBooking}){
   );
 }
 
-/* ── NOT GRID ── */
 function NotGrid(){
   const [ref,inView]=useInView();
   const cols=[
@@ -319,7 +221,6 @@ function NotGrid(){
   );
 }
 
-/* ── CALCULATOR ── */
 function RangeInput({label,value,min,max,step,format,desc,onChange}){
   const pct=((value-min)/(max-min))*100;
   const trackRef=useRef(null);
@@ -445,7 +346,6 @@ function WasteCalculator({onBooking}){
   );
 }
 
-/* ── APPROACH ── */
 function Approach({onBooking}){
   const [ref,inView]=useInView(0.1);
   const phases=[
@@ -499,7 +399,6 @@ function Approach({onBooking}){
   );
 }
 
-/* ── INDUSTRIES ── */
 function Industries({onBooking}){
   const [active,setActive]=useState(0);
   const sectors=[
@@ -593,7 +492,6 @@ function Industries({onBooking}){
   );
 }
 
-/* ── ROADMAP ── */
 function Roadmap(){
   const [ref,inView]=useInView(0.05);
   const items=[
@@ -608,7 +506,7 @@ function Roadmap(){
   ];
   return(
     <section style={{padding:"96px 40px",background:B.navyD,position:"relative",overflow:"hidden"}}>
-      <div style={{position:"absolute",inset:0,opacity:.03,backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L40 20L20 40L0 20Z' fill='%23ffffff'/%3E%3C/svg%3E\")"}}/>
+      <div style={{position:"absolute",inset:0,opacity:.03,backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L40 20L20 40L0 20Z' fill='%23ffffff'/%3E%3C/svg%3E\")"}}/}
       <div style={{maxWidth:1100,margin:"0 auto",position:"relative",zIndex:1}}>
         <div style={{textAlign:"center",marginBottom:64}}>
           <span className="section-label" style={{color:B.emeraldL}}>Engagement Timeline</span>
@@ -637,7 +535,6 @@ function Roadmap(){
   );
 }
 
-/* ── GUARANTEE ── */
 function Guarantee({onBooking}){
   return(
     <section style={{padding:"80px 40px",background:`linear-gradient(135deg,${B.navyD} 0%,#1A4535 100%)`}}>
@@ -645,7 +542,7 @@ function Guarantee({onBooking}){
         <div style={{display:"inline-flex",alignItems:"center",justifyContent:"center",width:72,height:72,borderRadius:"50%",background:"rgba(42,157,111,.15)",border:`2px solid ${B.emerald}`,fontSize:"28px",marginBottom:24}}>◎</div>
         <span className="section-label" style={{color:B.emeraldL,display:"block",marginBottom:16}}>The WIPS Guarantee</span>
         <h2 className="cg" style={{fontSize:"clamp(1.8rem,4vw,2.8rem)",fontWeight:300,color:"#fff",marginBottom:20,lineHeight:1.2}}>
-          If We Don't Find <em style={{fontStyle:"italic",color:B.emeraldL}}>$500/Month</em> in Recoverable Waste From the First Workflow — Your Scan Is Free.
+          If We Don&apos;t Find <em style={{fontStyle:"italic",color:B.emeraldL}}>$500/Month</em> in Recoverable Waste From the First Workflow — Your Scan Is Free.
         </h2>
         <p style={{fontSize:"1rem",color:"rgba(255,255,255,.6)",lineHeight:1.75,maxWidth:600,margin:"0 auto 36px"}}>
           This is not a marketing position. It is a structural accountability clause in every engagement we take. We have one standard: results that you can measure. If the first workflow we analyse does not demonstrate at least $500 per month in recoverable waste, we invoice you nothing.
@@ -659,15 +556,11 @@ function Guarantee({onBooking}){
   );
 }
 
-/* ── ARTICLES (full content) ── */
 const ARTICLES = [
   {
-    type:"The WIPS Brief",
-    label:"Operations",
-    time:"5 min read",
-    title:"Why Your Admin Hours Are the Wrong Metric",
-    color: "#2A9D6F",
-    body: [
+    type:"The WIPS Brief",label:"Operations",time:"5 min read",
+    title:"Why Your Admin Hours Are the Wrong Metric",color:"#2A9D6F",
+    body:[
       {h:"The Question Operators Ask — and Why It's Wrong",p:"Every month, operations managers count how many hours their team spends on administrative tasks. The number sits in a spreadsheet. It grows slightly each quarter. It becomes a talking point in management meetings. And then nothing happens."},
       {h:"The Correct Question",p:"The relevant metric is not how many hours are spent on administration. It is how many revenue-generating hours are displaced by administration. A dental receptionist spending 14 hours per week on manual appointment confirmations is not losing 14 hours. She is losing 14 hours of patient-facing time — which, calculated at the clinic's average hourly rate, represents a specific, documentable monthly revenue cost."},
       {h:"The Benchmark Gap",p:"Across 24 operational audits conducted in Lebanon, Jordan, and Oman between 2024 and 2025, WIPS identified that the average SME with 3–8 staff loses between $1,600 and $2,400 per month to administrative displacement. The majority of operators underestimate this number by 60–80%. This is not because they are poor managers. It is because the metric they are tracking — hours spent — masks the metric that matters: revenue foregone."},
@@ -675,12 +568,9 @@ const ARTICLES = [
     ]
   },
   {
-    type:"Field Note",
-    label:"Dental · Case Study",
-    time:"5 min read",
-    title:"How a 3-Chair Clinic Recovered $2,140/Month in 30 Days",
-    color: "#1B365D",
-    body: [
+    type:"Field Note",label:"Dental · Case Study",time:"5 min read",
+    title:"How a 3-Chair Clinic Recovered $2,140/Month in 30 Days",color:"#1B365D",
+    body:[
       {h:"The Engagement",p:"A three-chair dental clinic in Beirut contracted WIPS for a full Operational Scan in Q4 2024. The clinic had 2 dentists, 1 receptionist, and 1 dental assistant. Monthly revenue was approximately $18,000. The owner suspected inefficiency existed but had no structured way to locate or quantify it."},
       {h:"Week 1–2: Discovery",p:"WIPS shadowed all four staff members across a standard working week. We logged 47 distinct administrative touchpoints — manual calls for appointment reminders, paper-based patient intake forms, verbal handoffs between the receptionist and dental chairs, and a billing process that required four separate manual entries per patient."},
       {h:"Week 3: Quantification",p:"Each touchpoint was costed against the clinic's revenue-per-hour rate. The top three findings: (1) Appointment no-show rate of 23% — costing $880/month in unrecovered chair time. (2) Manual patient intake requiring 12 minutes per new patient — displacing 6.4 hours/month of billable chair time at a cost of $640/month. (3) A billing reconciliation process requiring 3.5 hours every Monday — a pure administrative cost of $350/month at average staff hourly rate. Total identified: $1,870–$2,410/month."},
@@ -689,12 +579,9 @@ const ARTICLES = [
     ]
   },
   {
-    type:"Operations Report",
-    label:"MENA Market",
-    time:"5 min read",
-    title:"The State of SME Operations in Lebanon and Jordan",
-    color: "#C8952A",
-    body: [
+    type:"Operations Report",label:"MENA Market",time:"5 min read",
+    title:"The State of SME Operations in Lebanon and Jordan",color:"#C8952A",
+    body:[
       {h:"Report Scope",p:"This report aggregates findings from 24 operational audits conducted by WIPS across Lebanon, Jordan, and Oman between January and December 2025. Sectors covered: dental and medical clinics (9 engagements), real estate agencies (5), fitness and gym operations (4), logistics operators (4), and NGOs (2). All data is anonymised."},
       {h:"Finding 1: The Tool Paradox",p:"88% of audited SMEs in this sample were paying for software they were using at less than 35% of its documented capability. Average monthly spend on underutilised software: $740/month. Average recoverable value from optimising existing tool usage (without new software purchases): $330/month. The dominant pattern: tools are purchased to solve a problem, partially implemented, and then bypassed in favour of manual workarounds that become institutionalised."},
       {h:"Finding 2: The Handoff Cost",p:"The highest-cost single workflow pattern across all 24 audits was the verbal handoff — information transferred between staff members through conversation rather than system entry. In dental and medical settings, verbal handoffs accounted for an average of 19% of identifiable waste. In logistics, 31%. The cost is not the handoff itself. It is the re-entry, the error rate, and the follow-up calls it generates."},
@@ -741,9 +628,7 @@ function ArticleModal({idx,onClose}){
   );
 }
 
-/* ── INSIGHTS ── */
 function Insights({onArticle}){
-  const cards=ARTICLES;
   return(
     <section id="insights" style={{padding:"96px 40px",background:"#fff"}}>
       <div style={{maxWidth:1200,margin:"0 auto"}}>
@@ -756,7 +641,7 @@ function Insights({onArticle}){
           <p style={{maxWidth:340,color:B.textS,fontSize:".9rem",lineHeight:1.7}}>Every article is built from real operational data — workflows audited, waste quantified, automations deployed, and results measured across WIPS client engagements.</p>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:24,marginBottom:40}}>
-          {cards.map((c,idx)=>(
+          {ARTICLES.map((c,idx)=>(
             <div key={c.title} className="card" style={{overflow:"hidden"}}>
               <div style={{height:4,background:c.color}}/>
               <div style={{padding:"24px"}}>
@@ -782,7 +667,6 @@ function Insights({onArticle}){
   );
 }
 
-/* ── BOOKING FORM (with Formspree) ── */
 function BookingForm({onClose,isModal=false}){
   const [step,setStep]=useState(1);
   const [submitting,setSubmitting]=useState(false);
@@ -795,7 +679,6 @@ function BookingForm({onClose,isModal=false}){
     setSubmitting(true);
     setError("");
     try {
-      // Build FormData — works from both file:// and hosted URLs
       const fd = new FormData();
       fd.append("_subject","New Discovery Session Request — WIPS Tech");
       fd.append("name",data.name);
@@ -892,7 +775,7 @@ function BookingForm({onClose,isModal=false}){
             <select value={data.source} onChange={e=>upd("source",e.target.value)}><option value="" disabled>Optional</option>{["LinkedIn","Google Search","Referral from a colleague","WIPS content / article","Other"].map(o=><option key={o} value={o}>{o}</option>)}</select>
           </div>
           <div style={{background:B.smoke,border:`1px solid ${B.borderL}`,borderRadius:6,padding:"12px 16px",marginBottom:20}}>
-            <p style={{fontSize:"11.5px",color:B.textT,lineHeight:1.65,margin:0}}><strong style={{color:B.navy}}>What happens next:</strong> We review your submission within one business day. If your operation qualifies, you'll receive a calendar invite within 24 hours. If not, we'll tell you directly.</p>
+            <p style={{fontSize:"11.5px",color:B.textT,lineHeight:1.65,margin:0}}><strong style={{color:B.navy}}>What happens next:</strong> We review your submission within one business day. If your operation qualifies, you&apos;ll receive a calendar invite within 24 hours. If not, we&apos;ll tell you directly.</p>
           </div>
           {error&&<div style={{background:"#FEF2F2",border:"1px solid #FCA5A5",borderRadius:6,padding:"10px 14px",marginBottom:16}}><p style={{fontSize:"12px",color:"#DC2626",margin:0}}>{error}</p></div>}
           <div style={{display:"grid",gridTemplateColumns:"1fr 1.6fr",gap:12}}>
@@ -912,7 +795,6 @@ function BookingForm({onClose,isModal=false}){
   );
 }
 
-/* ── MODAL ── */
 function BookingModal({open,onClose}){
   useEffect(()=>{ document.body.style.overflow=open?"hidden":""; return()=>{ document.body.style.overflow=""; }; },[open]);
   if(!open)return null;
@@ -932,7 +814,6 @@ function BookingModal({open,onClose}){
   );
 }
 
-/* ── CONTACT MODAL ── */
 function ContactModal({open,onClose}){
   useEffect(()=>{ document.body.style.overflow=open?"hidden":""; return()=>{ document.body.style.overflow=""; }; },[open]);
   if(!open)return null;
@@ -948,36 +829,27 @@ function ContactModal({open,onClose}){
         </div>
         <div style={{padding:"36px 32px"}}>
           <p style={{fontSize:"15px",color:B.textS,lineHeight:1.75,marginBottom:28}}>The fastest way to reach us is WhatsApp. We respond to all qualified SME operator enquiries within one business day.</p>
-
-          {/* WhatsApp CTA */}
           <a href={`https://wa.me/${WA_NUMBER.replace(/\D/g,'')}?text=Hello%20WIPS%20Tech,%20I'd%20like%20to%20learn%20more%20about%20your%20services.`} target="_blank" rel="noopener noreferrer"
             style={{display:"flex",alignItems:"center",gap:16,background:"#25D366",borderRadius:12,padding:"20px 24px",textDecoration:"none",marginBottom:20,transition:"opacity .2s",cursor:"pointer"}}
             onMouseEnter={e=>e.currentTarget.style.opacity=".9"} onMouseLeave={e=>e.currentTarget.style.opacity="1"}>
             <div style={{width:52,height:52,borderRadius:"50%",background:"rgba(255,255,255,.2)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-              </svg>
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             </div>
             <div>
               <div style={{fontFamily:"'Outfit',sans-serif",fontWeight:700,fontSize:"15px",color:"#fff",marginBottom:3}}>WhatsApp Fast-Track</div>
               <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"13px",color:"rgba(255,255,255,.8)"}}>Number will be added shortly — check back soon</div>
             </div>
           </a>
-
-          {/* Email */}
           <a href="mailto:info@wipstech.com" style={{display:"flex",alignItems:"center",gap:16,background:B.smoke,border:`1px solid ${B.borderL}`,borderRadius:12,padding:"18px 24px",textDecoration:"none",marginBottom:20,transition:"border-color .2s"}}
             onMouseEnter={e=>e.currentTarget.style.borderColor=B.navy} onMouseLeave={e=>e.currentTarget.style.borderColor=B.borderL}>
             <div style={{width:44,height:44,borderRadius:"50%",background:B.navy,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-              </svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
             </div>
             <div>
               <div style={{fontFamily:"'Outfit',sans-serif",fontWeight:600,fontSize:"14px",color:B.navy,marginBottom:2}}>Email</div>
               <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"13px",color:B.textS}}>info@wipstech.com</div>
             </div>
           </a>
-
           <div style={{borderTop:`1px solid ${B.borderL}`,paddingTop:20,marginTop:4}}>
             <p style={{fontSize:"12px",color:B.textT,lineHeight:1.65,margin:0}}>WIPS Tech operates in Lebanon. We respond to all qualifying SME operator enquiries within one business day. Sessions are available to operators with 10 or more employees.</p>
           </div>
@@ -987,8 +859,8 @@ function ContactModal({open,onClose}){
   );
 }
 
-/* ── INLINE BOOKING SECTION ── */
 function BookingSection(){
+  const [bookingOpen,setBookingOpen]=useState(false);
   return(
     <section id="book" style={{padding:"96px 40px",background:B.smoke}}>
       <div style={{maxWidth:1200,margin:"0 auto",display:"grid",gridTemplateColumns:"1fr 1fr",gap:64,alignItems:"start"}} className="grid-1-mobile">
@@ -1019,7 +891,6 @@ function BookingSection(){
   );
 }
 
-/* ── FAQ ── */
 function FAQ(){
   const [open,setOpen]=useState(null);
   const faqs=[
@@ -1056,7 +927,6 @@ function FAQ(){
   );
 }
 
-/* ── FOOTER ── */
 function Footer({onBooking,onContact}){
   const scrollTo=(id)=>document.querySelector(id)?.scrollIntoView({behavior:"smooth"});
   const footerLinks={
@@ -1081,7 +951,6 @@ function Footer({onBooking,onContact}){
       {label:"Contact Us",action:onContact},
     ],
   };
-
   return(
     <footer style={{background:B.navyD}}>
       <div style={{background:B.navy,padding:"56px 40px",textAlign:"center"}}>
@@ -1096,16 +965,13 @@ function Footer({onBooking,onContact}){
             <WIPSLogo light/>
             <p style={{fontSize:"13px",color:"rgba(255,255,255,.4)",lineHeight:1.75,marginTop:20,maxWidth:300}}>Not a Software Vendor. Not a Business Consultant. Your Operations Intelligence Partner.</p>
             <p style={{fontSize:"12px",color:"rgba(255,255,255,.25)",lineHeight:1.7,marginTop:10,maxWidth:300}}>WIPS Tech works with SME leaders who have decided that operational performance is a strategic priority — not an administrative function.</p>
-            {/* Social Icons */}
             <div style={{display:"flex",gap:10,marginTop:24,alignItems:"center",flexWrap:"wrap"}}>
-              {/* LinkedIn — Active */}
               <a href="https://www.linkedin.com/company/wips-tech/" target="_blank" rel="noopener noreferrer"
                 style={{width:36,height:36,borderRadius:8,background:"#0A66C2",display:"flex",alignItems:"center",justifyContent:"center",textDecoration:"none",transition:"opacity .2s",flexShrink:0}}
                 onMouseEnter={e=>e.currentTarget.style.opacity=".8"} onMouseLeave={e=>e.currentTarget.style.opacity="1"}
                 title="LinkedIn">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
               </a>
-              {/* X, Instagram, Facebook, TikTok, YouTube — Coming Soon */}
               {[
                 {label:"X",bg:"#000",icon:<svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>},
                 {label:"Instagram",bg:"#E1306C",icon:<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>},
@@ -1148,16 +1014,32 @@ function Footer({onBooking,onContact}){
   );
 }
 
-/* ── APP ROOT ── */
-function App(){
+export default function Page(){
   const [bookingOpen,setBookingOpen]=useState(false);
   const [contactOpen,setContactOpen]=useState(false);
   const [articleIdx,setArticleIdx]=useState(null);
   const open=()=>setBookingOpen(true);
   const close=()=>setBookingOpen(false);
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      const el=document.getElementById("loading");
+      if(el){ el.style.opacity="0"; setTimeout(()=>el.remove(),600); }
+    },900);
+  },[]);
+
   return(
     <>
-      <style>{css}</style>
+      <div id="loading" style={{position:"fixed",inset:0,background:"#0F1E35",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",zIndex:9999,transition:"opacity 0.6s ease"}}>
+        <img src={BASE+"logo-transparent.png"} alt="WIPS Tech" style={{height:52,width:"auto",opacity:.92,objectFit:"contain"}}
+          onError={e=>{e.target.style.display="none";const fb=document.getElementById("ld-fallback");if(fb)fb.style.display="block";}}/>
+        <div id="ld-fallback" style={{display:"none",fontFamily:"'Cormorant Garamond',Georgia,serif",fontSize:"1.4rem",color:"rgba(255,255,255,.8)",letterSpacing:".1em",fontWeight:300}}>WIPS Tech</div>
+        <div style={{display:"flex",gap:8,marginTop:18}}>
+          <div className="ldot" style={{background:"#2A9D6F"}}></div>
+          <div className="ldot" style={{background:"#C8952A",animationDelay:".2s"}}></div>
+          <div className="ldot" style={{background:"#2A9D6F",animationDelay:".4s"}}></div>
+        </div>
+      </div>
       <Navigation onBooking={open} onContact={()=>setContactOpen(true)}/>
       <main>
         <Hero onBooking={open}/>
@@ -1179,14 +1061,3 @@ function App(){
     </>
   );
 }
-
-const root=ReactDOM.createRoot(document.getElementById('root'));
-root.render(React.createElement(App));
-
-setTimeout(()=>{
-  const el=document.getElementById('loading');
-  if(el){ el.style.opacity='0'; setTimeout(()=>el.remove(),600); }
-},900);
-</script>
-</body>
-</html>
