@@ -57,13 +57,13 @@ function WIPSLogo({light=false}){
     return () => window.removeEventListener("resize", check);
   },[]);
   const src = isMobile ? LOGOS.mobile : LOGOS.desktop;
-  const height = isMobile ? 72 : 88;
+  const height = isMobile ? 90 : 140;
   return(
     <div style={{display:"flex",alignItems:"center",flexShrink:0}}>
       <img
         src={src}
         alt="WIPS Tech — Workflows Intelligence & Performance Solutions"
-        style={{height:height, width:"auto", objectFit:"contain", display:"block", maxWidth: isMobile ? 240 : 440}}
+        style={{height:height, width:"auto", objectFit:"contain", display:"block", maxWidth: isMobile ? 320 : 600}}
         onError={(e)=>{
           e.target.style.display="none";
           if(e.target.nextSibling) e.target.nextSibling.style.display="flex";
@@ -107,7 +107,7 @@ function Navigation({onBooking,onContact}){
   return(
     <>
       <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:scrolled?"rgba(255,255,255,.97)":"rgba(255,255,255,.95)",backdropFilter:"blur(12px)",borderBottom:scrolled?`1px solid ${B.borderL}`:"1px solid transparent",boxShadow:scrolled?"0 2px 24px rgba(27,54,93,.08)":"none",transition:"all .3s",padding:"0 40px"}}>
-        <div style={{maxWidth:1200,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:96}}>
+        <div style={{maxWidth:1200,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:116}}>
           <WIPSLogo/>
           <div className="hide-mobile" style={{display:"flex",alignItems:"center",gap:34}}>
             {navItems.map(i=><button key={i.label} className="nav-link" onClick={()=>scrollTo(i.href)}>{i.label}</button>)}
