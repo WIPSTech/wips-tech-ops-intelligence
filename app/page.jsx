@@ -146,7 +146,7 @@ function Hero({onBooking}){
   ];
   return(
     <section style={{minHeight:"100vh",background:`linear-gradient(158deg,${B.navyD} 0%,${B.navy} 52%,#1A4535 100%)`,display:"flex",flexDirection:"column",justifyContent:"center",position:"relative",overflow:"hidden",padding:"120px 40px 80px"}}>
-      <div style={{position:"absolute",inset:0,opacity:.04,backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E\")"}}/}
+      <div style={{position:"absolute",inset:0,opacity:.04,backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E\")"}}/>
       {[0,1,2,3].map(i=>(
         <svg key={i} width={220-i*28} height={340-i*44} viewBox="0 0 220 340" fill="none"
           style={{position:"absolute",right:-60+i*10,top:"50%",transform:`translateY(${-50+i*4}%)`,animation:`chevFlow ${2.6+i*.4}s ease-in-out infinite`,animationDelay:`${i*.25}s`,pointerEvents:"none"}}>
@@ -506,7 +506,7 @@ function Roadmap(){
   ];
   return(
     <section style={{padding:"96px 40px",background:B.navyD,position:"relative",overflow:"hidden"}}>
-      <div style={{position:"absolute",inset:0,opacity:.03,backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L40 20L20 40L0 20Z' fill='%23ffffff'/%3E%3C/svg%3E\")"}}/}
+      <div style={{position:"absolute",inset:0,opacity:.03,backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0L40 20L20 40L0 20Z' fill='%23ffffff'/%3E%3C/svg%3E\")"}}/>
       <div style={{maxWidth:1100,margin:"0 auto",position:"relative",zIndex:1}}>
         <div style={{textAlign:"center",marginBottom:64}}>
           <span className="section-label" style={{color:B.emeraldL}}>Engagement Timeline</span>
