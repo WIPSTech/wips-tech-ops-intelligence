@@ -14,8 +14,8 @@ const WA_NUMBER = "+96170000000"; // Replace with real number
 
 const BASE = "/"; // Files served from Next.js public/ folder
 const LOGOS = {
-  desktop : BASE + "logo-transparent.png.png",
-  mobile  : BASE + "logo-mobile.png.png",
+  desktop : BASE + "logo-transparent.png",
+  mobile  : BASE + "logo-mobile.png",
 };
 
 /* ── helpers ── */
@@ -57,13 +57,13 @@ function WIPSLogo({light=false}){
     return () => window.removeEventListener("resize", check);
   },[]);
   const src = isMobile ? LOGOS.mobile : LOGOS.desktop;
-  const height = isMobile ? 36 : 44;
+  const height = isMobile ? 72 : 88;
   return(
     <div style={{display:"flex",alignItems:"center",flexShrink:0}}>
       <img
         src={src}
         alt="WIPS Tech — Workflows Intelligence & Performance Solutions"
-        style={{height:height, width:"auto", objectFit:"contain", display:"block", maxWidth: isMobile ? 120 : 220}}
+        style={{height:height, width:"auto", objectFit:"contain", display:"block", maxWidth: isMobile ? 240 : 440}}
         onError={(e)=>{
           e.target.style.display="none";
           if(e.target.nextSibling) e.target.nextSibling.style.display="flex";
@@ -107,7 +107,7 @@ function Navigation({onBooking,onContact}){
   return(
     <>
       <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:scrolled?"rgba(255,255,255,.97)":"rgba(255,255,255,.95)",backdropFilter:"blur(12px)",borderBottom:scrolled?`1px solid ${B.borderL}`:"1px solid transparent",boxShadow:scrolled?"0 2px 24px rgba(27,54,93,.08)":"none",transition:"all .3s",padding:"0 40px"}}>
-        <div style={{maxWidth:1200,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:72}}>
+        <div style={{maxWidth:1200,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:96}}>
           <WIPSLogo/>
           <div className="hide-mobile" style={{display:"flex",alignItems:"center",gap:34}}>
             {navItems.map(i=><button key={i.label} className="nav-link" onClick={()=>scrollTo(i.href)}>{i.label}</button>)}
@@ -1031,7 +1031,7 @@ export default function Page(){
   return(
     <>
       <div id="loading" style={{position:"fixed",inset:0,background:"#0F1E35",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",zIndex:9999,transition:"opacity 0.6s ease"}}>
-        <img src="/logo-transparent.png.png" alt="WIPS Tech" style={{height:52,width:"auto",opacity:.92,objectFit:"contain"}}
+        <img src="/logo-transparent.png" alt="WIPS Tech" style={{height:80,width:"auto",opacity:.92,objectFit:"contain"}}
           onError={e=>{e.target.style.display="none";const fb=document.getElementById("ld-fallback");if(fb)fb.style.display="block";}}/>
         <div id="ld-fallback" style={{display:"none",fontFamily:"'Cormorant Garamond',Georgia,serif",fontSize:"1.4rem",color:"rgba(255,255,255,.8)",letterSpacing:".1em",fontWeight:300}}>WIPS Tech</div>
         <div style={{display:"flex",gap:8,marginTop:18}}>
