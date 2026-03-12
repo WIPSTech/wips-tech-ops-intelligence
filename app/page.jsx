@@ -838,7 +838,7 @@ function ContactModal({open,onClose}){
               <div style={{fontFamily:"'Outfit',sans-serif",fontWeight:700,fontSize:"15px",color:"#fff",marginBottom:3}}>WhatsApp Fast-Track</div>
               <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"13px",color:"rgba(255,255,255,.8)"}}>Coming Soon</div>
             </div>
-          </a>
+          </div>
           <a href="mailto:info@wipstech.com" style={{display:"flex",alignItems:"center",gap:16,background:B.smoke,border:`1px solid ${B.borderL}`,borderRadius:12,padding:"18px 24px",textDecoration:"none",marginBottom:20,transition:"border-color .2s"}}
             onMouseEnter={e=>e.currentTarget.style.borderColor=B.navy} onMouseLeave={e=>e.currentTarget.style.borderColor=B.borderL}>
             <div style={{width:44,height:44,borderRadius:"50%",background:B.navy,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
