@@ -5,7 +5,7 @@ export const metadata = {
   description:
     "WIPS Tech helps Lebanese SMEs identify, measure, and eliminate operational waste. Structured workflow audits, automation builds, and performance accountability.",
   icons: {
-    icon: "/favicon-32.png",
+    icon: "/favicon-32.png.png",
   },
 };
 
