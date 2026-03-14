@@ -13,6 +13,13 @@ export async function generateMetadata({ params }) {
   return {
     title: post.title,
     description: post.metaDescription,
+    alternates: {
+      canonical: `https://wipstech.com/blog/${post.slug}`,
+      languages: {
+        "en": `https://wipstech.com/blog/${post.slug}`,
+        "x-default": `https://wipstech.com/blog/${post.slug}`,
+      },
+    },
     openGraph: {
       title: post.title,
       description: post.metaDescription,
