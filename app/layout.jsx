@@ -3,12 +3,12 @@ import "./globals.css";
 
 export const metadata = {
   metadataBase: new URL("https://wipstech.com"),
-  title: "Operations Intelligence Platform for MENA SMEs | WIPS Tech",
+  title: "Operations Intelligence Partner for MENA SMEs | WIPS Tech",
   description:
     "WIPS Tech turns operational chaos into structured clarity. AI-powered workflows, KPI visibility, and performance intelligence — built for MENA small businesses.",
   icons: { icon: "/favicon-32.png" },
   openGraph: {
-    title: "Operations Intelligence Platform for MENA SMEs | WIPS Tech",
+    title: "Operations Intelligence Partner for MENA SMEs | WIPS Tech",
     description:
       "WIPS Tech turns operational chaos into structured clarity. AI-powered workflows, KPI visibility, and performance intelligence — built for MENA small businesses.",
     url: "https://wipstech.com",
@@ -18,7 +18,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Operations Intelligence Platform for MENA SMEs | WIPS Tech",
+    title: "Operations Intelligence Partner for MENA SMEs | WIPS Tech",
     description:
       "WIPS Tech turns operational chaos into structured clarity. AI-powered workflows, KPI visibility, and performance intelligence.",
   },
