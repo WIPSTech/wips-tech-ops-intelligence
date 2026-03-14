@@ -1,11 +1,26 @@
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata = {
+  metadataBase: new URL("https://wipstech.com"),
   title: "Operations Intelligence Platform for MENA SMEs | WIPS Tech",
   description:
     "WIPS Tech turns operational chaos into structured clarity. AI-powered workflows, KPI visibility, and performance intelligence — built for MENA small businesses.",
-  icons: {
-    icon: "/favicon-32.png",
+  icons: { icon: "/favicon-32.png" },
+  openGraph: {
+    title: "Operations Intelligence Platform for MENA SMEs | WIPS Tech",
+    description:
+      "WIPS Tech turns operational chaos into structured clarity. AI-powered workflows, KPI visibility, and performance intelligence — built for MENA small businesses.",
+    url: "https://wipstech.com",
+    siteName: "WIPS Tech",
+    images: [{ url: "https://wipstech.com/og-image.png", width: 1200, height: 630, alt: "WIPS Tech" }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Operations Intelligence Platform for MENA SMEs | WIPS Tech",
+    description:
+      "WIPS Tech turns operational chaos into structured clarity. AI-powered workflows, KPI visibility, and performance intelligence.",
   },
 };
 
@@ -20,16 +35,8 @@ const organizationSchema = {
   "foundingDate": "2024",
   "areaServed": ["AE","SA","LB","JO","EG","KW","QA","BH"],
   "serviceType": "Operations Intelligence Platform",
-  "knowsAbout": [
-    "workflow automation",
-    "operations intelligence",
-    "KPI dashboards",
-    "SME business operations",
-    "AI-readiness for business"
-  ],
-  "sameAs": [
-    "https://www.linkedin.com/company/wipstech"
-  ]
+  "knowsAbout": ["workflow automation","operations intelligence","KPI dashboards","SME business operations","AI-readiness for business"],
+  "sameAs": ["https://www.linkedin.com/company/wipstech"]
 };
 
 const softwareSchema = {
@@ -40,11 +47,7 @@ const softwareSchema = {
   "operatingSystem": "Web",
   "description": "A cloud-based operations intelligence platform for SMEs in the MENA region. Automates workflows, centralizes KPI tracking, and provides AI-powered performance insights.",
   "url": "https://wipstech.com/platform",
-  "publisher": {
-    "@type": "Organization",
-    "name": "WIPS Tech",
-    "url": "https://wipstech.com"
-  },
+  "publisher": { "@type": "Organization", "name": "WIPS Tech", "url": "https://wipstech.com" },
   "offers": {
     "@type": "Offer",
     "price": "0",
@@ -66,11 +69,13 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        <script
+        <Script
+          id="org-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
-        <script
+        <Script
+          id="software-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
         />
