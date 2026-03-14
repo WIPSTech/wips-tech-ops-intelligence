@@ -1,9 +1,9 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "WIPS Tech — Operations Intelligence Platform",
+  title: "Operations Intelligence Platform for MENA SMEs | WIPS Tech",
   description:
-    "WIPS Tech helps Lebanese SMEs identify, measure, and eliminate operational waste. Structured workflow audits, automation builds, and performance accountability.",
+    "WIPS Tech turns operational chaos into structured clarity. AI-powered workflows, KPI visibility, and performance intelligence — built for MENA small businesses.",
   icons: {
     icon: "/favicon-32.png",
   },
