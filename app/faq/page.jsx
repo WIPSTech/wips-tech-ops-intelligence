@@ -5,6 +5,14 @@ export const metadata = {
   title: "Operations Intelligence FAQ — WIPS Tech | MENA SME Guide",
   description:
     "Answers to the most common questions about operations intelligence, workflow automation, and SME performance management — from the WIPS Tech team.",
+  alternates: {
+    canonical: "https://wipstech.com/faq",
+    languages: {
+      "en": "https://wipstech.com/faq",
+      "ar": "https://wipstech.com/faq",
+      "x-default": "https://wipstech.com/faq",
+    },
+  },
   openGraph: {
     title: "Operations Intelligence FAQ — WIPS Tech | MENA SME Guide",
     description: "Answers to the most common questions about operations intelligence, workflow automation, and SME performance management — from the WIPS Tech team.",
