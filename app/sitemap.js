@@ -30,5 +30,11 @@ export default function sitemap() {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: "https://wipstech.com/faq",
+      lastModified: new Date("2026-03-14"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
   ];
 }
