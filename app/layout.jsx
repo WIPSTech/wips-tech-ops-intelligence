@@ -32,7 +32,6 @@ const organizationSchema = {
   ]
 };
 
-
 const softwareSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
@@ -65,6 +64,8 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
+      </head>
+      <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -73,8 +74,8 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
         />
-      </head>
-      <body>{children}</body>
+        {children}
+      </body>
     </html>
   );
 }
