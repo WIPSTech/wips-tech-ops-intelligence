@@ -6,7 +6,7 @@ export const metadata = {
     "Answers to the most common questions about operations intelligence, workflow automation, and SME performance management — from the WIPS Tech team.",
 };
 
-const faqPageSchema = {
+const mergedFaqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -89,51 +89,102 @@ const faqPageSchema = {
         "@type": "Answer",
         "text": "Yes. WIPS Tech is designed for startups as well as established SMEs. For startups, building structured workflows and operational visibility from the beginning prevents the chaos that typically accompanies rapid growth. WIPS Tech helps MENA startups build the operational foundation needed to scale confidently and become investor-ready."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the Discovery Session genuinely free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The 45-minute session carries no cost, no obligation, and no follow-up unless you choose to proceed. You receive a preliminary waste estimate, a list of your three highest-ROI workflow priorities, and an honest recommendation on whether a full Scan would produce a positive return for your specific operation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why not hire an internal operations manager instead?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An internal hire builds capability over time — typically 6–12 months before they redesign anything. WIPS delivers operational intelligence from day one, with diagnostic methodology, sector-specific workflow experience, and implementation accountability. When the engagement concludes, your internal team inherits a documented, functioning system — not a dependency."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "We already use software. Why isn't that enough?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Software does not redesign your workflows. It digitises the ones you already have — including the inefficient ones. Most WIPS clients are using 30–40% of their software's capability. We architect the system that makes your existing software perform at its potential and automate what has been done manually by habit rather than necessity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What makes WIPS different from a management consultant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A consultant diagnoses and recommends. WIPS diagnoses, builds, and stays accountable for the result. The structural difference is implementation. Traditional advisory firms are not resourced or incentivised to execute. WIPS builds the workflows, deploys the automations, and measures performance after delivery. If a build underperforms its projection, we correct it at no additional cost."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long before we see measurable results?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Week four of Phase 1: your Scan report quantifies every identified inefficiency — measurable findings before a single automation is built. Weeks 6–7: first Tier 1 automations are live, with time and cost recovery within days of deployment. The compounding effect of a structured operational system takes 3–6 months to fully materialise — but initial wins happen in the first 30 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the $500 guarantee exactly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If the first workflow we analyse in the Operational Scan does not demonstrate at least $500 per month in recoverable waste, we invoice you nothing for that task. This is a structural accountability clause — not a marketing claim. It reflects our confidence in the methodology and our commitment to engagements that deliver measurable ROI."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What level of involvement is required from our team?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Scan requires 3–4 hours of your team's time over 30 days — primarily structured observation sessions and workflow interviews. We work around your operation, not through it. During the Build phase, we coordinate with relevant staff on implementation. The Partnership retainer requires one monthly performance review and an open channel for new workflow requests."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "We already have operational systems. Can WIPS still add value?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Almost always — and often more effectively. Clients with existing systems typically use 30–40% of their tool's capability, have systems that don't communicate with each other, and lack a single performance truth across the operation. WIPS audits what you have, builds the connections, and adds only what is structurally necessary."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What industries does WIPS specialise in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dental and medical clinics, real estate agencies, fitness operations, NGOs, contracting and construction firms, and professional services businesses between 10 and 150 employees. The methodology is consistent across sectors. The application is specific to each."
+      }
     }
   ]
 };
 
 const FAQS = [
-  {
-    q: "What is an operations intelligence platform?",
-    a: <>An operations intelligence platform is a software system that converts real-time business data into actionable insights for operational decision-making. It automates <Link href="/" style={{color:"#2A9D6F",fontWeight:600,textDecoration:"none"}}>workflows</Link>, tracks KPIs, and provides performance visibility — replacing manual spreadsheets and disconnected tools. WIPS Tech is an operations intelligence platform purpose-built for SMEs in the MENA region.</>
-  },
-  {
-    q: "What does WIPS Tech do?",
-    a: "WIPS Tech gives SMEs in the MENA region a single platform to automate their workflows, track business KPIs in real time, and build the data-driven operations needed for AI-readiness. It translates operational chaos into structured clarity and performance visibility, enabling business owners to make faster, more confident decisions."
-  },
-  {
-    q: "Who is WIPS Tech built for?",
-    a: "WIPS Tech is built for small and medium enterprises, startups, and growing businesses in the MENA region — including the UAE, Saudi Arabia, Lebanon, Jordan, and Egypt. It is designed for business owners, COOs, and operations managers who need operational visibility without the cost and complexity of enterprise ERP systems."
-  },
-  {
-    q: "What is the difference between WIPS Tech and an ERP?",
-    a: "ERP systems are large, expensive, and designed for enterprise-level operations. WIPS Tech is an operations intelligence platform built specifically for SMEs — faster to implement, easier to use, and focused on operational clarity rather than financial back-office functions. Most SMEs get WIPS Tech live within 30 days, not 12 months."
-  },
-  {
-    q: "What is operational chaos in a small business?",
-    a: "Operational chaos occurs when a small business lacks documented workflows, real-time performance data, and systematic processes. It typically manifests as decisions made from memory, data spread across spreadsheets and messaging apps, and inability to measure business performance consistently. WIPS Tech was built specifically to resolve operational chaos for MENA SMEs."
-  },
-  {
-    q: "How does WIPS Tech improve business performance?",
-    a: "WIPS Tech improves business performance by automating core workflows, centralizing KPI tracking, and delivering real-time operational intelligence. Business owners gain clear visibility into what is happening across their operations, can identify bottlenecks before they escalate, and make decisions based on data rather than instinct."
-  },
-  {
-    q: "What is AI-readiness for small businesses?",
-    a: "AI-readiness means a business has the structured data, documented workflows, and operational infrastructure needed to benefit from artificial intelligence tools. WIPS Tech builds AI-readiness in SMEs by first structuring their operations, automating core workflows, and creating the data foundation that AI systems require to generate useful insights."
-  },
-  {
-    q: "Is WIPS Tech available in Arabic?",
-    a: "Yes. WIPS Tech supports Arabic-language operations and is designed for the MENA regional market. Arabic-language content and interface localization are available for users in the UAE, Saudi Arabia, Lebanon, Jordan, and other MENA markets."
-  },
-  {
-    q: "What results can SMEs expect from operations intelligence?",
-    a: <>SMEs implementing operations intelligence platforms typically report improved decision-making speed, reduced manual work through <Link href="/" style={{color:"#2A9D6F",fontWeight:600,textDecoration:"none"}}>workflow automation</Link>, greater team accountability, and clearer performance visibility. Businesses using integrated digital platforms improve operational efficiency by over 28% on average.</>
-  },
-  {
-    q: "Is WIPS Tech suitable for startups?",
-    a: "Yes. WIPS Tech is designed for startups as well as established SMEs. For startups, building structured workflows and operational visibility from the beginning prevents the chaos that typically accompanies rapid growth. WIPS Tech helps MENA startups build the operational foundation needed to scale confidently and become investor-ready."
-  },
+  { q: "What is an operations intelligence platform?", a: "An operations intelligence platform is a software system that converts real-time business data into actionable insights for operational decision-making. It automates workflows, tracks KPIs, and provides performance visibility — replacing manual spreadsheets and disconnected tools. WIPS Tech is an operations intelligence platform purpose-built for SMEs in the MENA region." },
+  { q: "What does WIPS Tech do?", a: "WIPS Tech gives SMEs in the MENA region a single platform to automate their workflows, track business KPIs in real time, and build the data-driven operations needed for AI-readiness. It translates operational chaos into structured clarity and performance visibility, enabling business owners to make faster, more confident decisions." },
+  { q: "Who is WIPS Tech built for?", a: "WIPS Tech is built for small and medium enterprises, startups, and growing businesses in the MENA region — including the UAE, Saudi Arabia, Lebanon, Jordan, and Egypt. It is designed for business owners, COOs, and operations managers who need operational visibility without the cost and complexity of enterprise ERP systems." },
+  { q: "What is the difference between WIPS Tech and an ERP?", a: "ERP systems are large, expensive, and designed for enterprise-level operations. WIPS Tech is an operations intelligence platform built specifically for SMEs — faster to implement, easier to use, and focused on operational clarity rather than financial back-office functions. Most SMEs get WIPS Tech live within 30 days, not 12 months." },
+  { q: "What is operational chaos in a small business?", a: "Operational chaos occurs when a small business lacks documented workflows, real-time performance data, and systematic processes. It typically manifests as decisions made from memory, data spread across spreadsheets and messaging apps, and inability to measure business performance consistently. WIPS Tech was built specifically to resolve operational chaos for MENA SMEs." },
+  { q: "How does WIPS Tech improve business performance?", a: "WIPS Tech improves business performance by automating core workflows, centralizing KPI tracking, and delivering real-time operational intelligence. Business owners gain clear visibility into what is happening across their operations, can identify bottlenecks before they escalate, and make decisions based on data rather than instinct." },
+  { q: "What is AI-readiness for small businesses?", a: "AI-readiness means a business has the structured data, documented workflows, and operational infrastructure needed to benefit from artificial intelligence tools. WIPS Tech builds AI-readiness in SMEs by first structuring their operations, automating core workflows, and creating the data foundation that AI systems require to generate useful insights." },
+  { q: "Is WIPS Tech available in Arabic?", a: "Yes. WIPS Tech supports Arabic-language operations and is designed for the MENA regional market. Arabic-language content and interface localization are available for users in the UAE, Saudi Arabia, Lebanon, Jordan, and other MENA markets." },
+  { q: "What results can SMEs expect from operations intelligence?", a: "SMEs implementing operations intelligence platforms typically report improved decision-making speed, reduced manual work through workflow automation, greater team accountability, and clearer performance visibility. Businesses using integrated digital platforms improve operational efficiency by over 28% on average." },
+  { q: "Is WIPS Tech suitable for startups?", a: "Yes. WIPS Tech is designed for startups as well as established SMEs. For startups, building structured workflows and operational visibility from the beginning prevents the chaos that typically accompanies rapid growth. WIPS Tech helps MENA startups build the operational foundation needed to scale confidently and become investor-ready." },
+  { q: "Is the Discovery Session genuinely free?", a: "Yes. The 45-minute session carries no cost, no obligation, and no follow-up unless you choose to proceed. You receive a preliminary waste estimate, a list of your three highest-ROI workflow priorities, and an honest recommendation on whether a full Scan would produce a positive return for your specific operation." },
+  { q: "Why not hire an internal operations manager instead?", a: "An internal hire builds capability over time — typically 6–12 months before they redesign anything. WIPS delivers operational intelligence from day one, with diagnostic methodology, sector-specific workflow experience, and implementation accountability. When the engagement concludes, your internal team inherits a documented, functioning system — not a dependency." },
+  { q: "We already use software. Why isn't that enough?", a: "Software does not redesign your workflows. It digitises the ones you already have — including the inefficient ones. Most WIPS clients are using 30–40% of their software's capability. We architect the system that makes your existing software perform at its potential and automate what has been done manually by habit rather than necessity." },
+  { q: "What makes WIPS different from a management consultant?", a: "A consultant diagnoses and recommends. WIPS diagnoses, builds, and stays accountable for the result. The structural difference is implementation. Traditional advisory firms are not resourced or incentivised to execute. WIPS builds the workflows, deploys the automations, and measures performance after delivery. If a build underperforms its projection, we correct it at no additional cost." },
+  { q: "How long before we see measurable results?", a: "Week four of Phase 1: your Scan report quantifies every identified inefficiency — measurable findings before a single automation is built. Weeks 6–7: first Tier 1 automations are live, with time and cost recovery within days of deployment. The compounding effect of a structured operational system takes 3–6 months to fully materialise — but initial wins happen in the first 30 days." },
+  { q: "What is the $500 guarantee exactly?", a: "If the first workflow we analyse in the Operational Scan does not demonstrate at least $500 per month in recoverable waste, we invoice you nothing for that task. This is a structural accountability clause — not a marketing claim. It reflects our confidence in the methodology and our commitment to engagements that deliver measurable ROI." },
+  { q: "What level of involvement is required from our team?", a: "The Scan requires 3–4 hours of your team's time over 30 days — primarily structured observation sessions and workflow interviews. We work around your operation, not through it. During the Build phase, we coordinate with relevant staff on implementation. The Partnership retainer requires one monthly performance review and an open channel for new workflow requests." },
+  { q: "We already have operational systems. Can WIPS still add value?", a: "Almost always — and often more effectively. Clients with existing systems typically use 30–40% of their tool's capability, have systems that don't communicate with each other, and lack a single performance truth across the operation. WIPS audits what you have, builds the connections, and adds only what is structurally necessary." },
+  { q: "What industries does WIPS specialise in?", a: "Dental and medical clinics, real estate agencies, fitness operations, NGOs, contracting and construction firms, and professional services businesses between 10 and 150 employees. The methodology is consistent across sectors. The application is specific to each." },
 ];
 
 export default function FAQPage() {
@@ -141,7 +192,7 @@ export default function FAQPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(mergedFaqSchema) }}
       />
       <style>{`
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -150,7 +201,7 @@ export default function FAQPage() {
         .cg{font-family:'Cormorant Garamond',Georgia,serif}
         .mono{font-family:'JetBrains Mono',monospace}
         .btn-gold{display:inline-flex;align-items:center;gap:8px;background:#C8952A;color:#fff;font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;letter-spacing:.03em;padding:15px 34px;border:2px solid #C8952A;border-radius:3px;transition:all .2s;text-transform:uppercase;text-decoration:none;white-space:nowrap}
-        .btn-gold:hover{background:#A37820;border-color:#A37820;transform:translateY(-2px);box-shadow:0 12px 32px rgba(200,149,42,.35)}
+        .btn-gold:hover{background:#A37820;border-color:#A37820;transform:translateY(-2px)}
         .btn-primary{display:inline-flex;align-items:center;gap:8px;background:#1B365D;color:#fff;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;padding:13px 28px;border:2px solid #1B365D;border-radius:3px;transition:all .2s;text-decoration:none}
         .btn-primary:hover{background:#0F1E35;transform:translateY(-1px)}
         .back-link{font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;color:#4A5568;text-decoration:none}
@@ -198,12 +249,11 @@ export default function FAQPage() {
         </div>
       </section>
 
-      {/* FAQ ACCORDION */}
+      {/* FAQ ACCORDION — 19 questions */}
       <section className="faq-body" style={{padding:"72px 40px",background:"#fff"}}>
         <div style={{maxWidth:860,margin:"0 auto"}}>
-
           <div style={{marginBottom:48}}>
-            <span className="mono" style={{fontSize:"10px",fontWeight:700,letterSpacing:".2em",textTransform:"uppercase",color:"#2A9D6F"}}>10 Questions</span>
+            <span className="mono" style={{fontSize:"10px",fontWeight:700,letterSpacing:".2em",textTransform:"uppercase",color:"#2A9D6F"}}>19 Questions</span>
             <div style={{width:48,height:3,background:"linear-gradient(90deg,#2A9D6F,#1B365D)",borderRadius:2,margin:"14px 0 0"}}/>
           </div>
 
@@ -216,7 +266,6 @@ export default function FAQPage() {
               <p className="ans">{item.a}</p>
             </details>
           ))}
-
         </div>
       </section>
 
