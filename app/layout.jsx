@@ -44,6 +44,13 @@ const softwareSchema = {
     "@type": "Organization",
     "name": "WIPS Tech",
     "url": "https://wipstech.com"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Contact us for SME pricing plans",
+    "url": "https://wipstech.com/pricing"
   }
 };
 
