@@ -61,6 +61,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* hreflang — MENA English + Arabic international SEO */}
+        <link rel="alternate" hreflang="en" href="https://wipstech.com/" />
+        <link rel="alternate" hreflang="ar" href="https://wipstech.com/" />
+        <link rel="alternate" hreflang="x-default" href="https://wipstech.com/" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
