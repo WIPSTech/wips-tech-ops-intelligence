@@ -426,12 +426,12 @@ function Industries({onBooking}){
       workflows:["Beneficiary tracking & program reporting","Donor communication & acknowledgement","Grant compliance documentation","Staff timesheet & project allocation","Impact data collection & visualisation"],
       quote:"WIPS remained present until the automations were live and my team could operate the system independently. That level of accountability is rare in any professional services context.",
       attr:"Operations Director, Regional NGO"},
-    {id:"logistics",label:"Logistics",tag:null,icon:"⬡",waste:"$2,650",
-      h:"Operational Inefficiency in Logistics Compounds Every Delivery.",
-      stats:[{n:"19%",l:"On-time delivery improvement"},{n:"12 hrs",l:"Dispatch admin saved"},{n:"Zero",l:"Manual status calls"}],
-      workflows:["Automated dispatch & route notification","Driver check-in & delivery confirmation","Client status update automation","Invoice generation on delivery completion","Exception handling & delay communication"],
-      quote:"Operational precision in our sector is revenue. WIPS built the workflow intelligence that turned our dispatch from reactive to structured — and the numbers followed.",
-      attr:"General Manager, Regional Logistics Operator"},
+    {id:"construction",label:"Contracting & Construction",tag:null,icon:"🏗",waste:"$2,590",
+      h:"Your variation claims are under documented. Your retention dates are in someone's head. That is not a project — it is exposure.",
+      stats:[{n:"$820",l:"Variation claims recovered/mo"},{n:"$480",l:"Retention dates tracked/mo"},{n:"30 days",l:"Recovery plan delivered"}],
+      workflows:["Variation Claim Tracking — $820/mo · Tier T2","Subcontractor Progress Log — $560/mo · Tier T1","Retention Release Calendar — $480/mo · Tier T2","Site Report Automation — $340/mo · Tier T1"],
+      quote:"If your last three variation claims were submitted from memory or WhatsApp screenshots, you have undocumented losses on every active contract.",
+      attr:"WIPS Construction Scan — Trigger Signal"},
   ];
   const ind=sectors[active];
   return(
@@ -558,7 +558,7 @@ function Guarantee({onBooking}){
 
 const ARTICLES = [
   {
-    type:"The WIPS Brief",label:"Operations",time:"5 min read",
+    slug:"why-admin-hours-are-the-wrong-metric",type:"The WIPS Brief",label:"Operations",time:"5 min read",
     title:"Why Your Admin Hours Are the Wrong Metric",color:"#2A9D6F",
     body:[
       {h:"The Question Operators Ask — and Why It's Wrong",p:"Every month, operations managers count how many hours their team spends on administrative tasks. The number sits in a spreadsheet. It grows slightly each quarter. It becomes a talking point in management meetings. And then nothing happens."},
@@ -568,7 +568,7 @@ const ARTICLES = [
     ]
   },
   {
-    type:"Field Note",label:"Dental · Case Study",time:"5 min read",
+    slug:"how-a-3-chair-clinic-recovered-2140-per-month",type:"Field Note",label:"Dental · Case Study",time:"5 min read",
     title:"How a 3-Chair Clinic Recovered $2,140/Month in 30 Days",color:"#1B365D",
     body:[
       {h:"The Engagement",p:"A three-chair dental clinic in Beirut contracted WIPS for a full Operational Scan in Q4 2024. The clinic had 2 dentists, 1 receptionist, and 1 dental assistant. Monthly revenue was approximately $18,000. The owner suspected inefficiency existed but had no structured way to locate or quantify it."},
@@ -579,7 +579,7 @@ const ARTICLES = [
     ]
   },
   {
-    type:"Operations Report",label:"MENA Market",time:"5 min read",
+    slug:"state-of-sme-operations-lebanon-jordan",type:"Operations Report",label:"MENA Market",time:"5 min read",
     title:"The State of SME Operations in Lebanon and Jordan",color:"#C8952A",
     body:[
       {h:"Report Scope",p:"This report aggregates findings from 24 operational audits conducted by WIPS across Lebanon, Jordan, and Oman between January and December 2025. Sectors covered: dental and medical clinics (9 engagements), real estate agencies (5), fitness and gym operations (4), logistics operators (4), and NGOs (2). All data is anonymised."},
@@ -652,9 +652,9 @@ function Insights({onArticle}){
                 <div className="mono" style={{fontSize:"9px",color:c.color,letterSpacing:".12em",textTransform:"uppercase",marginBottom:10}}>{c.label}</div>
                 <h3 className="cg" style={{fontSize:"1.2rem",fontWeight:500,color:B.navy,lineHeight:1.3,marginBottom:12}}>{c.title}</h3>
                 <p style={{fontSize:"13px",color:B.textS,lineHeight:1.7,marginBottom:16}}>{c.body[0].p.slice(0,120)}…</p>
-                <button onClick={()=>onArticle(idx)} style={{background:"none",border:"none",cursor:"pointer",padding:0,fontFamily:"'Outfit',sans-serif",fontSize:"13px",fontWeight:600,color:c.color,display:"inline-flex",alignItems:"center",gap:6}}>
+                <a href={`/insights/${c.slug}`} style={{fontFamily:"'Outfit',sans-serif",fontSize:"13px",fontWeight:600,color:c.color,display:"inline-flex",alignItems:"center",gap:6,textDecoration:"none"}}>
                   Read Full Article →
-                </button>
+                </a>
               </div>
             </div>
           ))}
@@ -709,7 +709,7 @@ function BookingForm({onClose,isModal=false}){
     setSubmitting(false);
   };
 
-  const industries=["Dental / Medical Clinic","Real Estate Agency","Fitness / Gym","NGO / Non-Profit","Logistics & Distribution","Professional Services","Other"];
+  const industries=["Dental / Medical Clinic","Real Estate Agency","Fitness / Gym","NGO / Non-Profit","Contracting & Construction","Professional Services","Other"];
   const staffR=["1–5 people","6–15 people","16–50 people","51–150 people","150+ people"];
   const revR=["Under $5,000/mo","$5,000–$20,000/mo","$20,000–$80,000/mo","$80,000–$250,000/mo","Over $250,000/mo"];
 
@@ -901,6 +901,7 @@ function FAQ(){
     {q:"What is the $500 guarantee exactly?",a:"If the first workflow we analyse in the Operational Scan does not demonstrate at least $500 per month in recoverable waste, we invoice you nothing for that task. This is a structural accountability clause — not a marketing claim. It reflects our confidence in the methodology and our commitment to engagements that deliver measurable ROI."},
     {q:"What level of involvement is required from our team?",a:"The Scan requires 3–4 hours of your team's time over 30 days — primarily structured observation sessions and workflow interviews. We work around your operation, not through it. During the Build phase, we coordinate with relevant staff on implementation. The Partnership retainer requires one monthly performance review and an open channel for new workflow requests."},
     {q:"We already have operational systems. Can WIPS still add value?",a:"Almost always — and often more effectively. Clients with existing systems typically use 30–40% of their tool's capability, have systems that don't communicate with each other, and lack a single performance truth across the operation. WIPS audits what you have, builds the connections, and adds only what is structurally necessary."},
+    {q:"What industries does WIPS specialise in?",a:"Dental and medical clinics, real estate agencies, fitness operations, NGOs, contracting and construction firms, and professional services businesses between 10 and 150 employees. The methodology is consistent across sectors. The application is specific to each."},
   ];
   return(
     <section style={{padding:"96px 40px",background:"#fff"}}>
@@ -941,7 +942,7 @@ function Footer({onBooking,onContact}){
       {label:"Real Estate",action:()=>scrollTo("#industries")},
       {label:"Fitness Operations",action:()=>scrollTo("#industries")},
       {label:"NGOs & Non-Profits",action:()=>scrollTo("#industries")},
-      {label:"Logistics",action:()=>scrollTo("#industries")},
+      {label:"Contracting & Construction",action:()=>scrollTo("#industries")},
     ],
     "Company":[
       {label:"Our Approach",action:()=>scrollTo("#approach")},
