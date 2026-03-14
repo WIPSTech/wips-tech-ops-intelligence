@@ -64,16 +64,7 @@ function WIPSLogo({light=false}){
         src={src}
         alt="WIPS Tech — Workflows Intelligence & Performance Solutions"
         style={{height:height, width:"auto", objectFit:"contain", display:"block", maxWidth: isMobile ? 320 : 600}}
-        onError={(e)=>{
-          e.target.style.display="none";
-          if(e.target.nextSibling) e.target.nextSibling.style.display="flex";
-        }}
       />
-      <div style={{display:"none",alignItems:"center",gap:8}}>
-        <div className="cg" style={{fontSize:22,fontWeight:700,color:light?"#fff":B.navy}}>
-          WIPS<span style={{fontWeight:300,color:light?"rgba(255,255,255,.6)":B.textT}}>Tech</span>
-        </div>
-      </div>
     </div>
   );
 }
@@ -1031,9 +1022,7 @@ export default function Page(){
   return(
     <>
       <div id="loading" style={{position:"fixed",inset:0,background:"#0F1E35",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",zIndex:9999,transition:"opacity 0.6s ease"}}>
-        <img src="/logo-transparent.png" alt="WIPS Tech" style={{height:80,width:"auto",opacity:.92,objectFit:"contain"}}
-          onError={e=>{e.target.style.display="none";const fb=document.getElementById("ld-fallback");if(fb)fb.style.display="block";}}/>
-        <div id="ld-fallback" style={{display:"none",fontFamily:"'Cormorant Garamond',Georgia,serif",fontSize:"1.4rem",color:"rgba(255,255,255,.8)",letterSpacing:".1em",fontWeight:300}}>WIPS Tech</div>
+        <img src="/logo-transparent.png" alt="WIPS Tech" style={{height:80,width:"auto",opacity:.92,objectFit:"contain"}}/>
         <div style={{display:"flex",gap:8,marginTop:18}}>
           <div className="ldot" style={{background:"#2A9D6F"}}></div>
           <div className="ldot" style={{background:"#C8952A",animationDelay:".2s"}}></div>
