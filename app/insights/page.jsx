@@ -3,8 +3,20 @@ import { ARTICLES } from "./articles";
 
 export const metadata = {
   title: "Operations Intelligence Insights | WIPS Tech",
-  description:
-    "Practical guides, frameworks, and insights for MENA SMEs on workflow automation, KPI tracking, and operational intelligence. By the WIPS Tech team.",
+  description: "Practical guides, frameworks, and insights for MENA SMEs on workflow automation, KPI tracking, and operational intelligence. By the WIPS Tech team.",
+  openGraph: {
+    title: "Operations Intelligence Insights | WIPS Tech",
+    description: "Practical guides, frameworks, and insights for MENA SMEs on workflow automation, KPI tracking, and operational intelligence. By the WIPS Tech team.",
+    url: "https://wipstech.com/insights",
+    siteName: "WIPS Tech",
+    images: [{ url: "https://wipstech.com/og-image.png", width: 1200, height: 630, alt: "WIPS Tech" }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Operations Intelligence Insights | WIPS Tech",
+    description: "Practical guides, frameworks, and insights for MENA SMEs on workflow automation, KPI tracking, and operational intelligence.",
+  },
 };
 
 const B = {
