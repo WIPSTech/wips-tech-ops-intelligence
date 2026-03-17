@@ -62,11 +62,7 @@ label{font-size:12px;font-weight:700;color:#374151;letter-spacing:.06em;text-tra
 .wa-tooltip{position:absolute;right:70px;background:#1A202C;color:#fff;font-family:'Outfit',sans-serif;font-size:12px;font-weight:500;padding:7px 14px;border-radius:6px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .2s}
 .wa-float:hover .wa-tooltip{opacity:1}
 
-/* ── LOGO BACKGROUND FIX ──
-   Header: white nav bg → multiply blends dark logo bg away
-   Footer: dark nav bg → screen blends dark logo bg away       */
-.logo-header img{mix-blend-mode:multiply}
-.logo-footer img{mix-blend-mode:screen;filter:brightness(1.4) contrast(0.9)}
+/* logos are transparent — no blend mode needed */
 
 @media(max-width:768px){
   .hide-mobile{display:none!important}
