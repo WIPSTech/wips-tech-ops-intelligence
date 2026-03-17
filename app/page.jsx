@@ -63,7 +63,7 @@ function WIPSLogo({light=false, priority=false}){
   const displayW = isMobile ? 240 : 360;
   // light=true means footer (dark bg) → use screen blend
   // light=false means header (white bg) → use multiply blend
-  const logoClass = light ? "logo-footer" : "logo-header";
+  const logoClass = "";  // logos are now transparent — no blend mode needed
   return(
     <div className={logoClass} style={{display:"flex",alignItems:"center",flexShrink:0,background:light?"transparent":"transparent"}}>
       <picture>
@@ -253,7 +253,7 @@ function RangeInput({label,value,min,max,step,format,desc,onChange}){
   });
   return(
     <div style={{marginBottom:22}}>
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:6}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:6,gap:8,flexWrap:"wrap"}}>
         <label style={{marginBottom:0}}>{label}</label>
         <span className="mono" style={{fontSize:13,fontWeight:600,color:B.navy}}>{format(value)}</span>
       </div>
@@ -279,7 +279,7 @@ function WasteCalculator({onBooking}){
   },[inp]);
   const res=r();
   return(
-    <section id="calculator" ref={ref} style={{padding:"96px 40px",background:"#fff"}}>
+    <section id="calculator" ref={ref} style={{padding:"72px 20px",background:"#fff",overflowX:"hidden"}}>
       <div style={{maxWidth:1200,margin:"0 auto"}}>
         <div style={{textAlign:"center",marginBottom:56}}>
           <span className="section-label">Interactive ROI Tool</span>
@@ -288,7 +288,7 @@ function WasteCalculator({onBooking}){
           <p style={{color:B.textS,fontSize:"1rem",maxWidth:500,margin:"12px auto 0",lineHeight:1.65}}>Adjust the inputs to reflect your operation. Sector benchmarks calculate your estimated recoverable waste.</p>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:40,alignItems:"start"}} className="grid-1-mobile">
-          <div style={{background:B.smoke,borderRadius:12,padding:"36px 32px",border:`1px solid ${B.borderL}`}}>
+          <div style={{background:B.smoke,borderRadius:12,padding:"24px 16px",border:`1px solid ${B.borderL}`}}>
             <h3 className="cg" style={{fontSize:"1.3rem",fontWeight:500,color:B.navy,marginBottom:28}}>Your Operation</h3>
             <RangeInput label="Number of Staff" value={inp.staff} min={1} max={50} step={1} format={v=>`${v} people`} desc="Full-time and part-time combined" onChange={v=>upd("staff",v)}/>
             <RangeInput label="Monthly Revenue (USD)" value={inp.revenue} min={2000} max={200000} step={1000} format={v=>`$${v.toLocaleString()}`} desc="Gross revenue, all services" onChange={v=>upd("revenue",v)}/>
@@ -297,12 +297,12 @@ function WasteCalculator({onBooking}){
             <RangeInput label="Software Subscriptions (USD/mo)" value={inp.tools} min={100} max={5000} step={100} format={v=>`$${v.toLocaleString()}/mo`} desc="Total monthly tool spend" onChange={v=>upd("tools",v)}/>
           </div>
           <div>
-            <div style={{background:inView?B.navy:"#F4F7FA",borderRadius:12,padding:"36px 32px",border:`2px solid ${inView?B.navy:B.borderL}`,transition:"all .5s ease",marginBottom:20}}>
+            <div style={{background:inView?B.navy:"#F4F7FA",borderRadius:12,padding:"24px 16px",border:`2px solid ${inView?B.navy:B.borderL}`,transition:"all .5s ease",marginBottom:20}}>
               {inView?(
                 <>
                   <div style={{marginBottom:28}}>
                     <div className="mono" style={{fontSize:"10px",letterSpacing:".15em",textTransform:"uppercase",color:"rgba(255,255,255,.45)",marginBottom:8}}>Estimated Monthly Operational Waste</div>
-                    <div className="stat-num" style={{fontSize:"3.6rem",fontWeight:300,color:"#fff",lineHeight:1,letterSpacing:"-.03em"}}>${res.total.toLocaleString()}</div>
+                    <div className="stat-num" style={{fontSize:"clamp(2rem,8vw,3.6rem)",fontWeight:300,color:"#fff",lineHeight:1,letterSpacing:"-.03em"}}>${res.total.toLocaleString()}</div>
                     <div style={{fontSize:"12px",color:"rgba(255,255,255,.4)",marginTop:6}}>Confidence range: ${res.low.toLocaleString()} — ${res.high.toLocaleString()}/month</div>
                   </div>
                   {[{label:"Administrative Overhead",value:res.aw,color:B.emerald},{label:"No-Show & Cancellation Loss",value:res.nw,color:B.gold},{label:"Underutilised Tool Spend",value:res.tw,color:"#8B9CF4"}].map(b=>(
@@ -318,14 +318,14 @@ function WasteCalculator({onBooking}){
                   ))}
                   <div style={{borderTop:"1px solid rgba(255,255,255,.1)",paddingTop:18,marginTop:18,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
                     <span style={{fontSize:"12px",color:"rgba(255,255,255,.5)"}}>Annual Estimate</span>
-                    <span className="stat-num" style={{fontSize:"1.4rem",fontWeight:600,color:B.emeraldL}}>${res.annual.toLocaleString()}/year</span>
+                    <span className="stat-num" style={{fontSize:"clamp(1rem,4vw,1.4rem)",fontWeight:600,color:B.emeraldL}}>${res.annual.toLocaleString()}/year</span>
                   </div>
                 </>
               ):(
                 <div style={{textAlign:"center",padding:"32px 0",color:B.textT}}><p>Loading calculator…</p></div>
               )}
             </div>
-            <div style={{background:res.ok?"#F0FDF6":"#FFFBEB",border:`2px solid ${res.ok?B.emeraldL:B.goldL}`,borderRadius:8,padding:"18px 22px",marginBottom:18}}>
+            <div style={{background:res.ok?"#F0FDF6":"#FFFBEB",border:`2px solid ${res.ok?B.emeraldL:B.goldL}`,borderRadius:8,padding:"14px 16px",marginBottom:18}}>
               {res.ok?(
                 <>
                   <div className="mono" style={{fontSize:"10px",color:B.emeraldD,letterSpacing:".14em",textTransform:"uppercase",marginBottom:6}}>✓ Qualifies for the $500 Guarantee</div>
