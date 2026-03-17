@@ -54,7 +54,7 @@ label{font-size:12px;font-weight:700;color:#374151;letter-spacing:.06em;text-tra
 
 .range-track{height:4px;border-radius:2px;background:#D1DCE8;position:relative;margin:10px 0 4px;cursor:pointer}
 .range-fill{position:absolute;left:0;top:0;height:100%;border-radius:2px;background:linear-gradient(90deg,#2A9D6F,#1B365D);pointer-events:none;transition:width .15s}
-.range-thumb{position:absolute;top:50%;transform:translate(-50%,-50%);width:20px;height:20px;border-radius:50%;background:#1B365D;border:3px solid #fff;box-shadow:0 2px 8px rgba(27,54,93,.3);cursor:grab;transition:transform .15s;z-index:1}
+.range-thumb{position:absolute;top:50%;transform:translate(-50%,-50%);width:20px;height:20px;border-radius:50%;background:#1B365D;border:3px solid #fff;box-shadow:0 2px 8px rgba(27,54,93,.3);cursor:grab;transition:transform .15s;z-index:1;max-width:none}
 .range-thumb:active{cursor:grabbing;transform:translate(-50%,-50%) scale(1.2)}
 
 .wa-float{position:fixed;bottom:28px;right:28px;z-index:500;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 16px rgba(37,211,102,.4);animation:waPulse 2.5s ease-in-out infinite;border:none;will-change:transform}
@@ -91,4 +91,14 @@ label{font-size:12px;font-weight:700;color:#374151;letter-spacing:.06em;text-tra
 @media(max-width:480px){
   .stat-num{font-size:1.6rem!important}
   .cg h1,.hero-title{font-size:2.2rem!important}
+}
+
+/* ── CALCULATOR ── */
+.range-track{overflow:hidden}
+#calculator{width:100%;overflow:hidden;box-sizing:border-box}
+#calculator *{box-sizing:border-box}
+#calculator .grid-1-mobile > div{min-width:0}
+@media(max-width:768px){
+  #calculator .grid-1-mobile > div{padding:14px 12px!important}
+  #calculator .btn-emerald{font-size:12px!important;padding:11px 12px!important}
 }
