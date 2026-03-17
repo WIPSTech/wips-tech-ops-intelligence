@@ -58,8 +58,8 @@ function WIPSLogo({light=false, priority=false}){
     return () => window.removeEventListener("resize", check);
   },[]);
   const src = isMobile ? "/logo-mobile.png" : "/logo-transparent.png";
-  const displayH = isMobile ? 72 : 100;
-  const displayW = isMobile ? 240 : 360;
+  const displayH = isMobile ? 48 : 72;
+  const displayW = isMobile ? 146 : 220;
   return(
     <div style={{display:"flex",alignItems:"center",flexShrink:0}}>
       <img
@@ -68,7 +68,7 @@ function WIPSLogo({light=false, priority=false}){
         width={displayW}
         height={displayH}
         fetchPriority={priority ? "high" : "auto"}
-        style={{objectFit:"contain", display:"block", width:"auto", height:displayH, maxWidth: isMobile ? 240 : 360}}
+        style={{objectFit:"contain", display:"block", width:"auto", height:displayH, maxWidth: isMobile ? 146 : 220}}
       />
     </div>
   );
@@ -244,15 +244,17 @@ function RangeInput({label,value,min,max,step,format,desc,onChange}){
       window.removeEventListener("touchend",onMouseUp);
     };
   });
+  // Clamp thumb so it never extends past track edges on mobile
+  const clampedPct = Math.max(1, Math.min(99, pct));
   return(
-    <div style={{marginBottom:22}}>
+    <div style={{marginBottom:22,overflow:"hidden"}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:6,gap:8,flexWrap:"wrap"}}>
         <label style={{marginBottom:0}}>{label}</label>
         <span className="mono" style={{fontSize:13,fontWeight:600,color:B.navy}}>{format(value)}</span>
       </div>
       <div ref={trackRef} className="range-track" onMouseDown={onMouseDown} onTouchStart={onTouchStart}>
         <div className="range-fill" style={{width:`${pct}%`}}/>
-        <div className="range-thumb" style={{left:`${pct}%`}}/>
+        <div className="range-thumb" style={{left:`${clampedPct}%`}}/>
       </div>
       <p style={{fontSize:"12px",color:"#555f6d",marginTop:2}}>{desc}</p>
     </div>
@@ -272,74 +274,75 @@ function WasteCalculator({onBooking}){
   },[inp]);
   const res=r();
   return(
-    <section id="calculator" ref={ref} style={{padding:"72px 16px",background:"#fff",overflowX:"hidden",boxSizing:"border-box"}}>
-      <div style={{maxWidth:1200,margin:"0 auto"}}>
-        <div style={{textAlign:"center",marginBottom:56}}>
+    <section id="calculator" ref={ref} style={{padding:"64px 0",background:"#fff",width:"100%",overflow:"hidden"}}>
+      <div style={{maxWidth:1200,margin:"0 auto",padding:"0 20px",boxSizing:"border-box"}}>
+        <div style={{textAlign:"center",marginBottom:40}}>
           <span className="section-label">Interactive ROI Tool</span>
           <div className="divider-accent" style={{margin:"14px auto 16px"}}/>
-          <h2 className="cg" style={{fontSize:"clamp(2rem,4vw,2.8rem)",fontWeight:300,color:B.navy}}>Calculate Your Monthly Operational Waste</h2>
+          <h2 className="cg" style={{fontSize:"clamp(1.6rem,4vw,2.8rem)",fontWeight:300,color:B.navy}}>Calculate Your Monthly Operational Waste</h2>
           <p style={{color:B.textS,fontSize:"1rem",maxWidth:500,margin:"12px auto 0",lineHeight:1.65}}>Adjust the inputs to reflect your operation. Sector benchmarks calculate your estimated recoverable waste.</p>
         </div>
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:40,alignItems:"start"}} className="grid-1-mobile">
-          <div style={{background:B.smoke,borderRadius:12,padding:"20px 14px",border:`1px solid ${B.borderL}`,minWidth:0,overflow:"hidden"}}>
-            <h3 className="cg" style={{fontSize:"1.3rem",fontWeight:500,color:B.navy,marginBottom:28}}>Your Operation</h3>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20,alignItems:"start"}} className="grid-1-mobile">
+          {/* LEFT — inputs */}
+          <div style={{background:B.smoke,borderRadius:12,padding:"20px 16px",border:`1px solid ${B.borderL}`,minWidth:0,boxSizing:"border-box"}}>
+            <h3 className="cg" style={{fontSize:"1.2rem",fontWeight:500,color:B.navy,marginBottom:20}}>Your Operation</h3>
             <RangeInput label="Number of Staff" value={inp.staff} min={1} max={50} step={1} format={v=>`${v} people`} desc="Full-time and part-time combined" onChange={v=>upd("staff",v)}/>
             <RangeInput label="Monthly Revenue (USD)" value={inp.revenue} min={2000} max={200000} step={1000} format={v=>`$${v.toLocaleString()}`} desc="Gross revenue, all services" onChange={v=>upd("revenue",v)}/>
             <RangeInput label="Admin Hours Per Week" value={inp.admin} min={4} max={80} step={2} format={v=>`${v} hrs/wk`} desc="Manual entry, scheduling, follow-ups" onChange={v=>upd("admin",v)}/>
-            <RangeInput label="Appointment No-Show Rate" value={inp.noshow} min={0} max={40} step={1} format={v=>`${v}%`} desc="% of booked appointments not attended" onChange={v=>upd("noshow",v)}/>
-            <RangeInput label="Software Subscriptions (USD/mo)" value={inp.tools} min={100} max={5000} step={100} format={v=>`$${v.toLocaleString()}/mo`} desc="Total monthly tool spend" onChange={v=>upd("tools",v)}/>
+            <RangeInput label="No-Show Rate" value={inp.noshow} min={0} max={40} step={1} format={v=>`${v}%`} desc="% of booked appointments not attended" onChange={v=>upd("noshow",v)}/>
+            <RangeInput label="Software Spend (USD/mo)" value={inp.tools} min={100} max={5000} step={100} format={v=>`$${v.toLocaleString()}`} desc="Total monthly tool spend" onChange={v=>upd("tools",v)}/>
           </div>
-          <div>
-            <div style={{background:inView?B.navy:"#F4F7FA",borderRadius:12,padding:"20px 14px",border:`2px solid ${inView?B.navy:B.borderL}`,transition:"all .5s ease",marginBottom:20,minWidth:0,overflow:"hidden"}}>
+          {/* RIGHT — results */}
+          <div style={{minWidth:0,boxSizing:"border-box"}}>
+            <div style={{background:inView?B.navy:"#F4F7FA",borderRadius:12,padding:"20px 16px",border:`2px solid ${inView?B.navy:B.borderL}`,transition:"all .5s ease",marginBottom:16,minWidth:0,boxSizing:"border-box"}}>
               {inView?(
                 <>
-                  <div style={{marginBottom:28}}>
-                    <div className="mono" style={{fontSize:"10px",letterSpacing:".15em",textTransform:"uppercase",color:"rgba(255,255,255,.45)",marginBottom:8}}>Estimated Monthly Operational Waste</div>
-                    <div className="stat-num" style={{fontSize:"clamp(2rem,8vw,3.6rem)",fontWeight:300,color:"#fff",lineHeight:1,letterSpacing:"-.03em"}}>${res.total.toLocaleString()}</div>
-                    <div style={{fontSize:"11px",color:"rgba(255,255,255,.4)",marginTop:6,wordBreak:"break-word"}}>Range: ${res.low.toLocaleString()} – ${res.high.toLocaleString()}/mo</div>
+                  <div style={{marginBottom:20}}>
+                    <div className="mono" style={{fontSize:"9px",letterSpacing:".12em",textTransform:"uppercase",color:"rgba(255,255,255,.45)",marginBottom:6}}>Est. Monthly Waste</div>
+                    <div className="stat-num" style={{fontSize:"clamp(1.8rem,6vw,3.2rem)",fontWeight:300,color:"#fff",lineHeight:1}}>${res.total.toLocaleString()}</div>
+                    <div style={{fontSize:"10px",color:"rgba(255,255,255,.4)",marginTop:4}}>${res.low.toLocaleString()} – ${res.high.toLocaleString()}/mo range</div>
                   </div>
-                  {[{label:"Administrative Overhead",value:res.aw,color:B.emerald},{label:"No-Show & Cancellation Loss",value:res.nw,color:B.gold},{label:"Underutilised Tool Spend",value:res.tw,color:"#8B9CF4"}].map(b=>(
-                    <div key={b.label} style={{marginBottom:14}}>
-                      <div style={{display:"flex",justifyContent:"space-between",marginBottom:5,gap:8,flexWrap:"wrap"}}>
-                        <span style={{fontSize:"11px",color:"rgba(255,255,255,.6)",flex:1}}>{b.label}</span>
-                        <span className="mono" style={{fontSize:"11px",color:"#fff",fontWeight:600,flexShrink:0}}>${b.value.toLocaleString()}</span>
+                  {[{label:"Admin Overhead",value:res.aw,color:B.emerald},{label:"No-Show Loss",value:res.nw,color:B.gold},{label:"Unused Tools",value:res.tw,color:"#8B9CF4"}].map(b=>(
+                    <div key={b.label} style={{marginBottom:12}}>
+                      <div style={{display:"flex",justifyContent:"space-between",marginBottom:4}}>
+                        <span style={{fontSize:"11px",color:"rgba(255,255,255,.65)"}}>{b.label}</span>
+                        <span className="mono" style={{fontSize:"11px",color:"#fff",fontWeight:600}}>${b.value.toLocaleString()}</span>
                       </div>
-                      <div style={{height:4,background:"rgba(255,255,255,.1)",borderRadius:2}}>
+                      <div style={{height:3,background:"rgba(255,255,255,.1)",borderRadius:2}}>
                         <div style={{height:"100%",borderRadius:2,background:b.color,width:res.total>0?`${Math.round(b.value/res.total*100)}%`:"0%",transition:"width .5s ease"}}/>
                       </div>
                     </div>
                   ))}
-                  <div style={{borderTop:"1px solid rgba(255,255,255,.1)",paddingTop:18,marginTop:18,display:"flex",justifyContent:"space-between",alignItems:"center",gap:8,flexWrap:"wrap"}}>
-                    <span style={{fontSize:"12px",color:"rgba(255,255,255,.5)"}}>Annual Estimate</span>
-                    <span className="stat-num" style={{fontSize:"clamp(1rem,4vw,1.4rem)",fontWeight:600,color:B.emeraldL}}>${res.annual.toLocaleString()}/year</span>
+                  <div style={{borderTop:"1px solid rgba(255,255,255,.1)",paddingTop:14,marginTop:14,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                    <span style={{fontSize:"11px",color:"rgba(255,255,255,.5)"}}>Annual</span>
+                    <span className="stat-num" style={{fontSize:"clamp(.95rem,3vw,1.3rem)",fontWeight:600,color:B.emeraldL}}>${res.annual.toLocaleString()}/yr</span>
                   </div>
                 </>
               ):(
-                <div style={{textAlign:"center",padding:"32px 0",color:B.textT}}><p>Loading calculator…</p></div>
+                <div style={{textAlign:"center",padding:"24px 0",color:B.textT}}><p>Loading…</p></div>
               )}
             </div>
-            <div style={{background:res.ok?"#F0FDF6":"#FFFBEB",border:`2px solid ${res.ok?B.emeraldL:B.goldL}`,borderRadius:8,padding:"14px 14px",marginBottom:18,minWidth:0}}>
+            <div style={{background:res.ok?"#F0FDF6":"#FFFBEB",border:`1.5px solid ${res.ok?B.emeraldL:B.goldL}`,borderRadius:8,padding:"12px 14px",marginBottom:14,minWidth:0,boxSizing:"border-box"}}>
               {res.ok?(
                 <>
-                  <div className="mono" style={{fontSize:"10px",color:B.emeraldD,letterSpacing:".14em",textTransform:"uppercase",marginBottom:6}}>✓ Qualifies for the $500 Guarantee</div>
-                  <p style={{fontSize:"13px",color:B.textS,lineHeight:1.65,margin:0}}><strong style={{color:B.emeraldD}}>Our commitment:</strong> If our Operational Scan does not identify at least $500/month in recoverable waste from the first workflow we analyze — you pay nothing.</p>
+                  <div className="mono" style={{fontSize:"9px",color:B.emeraldD,letterSpacing:".1em",textTransform:"uppercase",marginBottom:5}}>✓ $500 Guarantee Applies</div>
+                  <p style={{fontSize:"12px",color:B.textS,lineHeight:1.6,margin:0}}>If our Scan does not find $500+/mo in recoverable waste — you pay nothing.</p>
                 </>
               ):(
                 <>
-                  <div className="mono" style={{fontSize:"10px",color:B.gold,letterSpacing:".14em",textTransform:"uppercase",marginBottom:6}}>Note on Your Inputs</div>
-                  <p style={{fontSize:"13px",color:B.textS,lineHeight:1.65,margin:0}}>The Discovery Session will confirm whether a full Scan would produce a positive return. We'll tell you clearly — no obligation either way.</p>
+                  <div className="mono" style={{fontSize:"9px",color:B.gold,letterSpacing:".1em",textTransform:"uppercase",marginBottom:5}}>Note on Your Inputs</div>
+                  <p style={{fontSize:"12px",color:B.textS,lineHeight:1.6,margin:0}}>The Discovery Session will confirm whether a full Scan would produce a positive return.</p>
                 </>
               )}
             </div>
-            <button className="btn-emerald" style={{width:"100%",justifyContent:"center",padding:"15px 28px"}} onClick={onBooking}>
-              Book Free Discovery Session — Verify These Numbers →
+            <button className="btn-emerald" style={{width:"100%",justifyContent:"center",padding:"13px 16px",fontSize:"13px",whiteSpace:"normal",textAlign:"center",lineHeight:1.4}} onClick={onBooking}>
+              Book Free Discovery Session →
             </button>
-            <p style={{fontSize:"10px",color:B.textT,textAlign:"center",marginTop:10,fontStyle:"italic"}}>* Industry benchmark estimates. Actual waste identified in your Scan reflects your specific workflows.</p>
+            <p style={{fontSize:"10px",color:B.textT,textAlign:"center",marginTop:8,fontStyle:"italic"}}>* Estimates based on sector benchmarks. Individual results vary.</p>
           </div>
         </div>
       </div>
     </section>
-  );
 }
 
 function Approach({onBooking}){
@@ -1027,7 +1030,7 @@ export default function Page(){
   return(
     <>
       <div id="loading" style={{position:"fixed",inset:0,background:"#0F1E35",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",zIndex:9999,transition:"opacity 0.6s ease"}}>
-        <img src="/logo-transparent.webp" alt="WIPS Tech" width={600} height={400} fetchPriority="high" style={{height:80,width:"auto",opacity:.92,objectFit:"contain"}}/>
+        <img src="/logo-transparent.png" alt="WIPS Tech" width={600} height={400} fetchPriority="high" style={{height:80,width:"auto",opacity:.92,objectFit:"contain"}}/>
         <div style={{display:"flex",gap:8,marginTop:18}}>
           <div className="ldot" style={{background:"#2A9D6F"}}></div>
           <div className="ldot" style={{background:"#C8952A",animationDelay:".2s"}}></div>
