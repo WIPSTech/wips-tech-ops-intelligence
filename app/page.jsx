@@ -59,10 +59,13 @@ function WIPSLogo({light=false, priority=false}){
   },[]);
   const pngSrc = isMobile ? "/logo-mobile.png" : "/logo-transparent.png";
   const webpSrc = isMobile ? "/logo-mobile.webp" : "/logo-transparent.webp";
-  const displayH = isMobile ? 90 : 140;
-  const displayW = isMobile ? 320 : 600;
+  const displayH = isMobile ? 72 : 100;
+  const displayW = isMobile ? 240 : 360;
+  // light=true means footer (dark bg) → use screen blend
+  // light=false means header (white bg) → use multiply blend
+  const logoClass = light ? "logo-footer" : "logo-header";
   return(
-    <div style={{display:"flex",alignItems:"center",flexShrink:0}}>
+    <div className={logoClass} style={{display:"flex",alignItems:"center",flexShrink:0,background:light?"transparent":"transparent"}}>
       <picture>
         <source srcSet={webpSrc} type="image/webp"/>
         <img
@@ -71,7 +74,7 @@ function WIPSLogo({light=false, priority=false}){
           width={displayW}
           height={displayH}
           fetchPriority={priority ? "high" : "auto"}
-          style={{objectFit:"contain", display:"block", width:"auto", height:displayH, maxWidth: isMobile ? 320 : 600}}
+          style={{objectFit:"contain", display:"block", width:"auto", height:displayH, maxWidth: isMobile ? 240 : 360}}
         />
       </picture>
     </div>
@@ -107,7 +110,7 @@ function Navigation({onBooking,onContact}){
   return(
     <>
       <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:scrolled?"rgba(255,255,255,.97)":"rgba(255,255,255,.95)",backdropFilter:"blur(12px)",borderBottom:scrolled?`1px solid ${B.borderL}`:"1px solid transparent",boxShadow:scrolled?"0 2px 24px rgba(27,54,93,.08)":"none",transition:"all .3s",padding:"0 40px"}}>
-        <div style={{maxWidth:1200,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:116}}>
+        <div style={{maxWidth:1200,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:96}}>
           <WIPSLogo priority={true}/>
           <div className="hide-mobile" style={{display:"flex",alignItems:"center",gap:34}}>
             {navItems.map(i=><button key={i.label} className="nav-link" onClick={()=>scrollTo(i.href)}>{i.label}</button>)}
@@ -157,7 +160,7 @@ function Hero({onBooking}){
         <div style={{maxWidth:760}}>
           <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:32,animation:"fadeUp .6s ease both"}}>
             <div style={{width:32,height:1.5,background:B.emerald}}/>
-            <span className="section-label" style={{color:B.emeraldL,letterSpacing:".22em"}}>Operations Intelligence Platform</span>
+            <span className="section-label" style={{color:"#2ebf8a",letterSpacing:".22em"}}>Operations Intelligence Platform</span>
           </div>
           <h1 className="cg" style={{fontSize:"clamp(2.6rem,6vw,4.4rem)",fontWeight:300,color:"#fff",lineHeight:1.08,letterSpacing:"-.02em",marginBottom:28,animation:"fadeUp .7s ease .1s both"}}>
             Your Operations Are<br/><em style={{fontStyle:"italic",color:B.emeraldL}}>Leaking Revenue</em> Daily.
@@ -258,7 +261,7 @@ function RangeInput({label,value,min,max,step,format,desc,onChange}){
         <div className="range-fill" style={{width:`${pct}%`}}/>
         <div className="range-thumb" style={{left:`${pct}%`}}/>
       </div>
-      <p style={{fontSize:"11px",color:B.textT,marginTop:2}}>{desc}</p>
+      <p style={{fontSize:"12px",color:"#555f6d",marginTop:2}}>{desc}</p>
     </div>
   );
 }
@@ -960,7 +963,7 @@ function Footer({onBooking,onContact}){
         <button className="btn-gold" onClick={onBooking} style={{marginTop:12}}>Book Your Free Discovery Session →</button>
       </div>
       <div style={{padding:"56px 40px 24px",maxWidth:1200,margin:"0 auto"}}>
-        <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",gap:40,marginBottom:48}}>
+        <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",gap:40,marginBottom:48}} className="footer-grid">
           <div>
             <WIPSLogo light/>
             <p style={{fontSize:"13px",color:"rgba(255,255,255,.4)",lineHeight:1.75,marginTop:20,maxWidth:300}}>Not a Software Vendor. Not a Business Consultant. Your Operations Intelligence Partner.</p>
