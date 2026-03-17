@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
+import NextImage from "next/image";
 
 const B = {
   navy:"#1B365D", navyD:"#0F1E35", navyL:"#2A4A7A",
@@ -48,7 +49,7 @@ function AnimCounter({end,prefix="",suffix="",duration=1800}){
   return <span ref={ref} className="stat-num">{prefix}{count.toLocaleString()}{suffix}</span>;
 }
 
-function WIPSLogo({light=false}){
+function WIPSLogo({light=false, priority=false}){
   const [isMobile, setIsMobile] = useState(false);
   useEffect(()=>{
     const check = () => setIsMobile(window.innerWidth < 769);
@@ -56,15 +57,23 @@ function WIPSLogo({light=false}){
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   },[]);
-  const src = isMobile ? LOGOS.mobile : LOGOS.desktop;
-  const height = isMobile ? 90 : 140;
+  const pngSrc = isMobile ? "/logo-mobile.png" : "/logo-transparent.png";
+  const webpSrc = isMobile ? "/logo-mobile.webp" : "/logo-transparent.webp";
+  const displayH = isMobile ? 90 : 140;
+  const displayW = isMobile ? 320 : 600;
   return(
     <div style={{display:"flex",alignItems:"center",flexShrink:0}}>
-      <img
-        src={src}
-        alt="WIPS Tech — Workflows Intelligence & Performance Solutions"
-        style={{height:height, width:"auto", objectFit:"contain", display:"block", maxWidth: isMobile ? 320 : 600}}
-      />
+      <picture>
+        <source srcSet={webpSrc} type="image/webp"/>
+        <img
+          src={pngSrc}
+          alt="WIPS Tech — Workflows Intelligence & Performance Solutions"
+          width={displayW}
+          height={displayH}
+          fetchPriority={priority ? "high" : "auto"}
+          style={{objectFit:"contain", display:"block", width:"auto", height:displayH, maxWidth: isMobile ? 320 : 600}}
+        />
+      </picture>
     </div>
   );
 }
@@ -99,7 +108,7 @@ function Navigation({onBooking,onContact}){
     <>
       <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:scrolled?"rgba(255,255,255,.97)":"rgba(255,255,255,.95)",backdropFilter:"blur(12px)",borderBottom:scrolled?`1px solid ${B.borderL}`:"1px solid transparent",boxShadow:scrolled?"0 2px 24px rgba(27,54,93,.08)":"none",transition:"all .3s",padding:"0 40px"}}>
         <div style={{maxWidth:1200,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:116}}>
-          <WIPSLogo/>
+          <WIPSLogo priority={true}/>
           <div className="hide-mobile" style={{display:"flex",alignItems:"center",gap:34}}>
             {navItems.map(i=><button key={i.label} className="nav-link" onClick={()=>scrollTo(i.href)}>{i.label}</button>)}
             <button className="nav-link" onClick={onContact}>Contact Us</button>
@@ -108,7 +117,7 @@ function Navigation({onBooking,onContact}){
             <button className="btn-outline" style={{padding:"9px 18px",fontSize:13}} onClick={()=>scrollTo("#approach")}>How It Works</button>
             <button className="btn-primary" style={{padding:"10px 20px",fontSize:13}} onClick={onBooking}>Book Discovery</button>
           </div>
-          <button onClick={()=>setMobileOpen(!mobileOpen)} style={{display:"none",background:"none",border:"none",cursor:"pointer",padding:8,color:B.navy}} id="mob-btn">
+          <button onClick={()=>setMobileOpen(!mobileOpen)} style={{display:"none",background:"none",border:"none",cursor:"pointer",padding:8,color:B.navy}} id="mob-btn" aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}>
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
               {mobileOpen?<path d="M4 4L18 18M18 4L4 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>:<path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>}
             </svg>
@@ -136,7 +145,7 @@ function Hero({onBooking}){
     {n:"34%",l:"No-show reduction",sub:"Dental clients · 3 months"},
   ];
   return(
-    <section style={{minHeight:"100vh",background:`linear-gradient(158deg,${B.navyD} 0%,${B.navy} 52%,#1A4535 100%)`,display:"flex",flexDirection:"column",justifyContent:"center",position:"relative",overflow:"hidden",padding:"120px 40px 80px"}}>
+    <section style={{minHeight:"100vh",background:`linear-gradient(158deg,${B.navyD} 0%,${B.navy} 52%,#1A4535 100%)`,display:"flex",flexDirection:"column",justifyContent:"center",position:"relative",overflow:"hidden",overflowX:"clip",padding:"120px 40px 80px"}}>
       <div style={{position:"absolute",inset:0,opacity:.04,backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E\")"}}/>
       {[0,1,2,3].map(i=>(
         <svg key={i} width={220-i*28} height={340-i*44} viewBox="0 0 220 340" fill="none"
@@ -1022,7 +1031,7 @@ export default function Page(){
   return(
     <>
       <div id="loading" style={{position:"fixed",inset:0,background:"#0F1E35",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",zIndex:9999,transition:"opacity 0.6s ease"}}>
-        <img src="/logo-transparent.png" alt="WIPS Tech" style={{height:80,width:"auto",opacity:.92,objectFit:"contain"}}/>
+        <img src="/logo-transparent.webp" alt="WIPS Tech" width={600} height={400} fetchPriority="high" style={{height:80,width:"auto",opacity:.92,objectFit:"contain"}}/>
         <div style={{display:"flex",gap:8,marginTop:18}}>
           <div className="ldot" style={{background:"#2A9D6F"}}></div>
           <div className="ldot" style={{background:"#C8952A",animationDelay:".2s"}}></div>
