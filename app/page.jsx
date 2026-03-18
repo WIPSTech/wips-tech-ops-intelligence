@@ -67,7 +67,8 @@ function WIPSLogo({light=false, priority=false}){
         alt="WIPS Tech — Workflows Intelligence & Performance Solutions"
         width={displayW}
         height={displayH}
-        fetchPriority={priority ? "high" : "auto"}
+        fetchPriority="high"
+        decoding="async"
         style={{objectFit:"contain", display:"block", width:"auto", height:displayH, maxWidth: isMobile ? 146 : 220}}
       />
     </div>
@@ -343,6 +344,7 @@ function WasteCalculator({onBooking}){
         </div>
       </div>
     </section>
+  );
 }
 
 function Approach({onBooking}){
@@ -1030,7 +1032,7 @@ export default function Page(){
   return(
     <>
       <div id="loading" style={{position:"fixed",inset:0,background:"#0F1E35",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",zIndex:9999,transition:"opacity 0.6s ease"}}>
-        <img src="/logo-transparent.png" alt="WIPS Tech" width={600} height={400} fetchPriority="high" style={{height:80,width:"auto",opacity:.92,objectFit:"contain"}}/>
+        <img src="/logo-transparent.png" alt="WIPS Tech" width={612} height={200} fetchPriority="high" style={{height:60,width:"auto",opacity:.92,objectFit:"contain"}}/>
         <div style={{display:"flex",gap:8,marginTop:18}}>
           <div className="ldot" style={{background:"#2A9D6F"}}></div>
           <div className="ldot" style={{background:"#C8952A",animationDelay:".2s"}}></div>
