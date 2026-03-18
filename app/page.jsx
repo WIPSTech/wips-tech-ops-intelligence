@@ -57,20 +57,25 @@ function WIPSLogo({light=false, priority=false}){
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   },[]);
-  const src = isMobile ? "/logo-mobile.png" : "/logo-transparent.png";
+  const pngSrc = isMobile ? "/logo-mobile.png" : "/logo-transparent.png";
+  const webpSrc = isMobile ? "/logo-mobile.webp" : "/logo-transparent.webp";
   const displayH = isMobile ? 48 : 72;
-  const displayW = isMobile ? 146 : 220;
+  const displayW = isMobile ? 292 : 440;
+  const displayHPx = isMobile ? 96 : 144;
   return(
     <div style={{display:"flex",alignItems:"center",flexShrink:0}}>
-      <img
-        src={src}
-        alt="WIPS Tech — Workflows Intelligence & Performance Solutions"
-        width={displayW}
-        height={displayH}
-        fetchPriority="high"
-        decoding="async"
-        style={{objectFit:"contain", display:"block", width:"auto", height:displayH, maxWidth: isMobile ? 146 : 220}}
-      />
+      <picture>
+        <source srcSet={webpSrc} type="image/webp" width={displayW} height={displayHPx}/>
+        <img
+          src={pngSrc}
+          alt="WIPS Tech — Workflows Intelligence & Performance Solutions"
+          width={displayW}
+          height={displayHPx}
+          fetchPriority="high"
+          decoding="async"
+          style={{objectFit:"contain", display:"block", width:"auto", height:displayH, maxWidth: isMobile ? 146 : 220}}
+        />
+      </picture>
     </div>
   );
 }
@@ -1032,7 +1037,10 @@ export default function Page(){
   return(
     <>
       <div id="loading" style={{position:"fixed",inset:0,background:"#0F1E35",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",zIndex:9999,transition:"opacity 0.6s ease"}}>
-        <img src="/logo-transparent.png" alt="WIPS Tech" width={612} height={200} fetchPriority="high" style={{height:60,width:"auto",opacity:.92,objectFit:"contain"}}/>
+        <picture>
+          <source srcSet="/logo-transparent.webp" type="image/webp" width={440} height={144}/>
+          <img src="/logo-transparent.png" alt="WIPS Tech" width={440} height={144} fetchPriority="high" style={{height:56,width:"auto",opacity:.92,objectFit:"contain"}}/>
+        </picture>
         <div style={{display:"flex",gap:8,marginTop:18}}>
           <div className="ldot" style={{background:"#2A9D6F"}}></div>
           <div className="ldot" style={{background:"#C8952A",animationDelay:".2s"}}></div>
