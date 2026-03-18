@@ -66,7 +66,7 @@ export default function RootLayout({ children }) {
         <link rel="alternate" hreflang="ar" href="https://wipstech.com/" />
         <link rel="alternate" hreflang="x-default" href="https://wipstech.com/" />
         {/* Preload logo — fixes LCP */}
-        <link rel="preload" href="/logo-transparent.png" as="image" fetchPriority="high" />
+        <link rel="preload" href="/logo-transparent.png" as="image" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* Non-render-blocking font load */}
