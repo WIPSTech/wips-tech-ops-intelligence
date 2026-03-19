@@ -223,7 +223,7 @@ function NotGrid(){
   );
 }
 
-function RangeInput({label,value,min,max,step,format,desc,onChange}){
+function RangeInput({label,value,min,max,step,format,desc,onChange,icon}){
   const pct=((value-min)/(max-min))*100;
   const trackRef=useRef(null);
   const dragging=useRef(false);
@@ -250,19 +250,29 @@ function RangeInput({label,value,min,max,step,format,desc,onChange}){
       window.removeEventListener("touchend",onMouseUp);
     };
   });
-  // Clamp thumb so it never extends past track edges on mobile
   const clampedPct = Math.max(1, Math.min(99, pct));
   return(
-    <div style={{marginBottom:22,overflow:"hidden"}}>
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:6,gap:8,flexWrap:"wrap"}}>
-        <label style={{marginBottom:0}}>{label}</label>
-        <span className="mono" style={{fontSize:13,fontWeight:600,color:B.navy}}>{format(value)}</span>
+    <div style={{background:"#fff",border:`1.5px solid ${B.borderL}`,borderRadius:10,padding:"14px 16px",marginBottom:10,overflow:"hidden",transition:"border-color .2s",cursor:"pointer"}}
+      onMouseEnter={e=>e.currentTarget.style.borderColor=B.emerald}
+      onMouseLeave={e=>e.currentTarget.style.borderColor=B.borderL}>
+      {/* top row: icon + label + big value */}
+      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10}}>
+        <div style={{display:"flex",alignItems:"center",gap:8}}>
+          <span style={{fontSize:16}}>{icon}</span>
+          <span style={{fontSize:"12px",fontWeight:600,color:B.textS,letterSpacing:".03em"}}>{label}</span>
+        </div>
+        <span className="mono" style={{fontSize:"1.1rem",fontWeight:700,color:B.navy,background:B.smoke,padding:"3px 10px",borderRadius:6}}>{format(value)}</span>
       </div>
+      {/* slider */}
       <div ref={trackRef} className="range-track" onMouseDown={onMouseDown} onTouchStart={onTouchStart}>
         <div className="range-fill" style={{width:`${pct}%`}}/>
         <div className="range-thumb" style={{left:`${clampedPct}%`}}/>
       </div>
-      <p style={{fontSize:"12px",color:"#555f6d",marginTop:2}}>{desc}</p>
+      {/* min/max hint */}
+      <div style={{display:"flex",justifyContent:"space-between",marginTop:5}}>
+        <span style={{fontSize:"10px",color:"#a0aec0"}}>{format(min)}</span>
+        <span style={{fontSize:"10px",color:"#a0aec0"}}>{format(max)}</span>
+      </div>
     </div>
   );
 }
@@ -290,13 +300,20 @@ function WasteCalculator({onBooking}){
         </div>
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20,alignItems:"start"}} className="grid-1-mobile">
           {/* LEFT — inputs */}
-          <div style={{background:B.smoke,borderRadius:12,padding:"20px 16px",border:`1px solid ${B.borderL}`,minWidth:0,boxSizing:"border-box"}}>
-            <h3 className="cg" style={{fontSize:"1.2rem",fontWeight:500,color:B.navy,marginBottom:20}}>Your Operation</h3>
-            <RangeInput label="Number of Staff" value={inp.staff} min={1} max={50} step={1} format={v=>`${v} people`} desc="Full-time and part-time combined" onChange={v=>upd("staff",v)}/>
-            <RangeInput label="Monthly Revenue (USD)" value={inp.revenue} min={2000} max={200000} step={1000} format={v=>`$${v.toLocaleString()}`} desc="Gross revenue, all services" onChange={v=>upd("revenue",v)}/>
-            <RangeInput label="Admin Hours Per Week" value={inp.admin} min={4} max={80} step={2} format={v=>`${v} hrs/wk`} desc="Manual entry, scheduling, follow-ups" onChange={v=>upd("admin",v)}/>
-            <RangeInput label="No-Show Rate" value={inp.noshow} min={0} max={40} step={1} format={v=>`${v}%`} desc="% of booked appointments not attended" onChange={v=>upd("noshow",v)}/>
-            <RangeInput label="Software Spend (USD/mo)" value={inp.tools} min={100} max={5000} step={100} format={v=>`$${v.toLocaleString()}`} desc="Total monthly tool spend" onChange={v=>upd("tools",v)}/>
+          <div style={{minWidth:0,boxSizing:"border-box"}}>
+            {/* header card */}
+            <div style={{background:`linear-gradient(135deg,${B.navy} 0%,${B.navyL} 100%)`,borderRadius:10,padding:"16px 18px",marginBottom:10}}>
+              <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:4}}>
+                <span style={{fontSize:18}}>⚙️</span>
+                <span className="cg" style={{fontSize:"1.1rem",fontWeight:500,color:"#fff"}}>Tell us about your operation</span>
+              </div>
+              <p style={{fontSize:"11px",color:"rgba(255,255,255,.55)",margin:0,lineHeight:1.5}}>Drag each slider — results update instantly on the right.</p>
+            </div>
+            <RangeInput icon="👥" label="Number of Staff" value={inp.staff} min={1} max={50} step={1} format={v=>`${v} people`} desc="" onChange={v=>upd("staff",v)}/>
+            <RangeInput icon="💰" label="Monthly Revenue (USD)" value={inp.revenue} min={2000} max={200000} step={1000} format={v=>`$${v.toLocaleString()}`} desc="" onChange={v=>upd("revenue",v)}/>
+            <RangeInput icon="🕐" label="Admin Hours / Week" value={inp.admin} min={4} max={80} step={2} format={v=>`${v} hrs`} desc="" onChange={v=>upd("admin",v)}/>
+            <RangeInput icon="📅" label="Appointment No-Show Rate" value={inp.noshow} min={0} max={40} step={1} format={v=>`${v}%`} desc="" onChange={v=>upd("noshow",v)}/>
+            <RangeInput icon="🛠️" label="Software Spend / Month" value={inp.tools} min={100} max={5000} step={100} format={v=>`$${v.toLocaleString()}`} desc="" onChange={v=>upd("tools",v)}/>
           </div>
           {/* RIGHT — results */}
           <div style={{minWidth:0,boxSizing:"border-box"}}>
