@@ -2,7 +2,7 @@
   "name": "wips-tech-ops-intelligence",
   "version": "1.0.0",
   "private": true,
- "scripts": {
+  "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -11,24 +11,24 @@
     "ci:test": "echo 'Skipping CI tests' && exit 0"
   },
   "dependencies": {
+    "clsx": "^2.1.0",
+    "framer-motion": "^11.0.3",
+    "lucide-react": "^0.263.1",
+    "next": "^16.1.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "next": "^14.1.0",
-    "lucide-react": "latest",
-    "framer-motion": "latest",
-    "clsx": "latest",
-    "tailwind-merge": "latest"
+    "tailwind-merge": "^2.2.0"
   },
   "devDependencies": {
-  "autoprefixer": "^10.4.17",
-  "postcss": "^8.4.35",
-  "tailwindcss": "^3.4.1",
-  "jest": "^29.7.0",
-  "babel-jest": "^29.7.0",
-  "@testing-library/react": "^14.0.0",
-  "@testing-library/jest-dom": "^6.0.0",
-  "@testing-library/user-event": "^14.5.0",
-  "eslint": "^8.56.0",
-  "eslint-config-next": "^14.1.0"
- }
+    "@testing-library/jest-dom": "^6.0.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.5.0",
+    "autoprefixer": "^10.4.17",
+    "babel-jest": "^29.7.0",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^16.1.6",
+    "jest": "^29.7.0",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1"
+  }
 }
