@@ -61,12 +61,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* hreflang — MENA English + Arabic international SEO */}
+        {/* hreflang */}
         <link rel="alternate" hreflang="en" href="https://wipstech.com/" />
         <link rel="alternate" hreflang="ar" href="https://wipstech.com/" />
         <link rel="alternate" hreflang="x-default" href="https://wipstech.com/" />
+        {/* Preload LCP image */}
+        <link rel="preload" as="image" href="/logo-mobile.png" />
+        {/* Preconnect for fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Fonts — display=swap prevents render blocking */}
         <link
           href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"

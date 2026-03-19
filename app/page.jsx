@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
+import NextImage from "next/image";
 
 const B = {
   navy:"#1B365D", navyD:"#0F1E35", navyL:"#2A4A7A",
@@ -48,7 +49,7 @@ function AnimCounter({end,prefix="",suffix="",duration=1800}){
   return <span ref={ref} className="stat-num">{prefix}{count.toLocaleString()}{suffix}</span>;
 }
 
-function WIPSLogo({light=false}){
+function WIPSLogo({light=false, priority=false}){
   const [isMobile, setIsMobile] = useState(false);
   useEffect(()=>{
     const check = () => setIsMobile(window.innerWidth < 769);
@@ -56,15 +57,25 @@ function WIPSLogo({light=false}){
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   },[]);
-  const src = isMobile ? LOGOS.mobile : LOGOS.desktop;
-  const height = isMobile ? 90 : 140;
+  const pngSrc = isMobile ? "/logo-mobile.png" : "/logo-transparent.png";
+  const webpSrc = isMobile ? "/logo-mobile.webp" : "/logo-transparent.webp";
+  const displayH = isMobile ? 48 : 72;
+  const displayW = isMobile ? 292 : 440;
+  const displayHPx = isMobile ? 96 : 144;
   return(
     <div style={{display:"flex",alignItems:"center",flexShrink:0}}>
-      <img
-        src={src}
-        alt="WIPS Tech — Workflows Intelligence & Performance Solutions"
-        style={{height:height, width:"auto", objectFit:"contain", display:"block", maxWidth: isMobile ? 320 : 600}}
-      />
+      <picture>
+        <source srcSet={webpSrc} type="image/webp" width={displayW} height={displayHPx}/>
+        <img
+          src={pngSrc}
+          alt="WIPS Tech — Workflows Intelligence & Performance Solutions"
+          width={displayW}
+          height={displayHPx}
+          fetchPriority="high"
+          decoding="async"
+          style={{objectFit:"contain", display:"block", width:"auto", height:displayH, maxWidth: isMobile ? 146 : 220}}
+        />
+      </picture>
     </div>
   );
 }
@@ -98,8 +109,8 @@ function Navigation({onBooking,onContact}){
   return(
     <>
       <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:scrolled?"rgba(255,255,255,.97)":"rgba(255,255,255,.95)",backdropFilter:"blur(12px)",borderBottom:scrolled?`1px solid ${B.borderL}`:"1px solid transparent",boxShadow:scrolled?"0 2px 24px rgba(27,54,93,.08)":"none",transition:"all .3s",padding:"0 40px"}}>
-        <div style={{maxWidth:1200,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:116}}>
-          <WIPSLogo/>
+        <div style={{maxWidth:1200,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:96}}>
+          <WIPSLogo priority={true}/>
           <div className="hide-mobile" style={{display:"flex",alignItems:"center",gap:34}}>
             {navItems.map(i=><button key={i.label} className="nav-link" onClick={()=>scrollTo(i.href)}>{i.label}</button>)}
             <button className="nav-link" onClick={onContact}>Contact Us</button>
@@ -108,7 +119,7 @@ function Navigation({onBooking,onContact}){
             <button className="btn-outline" style={{padding:"9px 18px",fontSize:13}} onClick={()=>scrollTo("#approach")}>How It Works</button>
             <button className="btn-primary" style={{padding:"10px 20px",fontSize:13}} onClick={onBooking}>Book Discovery</button>
           </div>
-          <button onClick={()=>setMobileOpen(!mobileOpen)} style={{display:"none",background:"none",border:"none",cursor:"pointer",padding:8,color:B.navy}} id="mob-btn">
+          <button onClick={()=>setMobileOpen(!mobileOpen)} style={{display:"none",background:"none",border:"none",cursor:"pointer",padding:8,color:B.navy}} id="mob-btn" aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}>
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
               {mobileOpen?<path d="M4 4L18 18M18 4L4 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>:<path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>}
             </svg>
@@ -136,7 +147,7 @@ function Hero({onBooking}){
     {n:"34%",l:"No-show reduction",sub:"Dental clients · 3 months"},
   ];
   return(
-    <section style={{minHeight:"100vh",background:`linear-gradient(158deg,${B.navyD} 0%,${B.navy} 52%,#1A4535 100%)`,display:"flex",flexDirection:"column",justifyContent:"center",position:"relative",overflow:"hidden",padding:"120px 40px 80px"}}>
+    <section style={{minHeight:"100vh",background:`linear-gradient(158deg,${B.navyD} 0%,${B.navy} 52%,#1A4535 100%)`,display:"flex",flexDirection:"column",justifyContent:"center",position:"relative",overflow:"hidden",overflowX:"clip",padding:"120px 40px 80px"}}>
       <div style={{position:"absolute",inset:0,opacity:.04,backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E\")"}}/>
       {[0,1,2,3].map(i=>(
         <svg key={i} width={220-i*28} height={340-i*44} viewBox="0 0 220 340" fill="none"
@@ -148,7 +159,7 @@ function Hero({onBooking}){
         <div style={{maxWidth:760}}>
           <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:32,animation:"fadeUp .6s ease both"}}>
             <div style={{width:32,height:1.5,background:B.emerald}}/>
-            <span className="section-label" style={{color:B.emeraldL,letterSpacing:".22em"}}>Operations Intelligence Platform</span>
+            <span className="section-label" style={{color:"#2ebf8a",letterSpacing:".22em"}}>Operations Intelligence Platform</span>
           </div>
           <h1 className="cg" style={{fontSize:"clamp(2.6rem,6vw,4.4rem)",fontWeight:300,color:"#fff",lineHeight:1.08,letterSpacing:"-.02em",marginBottom:28,animation:"fadeUp .7s ease .1s both"}}>
             Your Operations Are<br/><em style={{fontStyle:"italic",color:B.emeraldL}}>Leaking Revenue</em> Daily.
@@ -239,17 +250,19 @@ function RangeInput({label,value,min,max,step,format,desc,onChange}){
       window.removeEventListener("touchend",onMouseUp);
     };
   });
+  // Clamp thumb so it never extends past track edges on mobile
+  const clampedPct = Math.max(1, Math.min(99, pct));
   return(
-    <div style={{marginBottom:22}}>
-      <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:6}}>
+    <div style={{marginBottom:22,overflow:"hidden"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"baseline",marginBottom:6,gap:8,flexWrap:"wrap"}}>
         <label style={{marginBottom:0}}>{label}</label>
         <span className="mono" style={{fontSize:13,fontWeight:600,color:B.navy}}>{format(value)}</span>
       </div>
       <div ref={trackRef} className="range-track" onMouseDown={onMouseDown} onTouchStart={onTouchStart}>
         <div className="range-fill" style={{width:`${pct}%`}}/>
-        <div className="range-thumb" style={{left:`${pct}%`}}/>
+        <div className="range-thumb" style={{left:`${clampedPct}%`}}/>
       </div>
-      <p style={{fontSize:"11px",color:B.textT,marginTop:2}}>{desc}</p>
+      <p style={{fontSize:"12px",color:"#555f6d",marginTop:2}}>{desc}</p>
     </div>
   );
 }
@@ -267,69 +280,71 @@ function WasteCalculator({onBooking}){
   },[inp]);
   const res=r();
   return(
-    <section id="calculator" ref={ref} style={{padding:"96px 40px",background:"#fff"}}>
-      <div style={{maxWidth:1200,margin:"0 auto"}}>
-        <div style={{textAlign:"center",marginBottom:56}}>
+    <section id="calculator" ref={ref} style={{padding:"64px 0",background:"#fff",width:"100%",overflow:"hidden"}}>
+      <div style={{maxWidth:1200,margin:"0 auto",padding:"0 20px",boxSizing:"border-box"}}>
+        <div style={{textAlign:"center",marginBottom:40}}>
           <span className="section-label">Interactive ROI Tool</span>
           <div className="divider-accent" style={{margin:"14px auto 16px"}}/>
-          <h2 className="cg" style={{fontSize:"clamp(2rem,4vw,2.8rem)",fontWeight:300,color:B.navy}}>Calculate Your Monthly Operational Waste</h2>
+          <h2 className="cg" style={{fontSize:"clamp(1.6rem,4vw,2.8rem)",fontWeight:300,color:B.navy}}>Calculate Your Monthly Operational Waste</h2>
           <p style={{color:B.textS,fontSize:"1rem",maxWidth:500,margin:"12px auto 0",lineHeight:1.65}}>Adjust the inputs to reflect your operation. Sector benchmarks calculate your estimated recoverable waste.</p>
         </div>
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:40,alignItems:"start"}} className="grid-1-mobile">
-          <div style={{background:B.smoke,borderRadius:12,padding:"36px 32px",border:`1px solid ${B.borderL}`}}>
-            <h3 className="cg" style={{fontSize:"1.3rem",fontWeight:500,color:B.navy,marginBottom:28}}>Your Operation</h3>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20,alignItems:"start"}} className="grid-1-mobile">
+          {/* LEFT — inputs */}
+          <div style={{background:B.smoke,borderRadius:12,padding:"20px 16px",border:`1px solid ${B.borderL}`,minWidth:0,boxSizing:"border-box"}}>
+            <h3 className="cg" style={{fontSize:"1.2rem",fontWeight:500,color:B.navy,marginBottom:20}}>Your Operation</h3>
             <RangeInput label="Number of Staff" value={inp.staff} min={1} max={50} step={1} format={v=>`${v} people`} desc="Full-time and part-time combined" onChange={v=>upd("staff",v)}/>
             <RangeInput label="Monthly Revenue (USD)" value={inp.revenue} min={2000} max={200000} step={1000} format={v=>`$${v.toLocaleString()}`} desc="Gross revenue, all services" onChange={v=>upd("revenue",v)}/>
             <RangeInput label="Admin Hours Per Week" value={inp.admin} min={4} max={80} step={2} format={v=>`${v} hrs/wk`} desc="Manual entry, scheduling, follow-ups" onChange={v=>upd("admin",v)}/>
-            <RangeInput label="Appointment No-Show Rate" value={inp.noshow} min={0} max={40} step={1} format={v=>`${v}%`} desc="% of booked appointments not attended" onChange={v=>upd("noshow",v)}/>
-            <RangeInput label="Software Subscriptions (USD/mo)" value={inp.tools} min={100} max={5000} step={100} format={v=>`$${v.toLocaleString()}/mo`} desc="Total monthly tool spend" onChange={v=>upd("tools",v)}/>
+            <RangeInput label="No-Show Rate" value={inp.noshow} min={0} max={40} step={1} format={v=>`${v}%`} desc="% of booked appointments not attended" onChange={v=>upd("noshow",v)}/>
+            <RangeInput label="Software Spend (USD/mo)" value={inp.tools} min={100} max={5000} step={100} format={v=>`$${v.toLocaleString()}`} desc="Total monthly tool spend" onChange={v=>upd("tools",v)}/>
           </div>
-          <div>
-            <div style={{background:inView?B.navy:"#F4F7FA",borderRadius:12,padding:"36px 32px",border:`2px solid ${inView?B.navy:B.borderL}`,transition:"all .5s ease",marginBottom:20}}>
+          {/* RIGHT — results */}
+          <div style={{minWidth:0,boxSizing:"border-box"}}>
+            <div style={{background:inView?B.navy:"#F4F7FA",borderRadius:12,padding:"20px 16px",border:`2px solid ${inView?B.navy:B.borderL}`,transition:"all .5s ease",marginBottom:16,minWidth:0,boxSizing:"border-box"}}>
               {inView?(
                 <>
-                  <div style={{marginBottom:28}}>
-                    <div className="mono" style={{fontSize:"10px",letterSpacing:".15em",textTransform:"uppercase",color:"rgba(255,255,255,.45)",marginBottom:8}}>Estimated Monthly Operational Waste</div>
-                    <div className="stat-num" style={{fontSize:"3.6rem",fontWeight:300,color:"#fff",lineHeight:1,letterSpacing:"-.03em"}}>${res.total.toLocaleString()}</div>
-                    <div style={{fontSize:"12px",color:"rgba(255,255,255,.4)",marginTop:6}}>Confidence range: ${res.low.toLocaleString()} — ${res.high.toLocaleString()}/month</div>
+                  <div style={{marginBottom:20}}>
+                    <div className="mono" style={{fontSize:"9px",letterSpacing:".12em",textTransform:"uppercase",color:"rgba(255,255,255,.45)",marginBottom:6}}>Est. Monthly Waste</div>
+                    <div className="stat-num" style={{fontSize:"clamp(1.8rem,6vw,3.2rem)",fontWeight:300,color:"#fff",lineHeight:1}}>${res.total.toLocaleString()}</div>
+                    <div style={{fontSize:"10px",color:"rgba(255,255,255,.4)",marginTop:4}}>${res.low.toLocaleString()} – ${res.high.toLocaleString()}/mo range</div>
                   </div>
-                  {[{label:"Administrative Overhead",value:res.aw,color:B.emerald},{label:"No-Show & Cancellation Loss",value:res.nw,color:B.gold},{label:"Underutilised Tool Spend",value:res.tw,color:"#8B9CF4"}].map(b=>(
-                    <div key={b.label} style={{marginBottom:14}}>
-                      <div style={{display:"flex",justifyContent:"space-between",marginBottom:5}}>
-                        <span style={{fontSize:"12px",color:"rgba(255,255,255,.6)"}}>{b.label}</span>
-                        <span className="mono" style={{fontSize:"12px",color:"#fff",fontWeight:600}}>${b.value.toLocaleString()}</span>
+                  {[{label:"Admin Overhead",value:res.aw,color:B.emerald},{label:"No-Show Loss",value:res.nw,color:B.gold},{label:"Unused Tools",value:res.tw,color:"#8B9CF4"}].map(b=>(
+                    <div key={b.label} style={{marginBottom:12}}>
+                      <div style={{display:"flex",justifyContent:"space-between",marginBottom:4}}>
+                        <span style={{fontSize:"11px",color:"rgba(255,255,255,.65)"}}>{b.label}</span>
+                        <span className="mono" style={{fontSize:"11px",color:"#fff",fontWeight:600}}>${b.value.toLocaleString()}</span>
                       </div>
-                      <div style={{height:4,background:"rgba(255,255,255,.1)",borderRadius:2}}>
+                      <div style={{height:3,background:"rgba(255,255,255,.1)",borderRadius:2}}>
                         <div style={{height:"100%",borderRadius:2,background:b.color,width:res.total>0?`${Math.round(b.value/res.total*100)}%`:"0%",transition:"width .5s ease"}}/>
                       </div>
                     </div>
                   ))}
-                  <div style={{borderTop:"1px solid rgba(255,255,255,.1)",paddingTop:18,marginTop:18,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                    <span style={{fontSize:"12px",color:"rgba(255,255,255,.5)"}}>Annual Estimate</span>
-                    <span className="stat-num" style={{fontSize:"1.4rem",fontWeight:600,color:B.emeraldL}}>${res.annual.toLocaleString()}/year</span>
+                  <div style={{borderTop:"1px solid rgba(255,255,255,.1)",paddingTop:14,marginTop:14,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                    <span style={{fontSize:"11px",color:"rgba(255,255,255,.5)"}}>Annual</span>
+                    <span className="stat-num" style={{fontSize:"clamp(.95rem,3vw,1.3rem)",fontWeight:600,color:B.emeraldL}}>${res.annual.toLocaleString()}/yr</span>
                   </div>
                 </>
               ):(
-                <div style={{textAlign:"center",padding:"32px 0",color:B.textT}}><p>Loading calculator…</p></div>
+                <div style={{textAlign:"center",padding:"24px 0",color:B.textT}}><p>Loading…</p></div>
               )}
             </div>
-            <div style={{background:res.ok?"#F0FDF6":"#FFFBEB",border:`2px solid ${res.ok?B.emeraldL:B.goldL}`,borderRadius:8,padding:"18px 22px",marginBottom:18}}>
+            <div style={{background:res.ok?"#F0FDF6":"#FFFBEB",border:`1.5px solid ${res.ok?B.emeraldL:B.goldL}`,borderRadius:8,padding:"12px 14px",marginBottom:14,minWidth:0,boxSizing:"border-box"}}>
               {res.ok?(
                 <>
-                  <div className="mono" style={{fontSize:"10px",color:B.emeraldD,letterSpacing:".14em",textTransform:"uppercase",marginBottom:6}}>✓ Qualifies for the $500 Guarantee</div>
-                  <p style={{fontSize:"13px",color:B.textS,lineHeight:1.65,margin:0}}><strong style={{color:B.emeraldD}}>Our commitment:</strong> If our Operational Scan does not identify at least $500/month in recoverable waste from the first workflow we analyze — you pay nothing.</p>
+                  <div className="mono" style={{fontSize:"9px",color:B.emeraldD,letterSpacing:".1em",textTransform:"uppercase",marginBottom:5}}>✓ $500 Guarantee Applies</div>
+                  <p style={{fontSize:"12px",color:B.textS,lineHeight:1.6,margin:0}}>If our Scan does not find $500+/mo in recoverable waste — you pay nothing.</p>
                 </>
               ):(
                 <>
-                  <div className="mono" style={{fontSize:"10px",color:B.gold,letterSpacing:".14em",textTransform:"uppercase",marginBottom:6}}>Note on Your Inputs</div>
-                  <p style={{fontSize:"13px",color:B.textS,lineHeight:1.65,margin:0}}>The Discovery Session will confirm whether a full Scan would produce a positive return. We'll tell you clearly — no obligation either way.</p>
+                  <div className="mono" style={{fontSize:"9px",color:B.gold,letterSpacing:".1em",textTransform:"uppercase",marginBottom:5}}>Note on Your Inputs</div>
+                  <p style={{fontSize:"12px",color:B.textS,lineHeight:1.6,margin:0}}>The Discovery Session will confirm whether a full Scan would produce a positive return.</p>
                 </>
               )}
             </div>
-            <button className="btn-emerald" style={{width:"100%",justifyContent:"center",padding:"15px 28px"}} onClick={onBooking}>
-              Book Free Discovery Session — Verify These Numbers →
+            <button className="btn-emerald" style={{width:"100%",justifyContent:"center",padding:"13px 16px",fontSize:"13px",whiteSpace:"normal",textAlign:"center",lineHeight:1.4}} onClick={onBooking}>
+              Book Free Discovery Session →
             </button>
-            <p style={{fontSize:"10px",color:B.textT,textAlign:"center",marginTop:10,fontStyle:"italic"}}>* Industry benchmark estimates. Actual waste identified in your Scan reflects your specific workflows.</p>
+            <p style={{fontSize:"10px",color:B.textT,textAlign:"center",marginTop:8,fontStyle:"italic"}}>* Estimates based on sector benchmarks. Individual results vary.</p>
           </div>
         </div>
       </div>
@@ -951,7 +966,7 @@ function Footer({onBooking,onContact}){
         <button className="btn-gold" onClick={onBooking} style={{marginTop:12}}>Book Your Free Discovery Session →</button>
       </div>
       <div style={{padding:"56px 40px 24px",maxWidth:1200,margin:"0 auto"}}>
-        <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",gap:40,marginBottom:48}}>
+        <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",gap:40,marginBottom:48}} className="footer-grid">
           <div>
             <WIPSLogo light/>
             <p style={{fontSize:"13px",color:"rgba(255,255,255,.4)",lineHeight:1.75,marginTop:20,maxWidth:300}}>Not a Software Vendor. Not a Business Consultant. Your Operations Intelligence Partner.</p>
@@ -1022,7 +1037,10 @@ export default function Page(){
   return(
     <>
       <div id="loading" style={{position:"fixed",inset:0,background:"#0F1E35",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",zIndex:9999,transition:"opacity 0.6s ease"}}>
-        <img src="/logo-transparent.png" alt="WIPS Tech" style={{height:80,width:"auto",opacity:.92,objectFit:"contain"}}/>
+        <picture>
+          <source srcSet="/logo-transparent.webp" type="image/webp" width={440} height={144}/>
+          <img src="/logo-transparent.png" alt="WIPS Tech" width={440} height={144} fetchPriority="high" style={{height:56,width:"auto",opacity:.92,objectFit:"contain"}}/>
+        </picture>
         <div style={{display:"flex",gap:8,marginTop:18}}>
           <div className="ldot" style={{background:"#2A9D6F"}}></div>
           <div className="ldot" style={{background:"#C8952A",animationDelay:".2s"}}></div>
