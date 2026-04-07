@@ -1,6 +1,8 @@
 import Script from "next/script";
 import "./globals.css";
 
+const GA_ID = "G-J7XX8W4HBW";
+
 export const metadata = {
   metadataBase: new URL("https://wipstech.com"),
   title: "Operations Intelligence Partner for MENA SMEs | WIPS Tech",
@@ -56,25 +58,7 @@ const softwareSchema = {
     "url": "https://wipstech.com/pricing"
   }
 };
-<body>
-  {/* JSON-LD schemas */}
-  <Script id="org-schema" ... />
-  <Script id="software-schema" ... />
 
-  {/* Google Analytics */}
-  <Script
-    src="https://www.googletagmanager.com/gtag/js?id=G-J7XX8W4HBW"
-    strategy="afterInteractive"
-  />
-  <Script id="ga4-init" strategy="afterInteractive">
-    {`
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-J7XX8W4HBW');
-    `}
-  </Script>
-  
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -95,6 +79,16 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
+        {/* Google Analytics */}
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive"/>
+        <Script id="google-analytics" strategy="afterInteractive"
+          dangerouslySetInnerHTML={{__html:`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}}
+        />
         <Script
           id="org-schema"
           type="application/ld+json"
