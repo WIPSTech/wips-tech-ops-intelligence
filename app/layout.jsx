@@ -56,7 +56,25 @@ const softwareSchema = {
     "url": "https://wipstech.com/pricing"
   }
 };
+<body>
+  {/* JSON-LD schemas */}
+  <Script id="org-schema" ... />
+  <Script id="software-schema" ... />
 
+  {/* Google Analytics */}
+  <Script
+    src="https://www.googletagmanager.com/gtag/js?id=G-J7XX8W4HBW"
+    strategy="afterInteractive"
+  />
+  <Script id="ga4-init" strategy="afterInteractive">
+    {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-J7XX8W4HBW');
+    `}
+  </Script>
+  
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
