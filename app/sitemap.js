@@ -1,40 +1,18 @@
+import { articles } from "../data/articles";
+import { site } from "../data/site";
+
 export default function sitemap() {
-  return [
-    {
-      url: "https://wipstech.com/",
-      lastModified: new Date("2026-03-14"),
-      changeFrequency: "weekly",
-      priority: 1.0,
-    },
-    {
-      url: "https://wipstech.com/insights",
-      lastModified: new Date("2026-03-14"),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: "https://wipstech.com/insights/why-admin-hours-are-the-wrong-metric",
-      lastModified: new Date("2026-03-14"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: "https://wipstech.com/faq",
-      lastModified: new Date("2026-03-14"),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: "https://wipstech.com/blog",
-      lastModified: new Date("2026-03-14"),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: "https://wipstech.com/blog/what-is-operations-intelligence-platform",
-      lastModified: new Date("2026-03-14"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-  ];
+  const pages = ["", "/services", "/case-studies", "/insights", "/faq", "/about", "/contact"].map((path) => ({
+    url: `${site.url}${path || "/"}`,
+    lastModified: new Date("2026-10-06"),
+    changeFrequency: "monthly",
+    priority: path === "" ? 1 : 0.8,
+  }));
+  const posts = articles.map((a) => ({
+    url: `${site.url}/insights/${a.slug}`,
+    lastModified: new Date(a.date),
+    changeFrequency: "yearly",
+    priority: 0.6,
+  }));
+  return [...pages, ...posts];
 }
