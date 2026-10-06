@@ -1,0 +1,40 @@
+import SessionForm from "../components/SessionForm";
+import { getContent, site } from "../lib/i18n";
+
+export default function Contact({ locale }) {
+  const t = getContent(locale);
+  const c = t.contact;
+  return (
+    <>
+      <section className="page-head">
+        <div className="wrap">
+          <h1>{c.h1}</h1>
+          <p className="lede">{c.lede}</p>
+        </div>
+      </section>
+      <section className="section-tight contact-section">
+        <div className="wrap contact-grid">
+          <SessionForm f={t.form} locale={locale} fallbackEndpoint={site.formEndpoint} />
+          <aside className="contact-aside">
+            <div>
+              <h2>{c.nextH}</h2>
+              <p>{c.nextP}</p>
+            </div>
+            <div>
+              <h2>{c.emailH}</h2>
+              <p>
+                <a className="textlink" href={`mailto:${site.email}`} dir="ltr">
+                  {site.email}
+                </a>
+              </p>
+            </div>
+            <div>
+              <h2>{c.askH}</h2>
+              <p>{c.askP}</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </>
+  );
+}

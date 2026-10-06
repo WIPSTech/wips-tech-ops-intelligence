@@ -1,19 +1,17 @@
 import Link from "next/link";
-import { sessionCta } from "../data/site";
+import { getContent, href } from "../lib/i18n";
 
-export default function Closing({
-  title = "Start with one workflow and one number.",
-  text = "45 minutes, free, in Arabic or English. You keep the calculation whether or not you go further.",
-}) {
+export default function Closing({ locale, title, text }) {
+  const t = getContent(locale);
   return (
     <section className="section-tight section-navy" aria-labelledby="closing-title">
       <div className="wrap closing">
         <div>
-          <h2 id="closing-title">{title}</h2>
-          <p>{text}</p>
+          <h2 id="closing-title">{title || t.closing.title}</h2>
+          <p>{text || t.closing.text}</p>
         </div>
-        <Link href="/contact" className="btn btn-primary">
-          {sessionCta}
+        <Link href={href(locale, "/contact")} className="btn btn-primary">
+          {t.cta}
         </Link>
       </div>
     </section>

@@ -1,50 +1,68 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { site } from "../data/site";
 
-export default function SessionForm() {
+// Sends to /api/session, which emails the clinic owner a confirmation.
+// If that route is not configured yet, falls back to the Formspree endpoint.
+export default function SessionForm({ f, locale, fallbackEndpoint }) {
   const [attached, setAttached] = useState("");
   const [status, setStatus] = useState("idle");
-  const [error, setError] = useState("");
+  const [confirmed, setConfirmed] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const p = new URLSearchParams(window.location.search);
     if (p.get("task") && p.get("score")) {
-      setAttached(`${p.get("task")}: TIFDA score ${p.get("score")} of 15 (T-I-F-D-A ${p.get("tifda") || ""})`);
+      setAttached(`${p.get("task")}: ${f.scoreLine} ${p.get("score")}/15 (T-I-F-D-A ${p.get("tifda") || ""})`);
     }
-  }, []);
+  }, [f.scoreLine]);
 
   async function send(e) {
     e.preventDefault();
     setStatus("sending");
-    setError("");
+    setError(false);
     const fd = new FormData(e.currentTarget);
-    fd.append("_subject", "Free session request, WIPS Tech");
     if (attached) fd.append("tifda_score", attached);
+    fd.append("language", locale);
+
     try {
-      const res = await fetch(site.formEndpoint, {
+      const res = await fetch("/api/session", {
         method: "POST",
-        headers: { Accept: "application/json" },
-        body: fd,
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(Object.fromEntries(fd.entries())),
       });
       if (res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setConfirmed(Boolean(data.confirmation));
         setStatus("sent");
-      } else {
-        setStatus("idle");
-        setError(`The request was not sent. Try again, or email ${site.email}.`);
+        return;
       }
+      if (res.status === 400) throw new Error("invalid");
+    } catch (err) {
+      if (err.message === "invalid") {
+        setStatus("idle");
+        setError(true);
+        return;
+      }
+    }
+
+    try {
+      fd.append("_subject", "Free session request, WIPS Tech");
+      const res = await fetch(fallbackEndpoint, { method: "POST", headers: { Accept: "application/json" }, body: fd });
+      if (!res.ok) throw new Error("failed");
+      setStatus("sent");
     } catch {
       setStatus("idle");
-      setError(`The request was not sent. Check your connection and try again, or email ${site.email}.`);
+      setError(true);
     }
   }
 
   if (status === "sent") {
     return (
       <div className="form-done" role="status">
-        <h2>Request sent</h2>
-        <p>We reply within one business day to arrange your session.</p>
+        <h2>{f.doneTitle}</h2>
+        <p>{f.doneText}</p>
+        {confirmed && <p>{f.doneConfirm}</p>}
       </div>
     );
   }
@@ -53,53 +71,57 @@ export default function SessionForm() {
     <form className="form" onSubmit={send}>
       <div className="form-two">
         <div className="field">
-          <label htmlFor="f-name">Your name</label>
-          <input id="f-name" name="name" type="text" autoComplete="name" required />
+          <label htmlFor="f-name">{f.name}</label>
+          <input id="f-name" name="name" type="text" autoComplete="name" maxLength={120} required />
         </div>
         <div className="field">
-          <label htmlFor="f-clinic">Clinic name</label>
-          <input id="f-clinic" name="clinic" type="text" autoComplete="organization" required />
+          <label htmlFor="f-clinic">{f.clinic}</label>
+          <input id="f-clinic" name="clinic" type="text" autoComplete="organization" maxLength={160} required />
         </div>
       </div>
       <div className="field">
-        <label htmlFor="f-type">Type of clinic</label>
+        <label htmlFor="f-type">{f.type}</label>
         <select id="f-type" name="clinic_type" required defaultValue="">
           <option value="" disabled>
-            Choose one
+            {f.choose}
           </option>
-          <option>Dental or medical clinic</option>
-          <option>Beauty or aesthetic clinic</option>
-          <option>Something else</option>
+          {f.types.map((type) => (
+            <option key={type}>{type}</option>
+          ))}
         </select>
       </div>
       <div className="form-two">
         <div className="field">
-          <label htmlFor="f-email">Email</label>
-          <input id="f-email" name="email" type="email" autoComplete="email" required />
+          <label htmlFor="f-email">{f.email}</label>
+          <input id="f-email" name="email" type="email" autoComplete="email" maxLength={200} dir="ltr" required />
         </div>
         <div className="field">
           <label htmlFor="f-phone">
-            Phone or WhatsApp <span className="optional">(optional)</span>
+            {f.phone} <span className="optional">{f.optional}</span>
           </label>
-          <input id="f-phone" name="phone" type="tel" autoComplete="tel" />
+          <input id="f-phone" name="phone" type="tel" autoComplete="tel" maxLength={40} dir="ltr" />
         </div>
       </div>
       <div className="field">
         <label htmlFor="f-problem">
-          What is costing the clinic most right now? <span className="optional">(optional)</span>
+          {f.problem} <span className="optional">{f.optional}</span>
         </label>
-        <textarea id="f-problem" name="problem" />
+        <textarea id="f-problem" name="problem" maxLength={2000} />
       </div>
-      {attached && <p className="attached">Attached: {attached}</p>}
+      {attached && (
+        <p className="attached">
+          {f.attached} {attached}
+        </p>
+      )}
       <input className="hp" type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       {error && (
         <p className="form-error" role="alert">
-          {error}
+          {f.error}
         </p>
       )}
       <div>
         <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
-          {status === "sending" ? "Sending" : "Request a free session"}
+          {status === "sending" ? f.sending : f.submit}
         </button>
       </div>
     </form>

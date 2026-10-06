@@ -3,19 +3,25 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { site, sessionCta } from "../data/site";
 
-export default function Header() {
+function localise(locale, path) {
+  if (locale !== "ar") return path;
+  return path === "/" ? "/ar" : `/ar${path}`;
+}
+
+export default function Header({ locale, nav, cta, menu, other }) {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
+  const pathname = usePathname() || "/";
+  const bare = pathname === "/ar" ? "/" : pathname.replace(/^\/ar(?=\/)/, "");
+  const close = () => setOpen(false);
 
   return (
     <header className="site-header">
       <div className="wrap">
-        <Link href="/" className="brand" aria-label="WIPS Tech home" onClick={() => setOpen(false)}>
+        <Link href={localise(locale, "/")} className="brand" aria-label="WIPS Tech" onClick={close}>
           <picture>
             <source srcSet="/logo-transparent.webp" type="image/webp" />
-            <img src="/logo-transparent.png" alt="WIPS Tech" width="220" height="72" />
+            <img src="/logo-transparent.png" alt="WIPS Tech" width="122" height="40" />
           </picture>
         </Link>
         <button
@@ -25,21 +31,30 @@ export default function Header() {
           aria-controls="site-nav"
           onClick={() => setOpen(!open)}
         >
-          {open ? "Close" : "Menu"}
+          {open ? menu.close : menu.open}
         </button>
-        <nav id="site-nav" className={open ? "nav open" : "nav"} aria-label="Main">
-          {site.nav.map((item) => (
+        <nav id="site-nav" className={open ? "nav open" : "nav"} aria-label={menu.main}>
+          {nav.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
-              aria-current={pathname.startsWith(item.href) ? "page" : undefined}
-              onClick={() => setOpen(false)}
+              href={localise(locale, item.href)}
+              aria-current={bare.startsWith(item.href) ? "page" : undefined}
+              onClick={close}
             >
               {item.label}
             </Link>
           ))}
-          <Link href="/contact" className="btn btn-primary" onClick={() => setOpen(false)}>
-            {sessionCta}
+          <Link
+            href={localise(other.locale, bare)}
+            className="lang"
+            lang={other.locale}
+            hrefLang={other.locale}
+            onClick={close}
+          >
+            {other.label}
+          </Link>
+          <Link href={localise(locale, "/contact")} className="btn btn-primary" onClick={close}>
+            {cta}
           </Link>
         </nav>
       </div>
