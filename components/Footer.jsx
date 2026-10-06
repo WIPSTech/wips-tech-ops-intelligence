@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getContent, href, site } from "../lib/i18n";
+import { getContent, href, site, whatsappLink } from "../lib/i18n";
 
 export default function Footer({ locale }) {
   const t = getContent(locale);
@@ -35,6 +35,11 @@ export default function Footer({ locale }) {
             <ul>
               <li>
                 <a href={`mailto:${site.email}`}>{site.email}</a>
+              </li>
+              <li>
+                <a href={whatsappLink(locale)} rel="noopener noreferrer" target="_blank">
+                  {t.whatsapp.label} <span dir="ltr">{site.whatsappDisplay}</span>
+                </a>
               </li>
               <li>
                 <a href={site.linkedin} rel="noopener noreferrer" target="_blank">

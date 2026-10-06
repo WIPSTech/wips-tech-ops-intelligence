@@ -25,6 +25,14 @@ const en = {
     contact: "Contact",
     base: "Results depend on the clinic, its tools and its patients. WIPS Tech does not promise specific financial outcomes. © 2026 WIPS Tech.",
   },
+  whatsapp: {
+    prefill: "Hello, I would like a free session for my clinic.",
+    label: "WhatsApp",
+    closing: "Or message us on WhatsApp",
+    h: "Prefer WhatsApp?",
+    p: "Message us and we reply within one business day.",
+    link: "Open a WhatsApp chat",
+  },
   closing: {
     title: "Start with one workflow and one number.",
     text: "45 minutes, free, in Arabic or English. You keep the calculation whether or not you go further.",
@@ -452,7 +460,7 @@ const en = {
       },
       {
         q: "How do I start?",
-        a: "Request a free session on the contact page. We reply within one business day to arrange a time.",
+        a: "Request a free session on the contact page, or message us on WhatsApp at +961 71 470 559. We reply within one business day to arrange a time.",
       },
     ],
   },
@@ -506,7 +514,7 @@ const en = {
   email: {
     subject: "We received your session request",
     body: (name) =>
-      `Hello ${name},\n\nThank you for requesting a free session with WIPS Tech. We will reply within one business day to arrange a time.\n\nThe session takes 45 minutes. We pick one workflow together and work out what it costs your clinic each month. You do not need to prepare anything.\n\nIf you did not send this request, you can ignore this email.\n\nMazen Farhat\nWIPS Tech\nhttps://wipstech.com`,
+      `Hello ${name},\n\nThank you for requesting a free session with WIPS Tech. We will reply within one business day to arrange a time.\n\nThe session takes 45 minutes. We pick one workflow together and work out what it costs your clinic each month. You do not need to prepare anything.\n\nYou can also reach us on WhatsApp: +961 71 470 559.\n\nIf you did not send this request, you can ignore this email.\n\nMazen Farhat\nWIPS Tech\nhttps://wipstech.com`,
   },
 };
 

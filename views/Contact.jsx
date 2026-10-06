@@ -1,5 +1,5 @@
 import SessionForm from "../components/SessionForm";
-import { getContent, site } from "../lib/i18n";
+import { getContent, site, whatsappLink } from "../lib/i18n";
 
 export default function Contact({ locale }) {
   const t = getContent(locale);
@@ -19,6 +19,18 @@ export default function Contact({ locale }) {
             <div>
               <h2>{c.nextH}</h2>
               <p>{c.nextP}</p>
+            </div>
+            <div>
+              <h2>{t.whatsapp.h}</h2>
+              <p>{t.whatsapp.p}</p>
+              <p>
+                <a className="textlink" href={whatsappLink(locale)} rel="noopener noreferrer" target="_blank">
+                  {t.whatsapp.link}
+                </a>{" "}
+                <span className="muted" dir="ltr">
+                  {site.whatsappDisplay}
+                </span>
+              </p>
             </div>
             <div>
               <h2>{c.emailH}</h2>

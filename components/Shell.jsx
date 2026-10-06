@@ -30,6 +30,7 @@ export default function Shell({ locale, children }) {
     description: t.description,
     foundingDate: site.founded,
     email: site.email,
+    telephone: `+${site.whatsapp}`,
     areaServed: { "@type": "Country", name: "Lebanon" },
     address: { "@type": "PostalAddress", addressRegion: "Mount Lebanon", addressCountry: "LB" },
     availableLanguage: ["en", "ar"],
