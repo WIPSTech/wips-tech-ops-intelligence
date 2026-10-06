@@ -392,14 +392,15 @@ const en = {
       {
         h: "What happened",
         p: [
-          "For the question in the screenshot, ChatGPT names NTM first among the contractors it lists in Choueifat. The company has also received an enquiry that came through this route.",
+          "For the question in the screenshot, ChatGPT names NTM first among the contractors it lists in Choueifat.",
+          "NTM now receives at least two to three calls a week from people asking about its services, by our founder's own count. We do not ask every caller how they found the company, so we cannot say how many of those calls started with an AI assistant.",
         ],
       },
       {
         h: "What this does not prove",
         list: [
           "It is one question, and the question names the town. Other wordings may give a different list.",
-          "It is one company. We have not measured how often it is named or how many enquiries follow.",
+          "It is one company. We have not measured how often it is named, or how many of its weekly calls come from AI answers.",
           "We cannot show how much of the result comes from our changes and how much from the company's existing Google listing and reviews.",
           "Contracting is not healthcare. A clinic may see a different result.",
         ],
