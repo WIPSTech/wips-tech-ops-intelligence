@@ -319,8 +319,8 @@ function WasteCalculator({onBooking}){
             <div style={{background:res.ok?"#F0FDF6":"#FFFBEB",border:`1.5px solid ${res.ok?B.emeraldL:B.goldL}`,borderRadius:8,padding:"12px 14px",marginBottom:14,minWidth:0,boxSizing:"border-box"}}>
               {res.ok?(
                 <>
-                  <div className="mono" style={{fontSize:"9px",color:B.emeraldD,letterSpacing:".1em",textTransform:"uppercase",marginBottom:5}}>✓ $500 Guarantee Applies</div>
-                  <p style={{fontSize:"12px",color:B.textS,lineHeight:1.6,margin:0}}>If our Scan does not find $500+/mo in recoverable waste — you pay nothing.</p>
+                  <div className="mono" style={{fontSize:"9px",color:B.emeraldD,letterSpacing:".1em",textTransform:"uppercase",marginBottom:5}}>Worth a closer look</div>
+                  <p style={{fontSize:"12px",color:B.textS,lineHeight:1.6,margin:0}}>This estimate is large enough to justify a free 45-minute session to check it against your real numbers.</p>
                 </>
               ):(
                 <>
@@ -344,8 +344,8 @@ function Approach({onBooking}){
   const [ref,inView]=useInView(0.1);
   const phases=[
     {num:"01",phase:"Discovery Session",time:"45 Minutes · Free",color:B.emerald,title:"Surface the Three Largest Gaps",desc:"A structured 45-minute operational diagnostic. We identify your three highest-cost workflow failures, calculate their monthly impact, and determine whether the Operational Scan would deliver measurable ROI for your business.",deliverable:"Preliminary waste estimate + specific workflow priorities",icon:"⌖",guarantee:null},
-    {num:"02",phase:"Operational Scan",time:"30 Days · $500/task",color:B.navy,title:"Map, Score, and Quantify Everything",desc:"Four-week deep-dive audit. We shadow every manual task, interview every relevant staff member, score automation potential, and calculate the monthly cost of each inefficiency. Week 4 delivers the branded WIPS Scan report.",deliverable:"Full workflow cost map + prioritised automation blueprint",icon:"▤",guarantee:"Guarantee: if first workflow doesn't show $500+/mo waste — you pay nothing."},
-    {num:"03",phase:"Build System",time:"3 Days – 8 Weeks",color:B.gold,title:"Precision Implementation",desc:"We design, build, and deploy workflow automations in four tiers — from simple single-step triggers ($800–$1,500) to full operational intelligence architectures ($8,000+). Every build includes a 30-day performance report with revision guarantee.",deliverable:"Live automations + performance dashboards + team training",icon:"⬡",guarantee:null},
+    {num:"02",phase:"Operational Scan",time:"30 Days · $500/task",color:B.navy,title:"Map, Score, and Quantify Everything",desc:"Four-week deep-dive audit. We shadow every manual task, interview every relevant staff member, score automation potential, and calculate the monthly cost of each inefficiency. Week 4 delivers the branded WIPS Scan report.",deliverable:"Full workflow cost map + prioritised automation blueprint",icon:"▤"},
+    {num:"03",phase:"Build System",time:"3 Days – 8 Weeks",color:B.gold,title:"Precision Implementation",desc:"We design, build, and deploy workflow automations in four tiers — from simple single-step triggers ($800–$1,500) to full operational intelligence architectures ($8,000+). Every build includes a 30-day performance report.",deliverable:"Live automations + performance dashboards + team training",icon:"⬡",guarantee:null},
     {num:"04",phase:"Intelligence Partnership",time:"Ongoing Retainer",color:"#7C3AED",title:"Embedded. Accountable. Permanent.",desc:"Monthly performance reviews, continuous workflow optimisation, quarterly strategic briefings, and expansion readiness support. We remain present until performance compounds — quarter by quarter, measurably and documentably.",deliverable:"Quarterly ROI reports + live optimisation + expansion support",icon:"◎",guarantee:null},
   ];
   return(
@@ -501,27 +501,6 @@ function Roadmap(){
   );
 }
 
-function Guarantee({onBooking}){
-  return(
-    <section style={{padding:"80px 40px",background:`linear-gradient(135deg,${B.navyD} 0%,#1A4535 100%)`}}>
-      <div style={{maxWidth:860,margin:"0 auto",textAlign:"center"}}>
-        <div style={{display:"inline-flex",alignItems:"center",justifyContent:"center",width:72,height:72,borderRadius:"50%",background:"rgba(42,157,111,.15)",border:`2px solid ${B.emerald}`,fontSize:"28px",marginBottom:24}}>◎</div>
-        <span className="section-label" style={{color:B.emeraldL,display:"block",marginBottom:16}}>The WIPS Guarantee</span>
-        <h2 className="cg" style={{fontSize:"clamp(1.8rem,4vw,2.8rem)",fontWeight:300,color:"#fff",marginBottom:20,lineHeight:1.2}}>
-          If We Don&apos;t Find <em style={{fontStyle:"italic",color:B.emeraldL}}>$500/Month</em> in Recoverable Waste From the First Workflow — Your Scan Is Free.
-        </h2>
-        <p style={{fontSize:"1rem",color:"rgba(255,255,255,.6)",lineHeight:1.75,maxWidth:600,margin:"0 auto 36px"}}>
-          This is not a marketing position. It is a structural accountability clause in every engagement we take. We have one standard: results that you can measure. If the first workflow we analyse does not demonstrate at least $500 per month in recoverable waste, we invoice you nothing.
-        </p>
-        <div style={{display:"flex",gap:14,justifyContent:"center",flexWrap:"wrap"}}>
-          <button className="btn-gold" onClick={onBooking}>Hold Us to That Standard</button>
-          <button className="btn-outline" style={{color:"#fff",borderColor:"rgba(255,255,255,.3)"}} onClick={()=>document.querySelector("#approach")?.scrollIntoView({behavior:"smooth"})}>See the Full Methodology</button>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 const ARTICLES = [
   {
     slug:"why-admin-hours-are-the-wrong-metric",type:"The WIPS Brief",label:"Operations",time:"5 min read",
@@ -532,17 +511,6 @@ const ARTICLES = [
       {h:"The Practical Fix",p:"The first step is a measurement change, not a system change. Map every administrative task to its opportunity cost: the revenue value of the hour being consumed. Once that calculation is visible, the prioritisation of automation becomes obvious — not a judgment call, but an arithmetic consequence. WIPS Discovery Sessions begin here."},
     ]
   },
-  {
-    slug:"how-a-3-chair-clinic-recovered-2140-per-month",type:"Field Note",label:"Dental · Case Study",time:"5 min read",
-    title:"How a 3-Chair Clinic Recovered $2,140/Month in 30 Days",color:"#1B365D",
-    body:[
-      {h:"The Engagement",p:"A three-chair dental clinic in Beirut contracted WIPS for a full Operational Scan in Q4 2024. The clinic had 2 dentists, 1 receptionist, and 1 dental assistant. Monthly revenue was approximately $18,000. The owner suspected inefficiency existed but had no structured way to locate or quantify it."},
-      {h:"Week 1–2: Discovery",p:"WIPS shadowed all four staff members across a standard working week. We logged 47 distinct administrative touchpoints — manual calls for appointment reminders, paper-based patient intake forms, verbal handoffs between the receptionist and dental chairs, and a billing process that required four separate manual entries per patient."},
-      {h:"Week 3: Quantification",p:"Each touchpoint was costed against the clinic's revenue-per-hour rate. The top three findings: (1) Appointment no-show rate of 23% — costing $880/month in unrecovered chair time. (2) Manual patient intake requiring 12 minutes per new patient — displacing 6.4 hours/month of billable chair time at a cost of $640/month. (3) A billing reconciliation process requiring 3.5 hours every Monday — a pure administrative cost of $350/month at average staff hourly rate. Total identified: $1,870–$2,410/month."},
-      {h:"Week 4: The Scan Report",p:"The delivered WIPS Scan report contained: a complete workflow cost map with 47 touchpoints scored by automation potential, a prioritised build sequence (Tier 1 through Tier 3), and a 12-month projected ROI model at each automation tier. The owner approved the Tier 1 build the same week."},
-      {h:"Day 30 Results",p:"Three Tier 1 automations deployed: automated SMS/WhatsApp appointment confirmations (24 and 2 hours prior), digital new patient intake form with automatic CRM entry, and weekly billing pre-check automation. Measured results at day 30: no-show rate reduced from 23% to 15% (8-percentage-point improvement). Admin hours reduced by 9.5 hours per week. Recovered monthly value: $2,140 against a Tier 1 build cost of $1,200. Payback period: 17 days."},
-    ]
-  }
 ];
 
 function ArticleModal({idx,onClose}){
@@ -837,7 +805,6 @@ function FAQ(){
     {q:"We already use software. Why isn't that enough?",a:"Software does not redesign your workflows. It digitises the ones you already have — including the inefficient ones. Many small businesses use only part of what their software can do. We architect the system that makes your existing software perform at its potential and automate what has been done manually by habit rather than necessity."},
     {q:"What makes WIPS different from a management consultant?",a:"A consultant diagnoses and recommends. WIPS diagnoses, builds, and stays accountable for the result. The structural difference is implementation. Traditional advisory firms are not resourced or incentivised to execute. WIPS builds the workflows, deploys the automations, and measures performance after delivery. If a build underperforms its projection, we correct it at no additional cost."},
     {q:"How long before we see measurable results?",a:"Week four of Phase 1: your Scan report quantifies every identified inefficiency — measurable findings before a single automation is built. Weeks 6–7: first Tier 1 automations are live, with time and cost recovery within days of deployment. The compounding effect of a structured operational system takes 3–6 months to fully materialise — but initial wins happen in the first 30 days."},
-    {q:"What is the $500 guarantee exactly?",a:"If the first workflow we analyse in the Operational Scan does not demonstrate at least $500 per month in recoverable waste, we invoice you nothing for that task. This is a structural accountability clause — not a marketing claim. It reflects our confidence in the methodology and our commitment to engagements that deliver measurable ROI."},
     {q:"What level of involvement is required from our team?",a:"The Scan requires 3–4 hours of your team's time over 30 days — primarily structured observation sessions and workflow interviews. We work around your operation, not through it. During the Build phase, we coordinate with relevant staff on implementation. The Partnership retainer requires one monthly performance review and an open channel for new workflow requests."},
     {q:"We already have operational systems. Can WIPS still add value?",a:"Almost always — and often more effectively. Businesses with existing systems often use only part of their tools' capability, have systems that don't communicate with each other, and lack a single performance truth across the operation. WIPS audits what you have, builds the connections, and adds only what is structurally necessary."},
     {q:"What industries does WIPS specialise in?",a:"Dental and medical clinics, real estate agencies, fitness operations, NGOs, contracting and construction firms, and professional services businesses. The methodology is consistent across sectors. The application is specific to each."},
@@ -934,7 +901,7 @@ function Footer({onBooking,onContact}){
           </div>
           <span style={{fontSize:"11px",color:"rgba(255,255,255,.2)"}}>© 2026 WIPS Tech. All rights reserved.</span>
         </div>
-        <p style={{fontSize:"10px",color:"rgba(255,255,255,.15)",marginTop:16,lineHeight:1.65,fontStyle:"italic"}}>* All performance benchmarks represent industry averages calculated from documented operational audit data. Individual engagement results depend on operation size, sector, and current system maturity. WIPS Tech does not guarantee specific financial outcomes from any engagement.</p>
+        <p style={{fontSize:"10px",color:"rgba(255,255,255,.15)",marginTop:16,lineHeight:1.65,fontStyle:"italic"}}>Results depend on operation size, sector, and current systems. WIPS Tech does not promise specific financial outcomes from any engagement.</p>
       </div>
     </footer>
   );
@@ -975,7 +942,6 @@ export default function Page(){
         <Approach onBooking={open}/>
         <Industries onBooking={open}/>
         <Roadmap/>
-        <Guarantee onBooking={open}/>
         <Insights onArticle={setArticleIdx}/>
         <BookingSection/>
         <FAQ/>

@@ -109,11 +109,6 @@ const mergedFaqSchema = {
     },
     {
       "@type": "Question",
-      "name": "What is the $500 guarantee exactly?",
-      "acceptedAnswer": { "@type": "Answer", "text": "If the WIPS Ops Scan does not identify at least $500 per month in recoverable waste for the specific workflow analyzed, we refund the scan fee for that task in full. No questions and no conditions." }
-    },
-    {
-      "@type": "Question",
       "name": "What level of involvement is required from our team?",
       "acceptedAnswer": { "@type": "Answer", "text": "The 30-day scan requires approximately 4 hours of your team's time total. This primarily involves a Shadow & Map morning where we observe your current workflow without interrupting your daily operations." }
     },
@@ -148,7 +143,6 @@ const FAQS = [
   { q: "We already use software. Why isn't that enough?", a: "The gap is usually structural, not a lack of tools. Most organizations have scheduling and accounting software, but data sits in silos and workflows live in people's heads. WIPS Tech connects the tools you already own to ensure they work as a single, intelligent system." },
   { q: "What makes WIPS different from a management consultant?", a: "We do not deliver a one-off report and disappear, nor do we touch market strategy or financial restructuring. We are Operations Intelligence Partners who fix how operations actually run at the workflow level and stay until the results are sustained." },
   { q: "How long before we see measurable results?", a: "You receive a \"Priority Finding\" identifying your biggest measurable cost by Day 7. The implementation of primary manual process fixes typically offers a payback period between 18 and 50 days." },
-  { q: "What is the $500 guarantee exactly?", a: "If the WIPS Ops Scan does not identify at least $500 per month in recoverable waste for the specific workflow analyzed, we refund the scan fee for that task in full. No questions and no conditions." },
   { q: "What level of involvement is required from our team?", a: "The 30-day scan requires approximately 4 hours of your team's time total. This primarily involves a \"Shadow & Map\" morning where we observe your current workflow without interrupting your daily operations." },
   { q: "We already have operational systems. Can WIPS still add value?", a: "Yes. In almost every engagement, we find processes built for a smaller version of the organization that have never been updated. We specialize in finding these \"legacy specifications\" and connecting existing tools to eliminate the manual bridges you are currently paying for." },
   { q: "What industries does WIPS specialise in?", a: "While our methodology is industry-agnostic, our primary verticals are dental and medical clinics, NGOs, gyms, and education centers. We focus on these sectors because their pain is immediate, quantifiable, and their revenue is predictable enough to justify investment in operational clarity." },

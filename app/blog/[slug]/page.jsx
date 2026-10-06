@@ -205,11 +205,6 @@ function ArticleBeyondConsulting({ post }) {
         </li>
       </ol>
 
-      {/* H2 — Guarantee */}
-      <h2 className="cg" style={{fontSize:"clamp(1.4rem,3vw,1.9rem)",fontWeight:500,color:"#1B365D",marginBottom:16,lineHeight:1.3}}>A Guarantee Built on Precision</h2>
-      <p style={{fontSize:"15px",color:"#4A5568",lineHeight:1.85,marginBottom:16}}>
-        We are so confident in the power of operations intelligence that we offer the <strong>WIPS Ops Scan</strong>. In 30 days, we map your workflows and identify exactly where your business is bleeding cash. Our <strong>Risk Reversal Guarantee</strong> is simple: <strong>if we do not find at least $500 per month in recoverable waste per workflow analyzed, we refund your fee in full.</strong>
-      </p>
       <p style={{fontSize:"15px",color:"#4A5568",lineHeight:1.85,marginBottom:36}}>
         We believe that administrative waste is no longer a luxury small businesses can afford to ignore; it is a <strong>prerequisite for survival</strong> in the modern economy.
       </p>

@@ -8,6 +8,11 @@ const nextConfig = {
         destination: '/insights',
         permanent: true,
       },
+      {
+        source: '/insights/how-a-3-chair-clinic-recovered-2140-per-month',
+        destination: '/insights',
+        permanent: false,
+      },
     ];
   },
   reactStrictMode: true,

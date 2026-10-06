@@ -19,12 +19,6 @@ export default function sitemap() {
       priority: 0.7,
     },
     {
-      url: "https://wipstech.com/insights/how-a-3-chair-clinic-recovered-2140-per-month",
-      lastModified: new Date("2026-03-14"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
       url: "https://wipstech.com/faq",
       lastModified: new Date("2026-03-14"),
       changeFrequency: "monthly",
