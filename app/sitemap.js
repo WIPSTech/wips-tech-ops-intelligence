@@ -1,40 +1,22 @@
+import { getArticles, href, site } from "../lib/i18n";
+
+const paths = ["/", "/services", "/case-studies", "/insights", "/faq", "/about", "/contact"];
+
+function entry(path, lastModified, priority) {
+  return {
+    url: `${site.url}${href("en", path)}`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority,
+    alternates: {
+      languages: { en: `${site.url}${href("en", path)}`, ar: `${site.url}${href("ar", path)}` },
+    },
+  };
+}
+
 export default function sitemap() {
-  return [
-    {
-      url: "https://wipstech.com/",
-      lastModified: new Date("2026-03-14"),
-      changeFrequency: "weekly",
-      priority: 1.0,
-    },
-    {
-      url: "https://wipstech.com/insights",
-      lastModified: new Date("2026-03-14"),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: "https://wipstech.com/insights/why-admin-hours-are-the-wrong-metric",
-      lastModified: new Date("2026-03-14"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: "https://wipstech.com/faq",
-      lastModified: new Date("2026-03-14"),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: "https://wipstech.com/blog",
-      lastModified: new Date("2026-03-14"),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: "https://wipstech.com/blog/what-is-operations-intelligence-platform",
-      lastModified: new Date("2026-03-14"),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-  ];
+  const updated = new Date("2026-10-06");
+  const pages = paths.map((p) => entry(p, updated, p === "/" ? 1 : 0.8));
+  const posts = getArticles("en").map((a) => entry(`/insights/${a.slug}`, new Date(a.date), 0.6));
+  return [...pages, ...posts];
 }
