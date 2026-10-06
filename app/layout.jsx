@@ -38,7 +38,7 @@ const organizationSchema = {
   "areaServed": ["LB"],
   "serviceType": "Workflow automation and operations consulting",
   "knowsAbout": ["workflow automation","operations intelligence","KPI dashboards","SME business operations","AI-readiness for business"],
-  "sameAs": ["https://www.linkedin.com/company/wipstech"]
+  "sameAs": ["https://www.linkedin.com/company/wips-tech"]
 };
 
 export default function RootLayout({ children }) {
