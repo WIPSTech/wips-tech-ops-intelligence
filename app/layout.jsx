@@ -33,40 +33,18 @@ const organizationSchema = {
   "legalName": "Workflows Intelligence Performance Solutions",
   "url": "https://wipstech.com",
   "logo": "https://wipstech.com/logo.png",
-  "description": "WIPS Tech is an Operations Intelligence Platform purpose-built for small-to-medium enterprises in the MENA region. It automates workflows, delivers real-time KPI visibility, and enables AI-readiness for SMEs.",
-  "foundingDate": "2024",
-  "areaServed": ["AE","SA","LB","JO","EG","KW","QA","BH"],
-  "serviceType": "Operations Intelligence Platform",
+  "description": "WIPS Tech is a Lebanon-based operations and workflow automation partner for small businesses. We measure what a manual workflow costs, then build and maintain the automation that removes it.",
+  "foundingDate": "2026",
+  "areaServed": ["LB"],
+  "serviceType": "Workflow automation and operations consulting",
   "knowsAbout": ["workflow automation","operations intelligence","KPI dashboards","SME business operations","AI-readiness for business"],
   "sameAs": ["https://www.linkedin.com/company/wipstech"]
-};
-
-const softwareSchema = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "WIPS Tech Operations Intelligence Platform",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web",
-  "description": "A cloud-based operations intelligence platform for SMEs in the MENA region. Automates workflows, centralizes KPI tracking, and provides AI-powered performance insights.",
-  "url": "https://wipstech.com/platform",
-  "publisher": { "@type": "Organization", "name": "WIPS Tech", "url": "https://wipstech.com" },
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD",
-    "description": "Contact us for SME pricing plans",
-    "url": "https://wipstech.com/pricing"
-  }
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* hreflang */}
-        <link rel="alternate" hreflang="en" href="https://wipstech.com/" />
-        <link rel="alternate" hreflang="ar" href="https://wipstech.com/" />
-        <link rel="alternate" hreflang="x-default" href="https://wipstech.com/" />
         {/* Preload LCP image */}
         <link rel="preload" as="image" href="/logo-mobile.png" />
         {/* Preconnect for fonts */}
@@ -93,11 +71,6 @@ export default function RootLayout({ children }) {
           id="org-schema"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
-        <Script
-          id="software-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
         />
         {children}
       </body>

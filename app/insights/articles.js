@@ -17,10 +17,6 @@ export const ARTICLES = [
         p: "The relevant metric is not how many hours are spent on administration. It is how many revenue-generating hours are displaced by administration. A dental receptionist spending 14 hours per week on manual appointment confirmations is not losing 14 hours. She is losing 14 hours of patient-facing time — which, calculated at the clinic's average hourly rate, represents a specific, documentable monthly revenue cost.",
       },
       {
-        h: "The Benchmark Gap",
-        p: "Across 24 operational audits conducted in Lebanon, Jordan, and Oman between 2024 and 2025, WIPS identified that the average SME with 3–8 staff loses between $1,600 and $2,400 per month to administrative displacement. The majority of operators underestimate this number by 60–80%. This is not because they are poor managers. It is because the metric they are tracking — hours spent — masks the metric that matters: revenue foregone.",
-      },
-      {
         h: "The Practical Fix",
         p: "The first step is a measurement change, not a system change. Map every administrative task to its opportunity cost: the revenue value of the hour being consumed. Once that calculation is visible, the prioritisation of automation becomes obvious — not a judgment call, but an arithmetic consequence. WIPS Discovery Sessions begin here.",
       },
@@ -54,41 +50,6 @@ export const ARTICLES = [
       {
         h: "Day 30 Results",
         p: "Three Tier 1 automations deployed: automated SMS/WhatsApp appointment confirmations (24 and 2 hours prior), digital new patient intake form with automatic CRM entry, and weekly billing pre-check automation. Measured results at day 30: no-show rate reduced from 23% to 15% (8-percentage-point improvement). Admin hours reduced by 9.5 hours per week. Recovered monthly value: $2,140 against a Tier 1 build cost of $1,200. Payback period: 17 days.",
-      },
-    ],
-  },
-  {
-    slug: "state-of-sme-operations-lebanon-jordan",
-    type: "Operations Report",
-    label: "MENA Market",
-    time: "5 min read",
-    title: "The State of SME Operations in Lebanon and Jordan",
-    color: "#C8952A",
-    metaDescription: "WIPS Tech's 2025 audit of 24 MENA SMEs reveals four structural findings about operational waste in Lebanon, Jordan, and Oman. Read the full report.",
-    body: [
-      {
-        h: "Report Scope",
-        p: "This report aggregates findings from 24 operational audits conducted by WIPS across Lebanon, Jordan, and Oman between January and December 2025. Sectors covered: dental and medical clinics (9 engagements), real estate agencies (5), fitness and gym operations (4), logistics operators (4), and NGOs (2). All data is anonymised.",
-      },
-      {
-        h: "Finding 1: The Tool Paradox",
-        p: "88% of audited SMEs in this sample were paying for software they were using at less than 35% of its documented capability. Average monthly spend on underutilised software: $740/month. Average recoverable value from optimising existing tool usage (without new software purchases): $330/month. The dominant pattern: tools are purchased to solve a problem, partially implemented, and then bypassed in favour of manual workarounds that become institutionalised.",
-      },
-      {
-        h: "Finding 2: The Handoff Cost",
-        p: "The highest-cost single workflow pattern across all 24 audits was the verbal handoff — information transferred between staff members through conversation rather than system entry. In dental and medical settings, verbal handoffs accounted for an average of 19% of identifiable waste. In logistics, 31%. The cost is not the handoff itself. It is the re-entry, the error rate, and the follow-up calls it generates.",
-      },
-      {
-        h: "Finding 3: The Measurement Deficit",
-        p: "Only 4 of 24 audited businesses could produce, within 24 hours, a report showing their current month's performance against the same month in the prior year, broken down by revenue channel. The remaining 20 had some data available but not in an actionable, consolidated format. This measurement deficit is not a technology problem — it is a workflow architecture problem. Every business in this sample had access to tools capable of producing such reports. None had the workflow structure to generate them automatically.",
-      },
-      {
-        h: "Finding 4: Sector Benchmarks",
-        p: "Median monthly recoverable waste by sector — Dental/Medical: $2,140. Logistics: $2,650. Fitness: $2,380. Real Estate: $1,830. NGO: $1,760. These figures represent conservative estimates: the 50th percentile of identified waste across engagements in each sector, excluding outlier cases where structural issues were exceptional.",
-      },
-      {
-        h: "Conclusion",
-        p: "The operational intelligence gap in MENA SMEs is not a function of resource scarcity or technology unavailability. It is a function of workflow architecture — specifically, the absence of documented, measurable, and optimisable systems connecting revenue inputs to operational outputs. The businesses that will compound performance over the next five years are those that treat operational structure as a strategic function, not an administrative one.",
       },
     ],
   },

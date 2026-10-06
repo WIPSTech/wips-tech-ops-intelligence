@@ -80,16 +80,6 @@ function WIPSLogo({light=false, priority=false}){
   );
 }
 
-function WAFloat(){
-  return(
-    <button className="wa-float" onClick={()=>null} style={{cursor:"default"}} aria-label="WhatsApp">
-      <span className="wa-tooltip">WhatsApp — Coming Soon</span>
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
-    </button>
-  );
-}
 
 function Navigation({onBooking,onContact}){
   const [scrolled,setScrolled]=useState(false);
@@ -140,12 +130,6 @@ function Navigation({onBooking,onContact}){
 
 function Hero({onBooking}){
   const scrollTo=(id)=>document.querySelector(id)?.scrollIntoView({behavior:"smooth"});
-  const stats=[
-    {n:"$2,140",l:"Avg. monthly waste identified*",sub:"Dental sector · 30-day Scan"},
-    {n:"11 hrs",l:"Admin time recovered per week",sub:"Phase 1 engagement average"},
-    {n:"91%",l:"Client retention post-Scan",sub:"Engagements since inception"},
-    {n:"34%",l:"No-show reduction",sub:"Dental clients · 3 months"},
-  ];
   return(
     <section style={{minHeight:"100vh",background:`linear-gradient(158deg,${B.navyD} 0%,${B.navy} 52%,#1A4535 100%)`,display:"flex",flexDirection:"column",justifyContent:"center",position:"relative",overflow:"hidden",overflowX:"clip",padding:"120px 40px 80px"}}>
       <div style={{position:"absolute",inset:0,opacity:.04,backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E\")"}}/>
@@ -159,31 +143,18 @@ function Hero({onBooking}){
         <div style={{maxWidth:760}}>
           <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:32,animation:"fadeUp .6s ease both"}}>
             <div style={{width:32,height:1.5,background:B.emerald}}/>
-            <span className="section-label" style={{color:"#2ebf8a",letterSpacing:".22em"}}>Operations Intelligence Platform</span>
+            <span className="section-label" style={{color:"#2ebf8a",letterSpacing:".22em"}}>Operations Intelligence Partner</span>
           </div>
           <h1 className="cg" style={{fontSize:"clamp(2.6rem,6vw,4.4rem)",fontWeight:300,color:"#fff",lineHeight:1.08,letterSpacing:"-.02em",marginBottom:28,animation:"fadeUp .7s ease .1s both"}}>
             Your Operations Are<br/><em style={{fontStyle:"italic",color:B.emeraldL}}>Leaking Revenue</em> Daily.
           </h1>
-          <p style={{fontSize:"clamp(1rem,2vw,1.18rem)",color:"rgba(255,255,255,.72)",lineHeight:1.75,maxWidth:580,marginBottom:12,animation:"fadeUp .7s ease .2s both"}}>
+          <p style={{fontSize:"clamp(1rem,2vw,1.18rem)",color:"rgba(255,255,255,.72)",lineHeight:1.75,maxWidth:580,marginBottom:48,animation:"fadeUp .7s ease .2s both"}}>
             Most owners sense the problem exists. Few have the structured clarity to find it, measure it, and fix it permanently.
-          </p>
-          <p style={{fontSize:".88rem",color:"rgba(255,255,255,.38)",lineHeight:1.6,maxWidth:520,marginBottom:48,animation:"fadeUp .7s ease .25s both",fontStyle:"italic"}}>
-            Dental sector benchmark: 3-staff operations lose an average of $2,140/month to unstructured workflows.*
           </p>
           <div style={{display:"flex",gap:14,flexWrap:"wrap",animation:"fadeUp .7s ease .3s both"}}>
             <button className="btn-gold" onClick={onBooking}>Book Free 45-Min Discovery Session</button>
             <button className="btn-outline" style={{color:"#fff",borderColor:"rgba(255,255,255,.3)",padding:"14px 28px"}} onClick={()=>scrollTo("#calculator")}>Calculate Your Waste</button>
           </div>
-          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))",gap:"0",marginTop:60,animation:"fadeUp .7s ease .45s both",borderTop:"1px solid rgba(255,255,255,.1)",paddingTop:40}}>
-            {stats.map((s,i)=>(
-              <div key={s.n} style={{padding:"0 24px 0",borderLeft:i>0?"1px solid rgba(255,255,255,.1)":"none"}}>
-                <div className="stat-num" style={{fontSize:"clamp(1.8rem,3vw,2.6rem)",fontWeight:300,color:"#fff",lineHeight:1,letterSpacing:"-.03em"}}>{s.n}</div>
-                <div style={{fontSize:"13px",color:"rgba(255,255,255,.62)",marginTop:8,lineHeight:1.4,fontWeight:500}}>{s.l}</div>
-                <div className="mono" style={{fontSize:"9px",color:"rgba(255,255,255,.3)",marginTop:4,letterSpacing:".1em",textTransform:"uppercase"}}>{s.sub}</div>
-              </div>
-            ))}
-          </div>
-          <p style={{fontSize:"10px",color:"rgba(255,255,255,.2)",marginTop:20,fontStyle:"italic"}}>* Calculated based on standard operational averages including appointment no-shows, manual administrative overhead, and disconnected tool usage. Individual results vary.</p>
         </div>
       </div>
       <div style={{position:"absolute",bottom:32,left:"50%",transform:"translateX(-50%)",display:"flex",flexDirection:"column",alignItems:"center",gap:6,animation:"pulseSoft 2.5s ease-in-out infinite"}}>
@@ -425,36 +396,21 @@ function Approach({onBooking}){
 function Industries({onBooking}){
   const [active,setActive]=useState(0);
   const sectors=[
-    {id:"dental",label:"Dental Clinics",tag:"Current Focus",icon:"⚕",waste:"$2,140",
+    {id:"dental",label:"Dental Clinics",tag:"Current Focus",icon:"⚕",
       h:"Dental Operations Are Uniquely Complex. And Uniquely Improvable.",
-      stats:[{n:"34%",l:"No-show reduction"},{n:"11 hrs",l:"Weekly admin saved"},{n:"3×",l:"Faster patient journey"}],
-      workflows:["Appointment confirmation + follow-up automation","New patient intake & digital forms","Insurance pre-auth workflow","Review request post-appointment","Treatment plan follow-up sequences"],
-      quote:"Three months after engaging WIPS, our clinic recovered 11 hours of administrative time per week and reduced no-shows by 34%. The numbers were real, and they appeared within weeks.",
-      attr:"Medical Director, Multi-Branch Dental Group"},
-    {id:"realestate",label:"Real Estate",tag:null,icon:"🏢",waste:"$1,830",
+      workflows:["Appointment confirmation + follow-up automation","New patient intake & digital forms","Insurance pre-auth workflow","Review request post-appointment","Treatment plan follow-up sequences"]},
+    {id:"realestate",label:"Real Estate",tag:null,icon:"🏢",
       h:"Every Unstructured Listing Cycle Is Revenue You Cannot Recover.",
-      stats:[{n:"22%",l:"Revenue per agent"},{n:"8 hrs",l:"Weekly admin saved"},{n:"100%",l:"Pipeline visibility"}],
-      workflows:["Lead qualification & CRM entry automation","Listing document generation workflow","Client communication sequences","Viewing coordination & reminders","Commission calculation & reporting"],
-      quote:"I had convinced myself the problem was staffing. WIPS showed me within 30 days that the problem was structure — four workflows absorbing time and producing errors simultaneously.",
-      attr:"Managing Director, Real Estate Agency"},
-    {id:"fitness",label:"Gyms",tag:null,icon:"◈",waste:"$2,380",
+      workflows:["Lead qualification & CRM entry automation","Listing document generation workflow","Client communication sequences","Viewing coordination & reminders","Commission calculation & reporting"]},
+    {id:"fitness",label:"Gyms",tag:null,icon:"◈",
       h:"Member Retention Is an Operations Problem, Not a Marketing One.",
-      stats:[{n:"28%",l:"Churn reduction"},{n:"15 hrs",l:"Manual tasks eliminated"},{n:"Live",l:"Multi-branch visibility"}],
-      workflows:["Membership renewal & at-risk alerts","Class booking & waitlist automation","PT scheduling optimisation","Cross-branch performance dashboard","New member onboarding sequences"],
-      quote:"Our multi-branch operation had no coherent performance view. WIPS built dashboards that showed us, for the first time, which location was performing and why.",
-      attr:"Operations Director, Fitness Group"},
-    {id:"ngo",label:"NGOs",tag:null,icon:"⊗",waste:"$1,760",
+      workflows:["Membership renewal & at-risk alerts","Class booking & waitlist automation","PT scheduling optimisation","Cross-branch performance dashboard","New member onboarding sequences"]},
+    {id:"ngo",label:"NGOs",tag:null,icon:"⊗",
       h:"Every Hour Spent on Administration Is an Hour Not Spent on Impact.",
-      stats:[{n:"40%",l:"Admin overhead reduction"},{n:"18 hrs",l:"Reporting time saved"},{n:"100%",l:"Donor report accuracy"}],
-      workflows:["Beneficiary tracking & program reporting","Donor communication & acknowledgement","Grant compliance documentation","Staff timesheet & project allocation","Impact data collection & visualisation"],
-      quote:"WIPS remained present until the automations were live and my team could operate the system independently. That level of accountability is rare in any professional services context.",
-      attr:"Operations Director, Regional NGO"},
-    {id:"construction",label:"Contracting & Construction",tag:null,icon:"🏗",waste:"$2,590",
+      workflows:["Beneficiary tracking & program reporting","Donor communication & acknowledgement","Grant compliance documentation","Staff timesheet & project allocation","Impact data collection & visualisation"]},
+    {id:"construction",label:"Contracting & Construction",tag:null,icon:"🏗",
       h:"Your variation claims are under documented. Your retention dates are in someone's head. That is not a project — it is exposure.",
-      stats:[{n:"$820",l:"Variation claims recovered/mo"},{n:"$480",l:"Retention dates tracked/mo"},{n:"30 days",l:"Recovery plan delivered"}],
-      workflows:["Variation Claim Tracking — $820/mo · Tier T2","Subcontractor Progress Log — $560/mo · Tier T1","Retention Release Calendar — $480/mo · Tier T2","Site Report Automation — $340/mo · Tier T1"],
-      quote:"If your last three variation claims were submitted from memory or WhatsApp screenshots, you have undocumented losses on every active contract.",
-      attr:"WIPS Construction Scan — Trigger Signal"},
+      workflows:["Variation Claim Tracking","Subcontractor Progress Log","Retention Release Calendar","Site Report Automation"]},
   ];
   const ind=sectors[active];
   return(
@@ -477,22 +433,9 @@ function Industries({onBooking}){
           <div>
             <div style={{display:"flex",gap:12,alignItems:"center",marginBottom:20}}>
               <div style={{width:44,height:44,borderRadius:8,background:B.navy,display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,color:"#fff"}}>{ind.icon}</div>
-              <div><div className="section-label">{ind.label}</div><div className="mono" style={{fontSize:10,color:B.textT}}>Avg. benchmark: {ind.waste}/month</div></div>
+              <div><div className="section-label">{ind.label}</div></div>
             </div>
             <h3 className="cg" style={{fontSize:"clamp(1.3rem,2.5vw,1.75rem)",fontWeight:400,color:B.navy,lineHeight:1.3,marginBottom:20}}>{ind.h}</h3>
-            <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:12,marginBottom:28}}>
-              {ind.stats.map(s=>(
-                <div key={s.n} style={{background:"#fff",border:`1px solid ${B.borderL}`,borderRadius:6,padding:"14px 10px",textAlign:"center"}}>
-                  <div className="stat-num" style={{fontSize:"1.45rem",fontWeight:700,color:B.navy}}>{s.n}</div>
-                  <div style={{fontSize:"11px",color:B.textT,lineHeight:1.4,marginTop:4}}>{s.l}</div>
-                </div>
-              ))}
-            </div>
-            <div style={{background:B.navy,borderRadius:8,padding:"20px 24px"}}>
-              <div style={{fontSize:"22px",color:B.emeraldL,marginBottom:8,fontFamily:"Georgia"}}>"</div>
-              <p className="cg" style={{fontSize:"1rem",fontStyle:"italic",color:"rgba(255,255,255,.82)",lineHeight:1.65,marginBottom:12}}>{ind.quote}</p>
-              <div style={{fontSize:"11px",color:"rgba(255,255,255,.4)",fontWeight:600,textTransform:"uppercase",letterSpacing:".08em"}}>{ind.attr}</div>
-            </div>
           </div>
           <div>
             <h4 style={{fontSize:".85rem",fontWeight:700,color:B.textT,textTransform:"uppercase",letterSpacing:".12em",marginBottom:18}}>Highest-ROI Workflows We Automate</h4>
@@ -586,7 +529,6 @@ const ARTICLES = [
     body:[
       {h:"The Question Operators Ask — and Why It's Wrong",p:"Every month, operations managers count how many hours their team spends on administrative tasks. The number sits in a spreadsheet. It grows slightly each quarter. It becomes a talking point in management meetings. And then nothing happens."},
       {h:"The Correct Question",p:"The relevant metric is not how many hours are spent on administration. It is how many revenue-generating hours are displaced by administration. A dental receptionist spending 14 hours per week on manual appointment confirmations is not losing 14 hours. She is losing 14 hours of patient-facing time — which, calculated at the clinic's average hourly rate, represents a specific, documentable monthly revenue cost."},
-      {h:"The Benchmark Gap",p:"Across 24 operational audits conducted in Lebanon, Jordan, and Oman between 2024 and 2025, WIPS identified that the average SME with 3–8 staff loses between $1,600 and $2,400 per month to administrative displacement. The majority of operators underestimate this number by 60–80%. This is not because they are poor managers. It is because the metric they are tracking — hours spent — masks the metric that matters: revenue foregone."},
       {h:"The Practical Fix",p:"The first step is a measurement change, not a system change. Map every administrative task to its opportunity cost: the revenue value of the hour being consumed. Once that calculation is visible, the prioritisation of automation becomes obvious — not a judgment call, but an arithmetic consequence. WIPS Discovery Sessions begin here."},
     ]
   },
@@ -599,18 +541,6 @@ const ARTICLES = [
       {h:"Week 3: Quantification",p:"Each touchpoint was costed against the clinic's revenue-per-hour rate. The top three findings: (1) Appointment no-show rate of 23% — costing $880/month in unrecovered chair time. (2) Manual patient intake requiring 12 minutes per new patient — displacing 6.4 hours/month of billable chair time at a cost of $640/month. (3) A billing reconciliation process requiring 3.5 hours every Monday — a pure administrative cost of $350/month at average staff hourly rate. Total identified: $1,870–$2,410/month."},
       {h:"Week 4: The Scan Report",p:"The delivered WIPS Scan report contained: a complete workflow cost map with 47 touchpoints scored by automation potential, a prioritised build sequence (Tier 1 through Tier 3), and a 12-month projected ROI model at each automation tier. The owner approved the Tier 1 build the same week."},
       {h:"Day 30 Results",p:"Three Tier 1 automations deployed: automated SMS/WhatsApp appointment confirmations (24 and 2 hours prior), digital new patient intake form with automatic CRM entry, and weekly billing pre-check automation. Measured results at day 30: no-show rate reduced from 23% to 15% (8-percentage-point improvement). Admin hours reduced by 9.5 hours per week. Recovered monthly value: $2,140 against a Tier 1 build cost of $1,200. Payback period: 17 days."},
-    ]
-  },
-  {
-    slug:"state-of-sme-operations-lebanon-jordan",type:"Operations Report",label:"MENA Market",time:"5 min read",
-    title:"The State of SME Operations in Lebanon and Jordan",color:"#C8952A",
-    body:[
-      {h:"Report Scope",p:"This report aggregates findings from 24 operational audits conducted by WIPS across Lebanon, Jordan, and Oman between January and December 2025. Sectors covered: dental and medical clinics (9 engagements), real estate agencies (5), fitness and gym operations (4), logistics operators (4), and NGOs (2). All data is anonymised."},
-      {h:"Finding 1: The Tool Paradox",p:"88% of audited SMEs in this sample were paying for software they were using at less than 35% of its documented capability. Average monthly spend on underutilised software: $740/month. Average recoverable value from optimising existing tool usage (without new software purchases): $330/month. The dominant pattern: tools are purchased to solve a problem, partially implemented, and then bypassed in favour of manual workarounds that become institutionalised."},
-      {h:"Finding 2: The Handoff Cost",p:"The highest-cost single workflow pattern across all 24 audits was the verbal handoff — information transferred between staff members through conversation rather than system entry. In dental and medical settings, verbal handoffs accounted for an average of 19% of identifiable waste. In logistics, 31%. The cost is not the handoff itself. It is the re-entry, the error rate, and the follow-up calls it generates."},
-      {h:"Finding 3: The Measurement Deficit",p:"Only 4 of 24 audited businesses could produce, within 24 hours, a report showing their current month's performance against the same month in the prior year, broken down by revenue channel. The remaining 20 had some data available but not in an actionable, consolidated format. This measurement deficit is not a technology problem — it is a workflow architecture problem. Every business in this sample had access to tools capable of producing such reports. None had the workflow structure to generate them automatically."},
-      {h:"Finding 4: Sector Benchmarks",p:"Median monthly recoverable waste by sector — Dental/Medical: $2,140. Logistics: $2,650. Fitness: $2,380. Real Estate: $1,830. NGO: $1,760. These figures represent conservative estimates: the 50th percentile of identified waste across engagements in each sector, excluding outlier cases where structural issues were exceptional."},
-      {h:"Conclusion",p:"The operational intelligence gap in MENA SMEs is not a function of resource scarcity or technology unavailability. It is a function of workflow architecture — specifically, the absence of documented, measurable, and optimisable systems connecting revenue inputs to operational outputs. The businesses that will compound performance over the next five years are those that treat operational structure as a strategic function, not an administrative one."},
     ]
   }
 ];
@@ -851,17 +781,7 @@ function ContactModal({open,onClose}){
           <button onClick={onClose} style={{background:"none",border:"none",cursor:"pointer",color:"rgba(255,255,255,.5)",fontSize:22,lineHeight:1,padding:0}}>✕</button>
         </div>
         <div style={{padding:"36px 32px"}}>
-          <p style={{fontSize:"15px",color:B.textS,lineHeight:1.75,marginBottom:28}}>We respond to all qualified SME operator enquiries within one business day. WhatsApp coming soon.</p>
-          <div
-            style={{display:"flex",alignItems:"center",gap:16,background:"#25D366",borderRadius:12,padding:"20px 24px",marginBottom:20,opacity:.55,cursor:"default"}}>
-            <div style={{width:52,height:52,borderRadius:"50%",background:"rgba(255,255,255,.2)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            </div>
-            <div>
-              <div style={{fontFamily:"'Outfit',sans-serif",fontWeight:700,fontSize:"15px",color:"#fff",marginBottom:3}}>WhatsApp Fast-Track</div>
-              <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"13px",color:"rgba(255,255,255,.8)"}}>Coming Soon</div>
-            </div>
-          </div>
+          <p style={{fontSize:"15px",color:B.textS,lineHeight:1.75,marginBottom:28}}>We respond to all enquiries within one business day.</p>
           <a href="mailto:info@wipstech.com" style={{display:"flex",alignItems:"center",gap:16,background:B.smoke,border:`1px solid ${B.borderL}`,borderRadius:12,padding:"18px 24px",textDecoration:"none",marginBottom:20,transition:"border-color .2s"}}
             onMouseEnter={e=>e.currentTarget.style.borderColor=B.navy} onMouseLeave={e=>e.currentTarget.style.borderColor=B.borderL}>
             <div style={{width:44,height:44,borderRadius:"50%",background:B.navy,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
@@ -873,7 +793,7 @@ function ContactModal({open,onClose}){
             </div>
           </a>
           <div style={{borderTop:`1px solid ${B.borderL}`,paddingTop:20,marginTop:4}}>
-            <p style={{fontSize:"12px",color:B.textT,lineHeight:1.65,margin:0}}>WIPS Tech operates in Lebanon. We respond to all qualifying SME operator enquiries within one business day. Sessions are available to operators with 10 or more employees.</p>
+            <p style={{fontSize:"12px",color:B.textT,lineHeight:1.65,margin:0}}>WIPS Tech operates in Lebanon. We respond to all enquiries within one business day.</p>
           </div>
         </div>
       </div>
@@ -900,10 +820,6 @@ function BookingSection(){
               <span style={{fontSize:"14px",color:B.textS,lineHeight:1.6}}>{f.label}</span>
             </div>
           ))}
-          <div style={{marginTop:32,padding:"16px 18px",background:"#fff",border:`1px solid ${B.borderL}`,borderLeft:`3px solid ${B.gold}`,borderRadius:"0 6px 6px 0"}}>
-            <div className="mono" style={{fontSize:"9px",color:B.gold,letterSpacing:".15em",textTransform:"uppercase",marginBottom:6}}>Availability Notice</div>
-            <p style={{fontSize:"12.5px",color:B.textT,lineHeight:1.65,margin:0}}>WIPS accepts a limited number of new Discovery Sessions per month. Sessions are available to qualifying SME operators with 10 or more employees.</p>
-          </div>
         </div>
         <div style={{background:"#fff",borderRadius:12,padding:"40px 36px",border:`1px solid ${B.borderL}`,boxShadow:"0 8px 40px rgba(27,54,93,.08)"}}>
           <BookingForm/>
@@ -918,13 +834,13 @@ function FAQ(){
   const faqs=[
     {q:"Is the Discovery Session genuinely free?",a:"Yes. The 45-minute session carries no cost, no obligation, and no follow-up unless you choose to proceed. You receive a preliminary waste estimate, a list of your three highest-ROI workflow priorities, and an honest recommendation on whether a full Scan would produce a positive return for your specific operation."},
     {q:"Why not hire an internal operations manager instead?",a:"An internal hire builds capability over time — typically 6–12 months before they redesign anything. WIPS delivers operational intelligence from day one, with diagnostic methodology, sector-specific workflow experience, and implementation accountability. When the engagement concludes, your internal team inherits a documented, functioning system — not a dependency."},
-    {q:"We already use software. Why isn't that enough?",a:"Software does not redesign your workflows. It digitises the ones you already have — including the inefficient ones. Most WIPS clients are using 30–40% of their software's capability. We architect the system that makes your existing software perform at its potential and automate what has been done manually by habit rather than necessity."},
+    {q:"We already use software. Why isn't that enough?",a:"Software does not redesign your workflows. It digitises the ones you already have — including the inefficient ones. Many small businesses use only part of what their software can do. We architect the system that makes your existing software perform at its potential and automate what has been done manually by habit rather than necessity."},
     {q:"What makes WIPS different from a management consultant?",a:"A consultant diagnoses and recommends. WIPS diagnoses, builds, and stays accountable for the result. The structural difference is implementation. Traditional advisory firms are not resourced or incentivised to execute. WIPS builds the workflows, deploys the automations, and measures performance after delivery. If a build underperforms its projection, we correct it at no additional cost."},
     {q:"How long before we see measurable results?",a:"Week four of Phase 1: your Scan report quantifies every identified inefficiency — measurable findings before a single automation is built. Weeks 6–7: first Tier 1 automations are live, with time and cost recovery within days of deployment. The compounding effect of a structured operational system takes 3–6 months to fully materialise — but initial wins happen in the first 30 days."},
     {q:"What is the $500 guarantee exactly?",a:"If the first workflow we analyse in the Operational Scan does not demonstrate at least $500 per month in recoverable waste, we invoice you nothing for that task. This is a structural accountability clause — not a marketing claim. It reflects our confidence in the methodology and our commitment to engagements that deliver measurable ROI."},
     {q:"What level of involvement is required from our team?",a:"The Scan requires 3–4 hours of your team's time over 30 days — primarily structured observation sessions and workflow interviews. We work around your operation, not through it. During the Build phase, we coordinate with relevant staff on implementation. The Partnership retainer requires one monthly performance review and an open channel for new workflow requests."},
-    {q:"We already have operational systems. Can WIPS still add value?",a:"Almost always — and often more effectively. Clients with existing systems typically use 30–40% of their tool's capability, have systems that don't communicate with each other, and lack a single performance truth across the operation. WIPS audits what you have, builds the connections, and adds only what is structurally necessary."},
-    {q:"What industries does WIPS specialise in?",a:"Dental and medical clinics, real estate agencies, fitness operations, NGOs, contracting and construction firms, and professional services businesses between 10 and 150 employees. The methodology is consistent across sectors. The application is specific to each."},
+    {q:"We already have operational systems. Can WIPS still add value?",a:"Almost always — and often more effectively. Businesses with existing systems often use only part of their tools' capability, have systems that don't communicate with each other, and lack a single performance truth across the operation. WIPS audits what you have, builds the connections, and adds only what is structurally necessary."},
+    {q:"What industries does WIPS specialise in?",a:"Dental and medical clinics, real estate agencies, fitness operations, NGOs, contracting and construction firms, and professional services businesses. The methodology is consistent across sectors. The application is specific to each."},
   ];
   return(
     <section style={{padding:"96px 40px",background:"#fff"}}>
@@ -995,19 +911,6 @@ function Footer({onBooking,onContact}){
                 title="LinkedIn">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
               </a>
-              {[
-                {label:"X",bg:"#000",icon:<svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>},
-                {label:"Instagram",bg:"#E1306C",icon:<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>},
-                {label:"Facebook",bg:"#1877F2",icon:<svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>},
-                {label:"TikTok",bg:"#010101",icon:<svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>},
-                {label:"YouTube",bg:"#FF0000",icon:<svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#FF0000"/></svg>},
-              ].map(s=>(
-                <div key={s.label} title={`${s.label} — Coming Soon`}
-                  style={{width:36,height:36,borderRadius:8,background:s.bg,display:"flex",alignItems:"center",justifyContent:"center",cursor:"default",opacity:.38,flexShrink:0,position:"relative",border:"1px solid rgba(255,255,255,.08)"}}>
-                  {s.icon}
-                  <span style={{position:"absolute",bottom:-18,left:"50%",transform:"translateX(-50%)",fontFamily:"'Outfit',sans-serif",fontSize:"7px",color:"rgba(255,255,255,.3)",whiteSpace:"nowrap",letterSpacing:".04em"}}>Soon</span>
-                </div>
-              ))}
             </div>
           </div>
           {Object.entries(footerLinks).map(([title,links])=>(
@@ -1081,7 +984,6 @@ export default function Page(){
       <BookingModal open={bookingOpen} onClose={close}/>
       <ContactModal open={contactOpen} onClose={()=>setContactOpen(false)}/>
       {articleIdx!==null&&<ArticleModal idx={articleIdx} onClose={()=>setArticleIdx(null)}/>}
-      <WAFloat/>
     </>
   );
 }

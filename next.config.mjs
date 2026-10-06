@@ -1,6 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   compress: true,
+  async redirects() {
+    return [
+      {
+        source: '/insights/state-of-sme-operations-lebanon-jordan',
+        destination: '/insights',
+        permanent: true,
+      },
+    ];
+  },
   reactStrictMode: true,
   images: {
     formats: ['image/avif', 'image/webp'],
