@@ -115,7 +115,7 @@ export default function Home({ locale }) {
         </div>
       </section>
 
-      <Closing locale={locale} />
+      <Closing locale={locale} notClinic />
     </>
   );
 }

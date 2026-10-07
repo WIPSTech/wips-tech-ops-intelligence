@@ -68,7 +68,7 @@ export default function SessionForm({ f, locale, fallbackEndpoint }) {
   }
 
   return (
-    <form className="form" onSubmit={send}>
+    <form id="session-form" className="form" onSubmit={send}>
       <div className="form-two">
         <div className="field">
           <label htmlFor="f-name">{f.name}</label>

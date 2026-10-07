@@ -44,6 +44,20 @@ export default function Contact({ locale }) {
               <h2>{c.askH}</h2>
               <p>{c.askP}</p>
             </div>
+            <div>
+              <h2>{t.notClinic.h}</h2>
+              <p>
+                {t.notClinic.before}
+                <a className="textlink" href={whatsappLink(locale, "other")} rel="noopener noreferrer" target="_blank">
+                  {t.notClinic.wa}
+                </a>
+                {t.notClinic.or}
+                <a className="textlink" href="#session-form">
+                  {t.notClinic.session}
+                </a>
+                {t.notClinic.after}
+              </p>
+            </div>
           </aside>
         </div>
       </section>

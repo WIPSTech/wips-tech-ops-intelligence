@@ -1296,6 +1296,22 @@ html[lang="ar"] .attached {
 .closing-wa:hover {
   color: var(--white);
 }
+.closing p.closing-other {
+  margin-top: var(--s-4);
+  font-size: 0.9375rem;
+  color: #d5dde8;
+}
+.closing-other strong {
+  color: var(--white);
+  font-weight: 600;
+}
+.closing-other a {
+  color: var(--white);
+  text-underline-offset: 4px;
+}
+#session-form {
+  scroll-margin-top: 96px;
+}
 .contact-aside p + p {
   margin-top: var(--s-2);
 }

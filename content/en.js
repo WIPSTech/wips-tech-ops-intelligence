@@ -33,6 +33,15 @@ const en = {
     p: "Message us and we reply within one business day.",
     link: "Open a WhatsApp chat",
   },
+  notClinic: {
+    h: "Not a clinic?",
+    before: "The same method applies to other businesses. ",
+    wa: "Message us on WhatsApp",
+    or: " or ",
+    session: "request the free session",
+    after: ", and tell us what you run.",
+    prefill: "Hello, I would like a free session for my business.",
+  },
   closing: {
     title: "Start with one workflow and one number.",
     text: "45 minutes, free, in Arabic or English. You keep the calculation whether or not you go further.",
