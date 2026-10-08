@@ -9,7 +9,9 @@ const nextConfig = {
     return [
       { source: '/blog', destination: '/insights', permanent: true },
       { source: '/blog/:slug*', destination: '/insights', permanent: true },
-      { source: '/discovery', destination: '/contact', permanent: false },
+      { source: '/discovery', destination: '/contact', permanent: true },
+      { source: '/ar/blog', destination: '/ar/insights', permanent: true },
+      { source: '/ar/blog/:slug*', destination: '/ar/insights', permanent: true },
       { source: '/case-study', destination: '/case-studies', permanent: true },
       {
         source: '/insights/why-admin-hours-are-the-wrong-metric',
@@ -18,7 +20,7 @@ const nextConfig = {
       },
       {
         source: '/insights/state-of-sme-operations-lebanon-jordan',
-        destination: '/insights',
+        destination: '/insights/does-this-task-need-ai',
         permanent: true,
       },
       {

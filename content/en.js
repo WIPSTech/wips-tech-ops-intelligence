@@ -449,8 +449,16 @@ const en = {
         a: "It takes 45 minutes, in Arabic or English. We choose one workflow and calculate what it costs the clinic each month using your own numbers. You keep the calculation whether or not you go further.",
       },
       {
+        q: "Can we work in Arabic?",
+        a: "Yes. The free session and every meeting can be in Arabic or English, and anything your patients see, such as reminders and replies, can be written in Arabic, English or both.",
+      },
+      {
         q: "What does it cost?",
         a: "The session is free. Assessing one workflow costs $500. Builds and monthly care are quoted after the assessment, because the price depends on the tools you already use.",
+      },
+      {
+        q: "How long does it take?",
+        a: "The free session takes 45 minutes. After that, we agree the time for the assessment and for any build with you in writing before we start, because it depends on the workflow and the tools you already use.",
       },
       {
         q: "Have you worked with clinics before?",
