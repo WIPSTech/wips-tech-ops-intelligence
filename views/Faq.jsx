@@ -30,7 +30,7 @@ export default function Faq({ locale }) {
           ))}
         </div>
       </section>
-      <Closing locale={locale} />
+      <Closing locale={locale} title={t.closings.faq.title} text={t.closings.faq.text} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
     </>
   );

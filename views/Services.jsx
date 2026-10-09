@@ -1,5 +1,4 @@
 import Link from "next/link";
-import TifdaScorer from "../components/TifdaScorer";
 import Layers from "../components/Layers";
 import Closing from "../components/Closing";
 import { getContent, href } from "../lib/i18n";
@@ -103,9 +102,15 @@ export default function Services({ locale }) {
                 <br />
                 {s.formula2}
               </p>
-              <p className="method-note">{s.methodNote}</p>
             </div>
-            <TifdaScorer s={t.scorer} methodHref="#method" contactHref={href(locale, "/contact")} />
+            <div className="prose">
+              <p className="method-note">{s.methodNote}</p>
+              <p>
+                <Link href={`${href(locale, "/")}#scorer`} className="btn btn-primary">
+                  {s.scorerLink}
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -128,7 +133,7 @@ export default function Services({ locale }) {
         </div>
       </section>
 
-      <Closing locale={locale} />
+      <Closing locale={locale} title={t.closings.services.title} text={t.closings.services.text} />
     </>
   );
 }

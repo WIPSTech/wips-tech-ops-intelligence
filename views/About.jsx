@@ -16,7 +16,7 @@ export default function About({ locale }) {
           <Sections sections={t.about.sections} locale={locale} />
         </div>
       </section>
-      <Closing locale={locale} />
+      <Closing locale={locale} title={t.closings.about.title} text={t.closings.about.text} />
     </>
   );
 }

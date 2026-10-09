@@ -6,7 +6,7 @@ const en = {
   other: { locale: "ar", label: "العربية" },
   label: "The clinic AI partner that measures before it builds",
   description:
-    "WIPS Tech helps dental, medical and aesthetic clinics in Lebanon work out what a manual workflow costs, then fix it with the lightest thing that works: a connection, an automation, or an AI agent.",
+    "WIPS Tech helps dental, medical and aesthetic clinics in Lebanon work out what a manual workflow costs, then fix it with the simplest tool that does the job: a connection, an automation, or an AI agent.",
   siteTitle: "WIPS Tech | AI and workflow partner for clinics in Lebanon",
   cta: "Request a free session",
   skip: "Skip to content",
@@ -46,6 +46,15 @@ const en = {
     title: "Start with one workflow and one number.",
     text: "45 minutes, free, in Arabic or English. You keep the calculation whether or not you go further.",
   },
+  closings: {
+    services: {
+      title: "Pick one task from this page and we will cost it with you.",
+      text: "45 minutes, free, in Arabic or English.",
+    },
+    about: { title: "Have a task in mind? We will cost it with you.", text: "45 minutes, free, in Arabic or English." },
+    faq: { title: "Question not answered here?", text: "Ask on WhatsApp or request the free session." },
+    article: { title: "Want this worked out with your clinic's numbers?", text: "The first session is free." },
+  },
   meta: {
     services: {
       title: "Services for dental, medical and aesthetic clinics",
@@ -82,10 +91,10 @@ const en = {
   home: {
     context: "For dental, medical and aesthetic clinics in Lebanon",
     h1: "Know what a workflow costs your clinic before you spend on AI.",
-    lede: "We work out what one manual task costs you each month, fix it with the lightest thing that works, and stay responsible for it afterwards. Often the fix is not AI at all.",
+    lede: "We work out what one manual task costs you each month and fix it with the simplest tool that does the job, which is often a setting you already have. Then we check it every month.",
     secondary: "See what we build",
-    questionsTitle: "Four questions most clinic owners cannot answer today",
-    questionsSub: "Each one is money the clinic has already earned or nearly earned.",
+    questionsTitle: "Four questions worth being able to answer",
+    questionsSub: "Each one points to visits or payments the clinic may be losing.",
     questions: [
       "How many WhatsApp enquiries arrived after closing last week, and how many had an answer before morning?",
       "When a patient cancels at nine, who fills the eleven o'clock slot?",
@@ -94,7 +103,8 @@ const en = {
     ],
     layersTitle: "Three ways to fix a task. Only one of them is AI.",
     layersText:
-      "Every task we look at is fitted to the lightest layer that solves it. Treating a plumbing problem as an intelligence problem is the most common way to waste money on AI.",
+      "We start with the simplest of the three and move up only if it does not solve the problem.",
+    layersLink: "How each one works",
     buildTitle: "What we build for clinics",
     buildLink: "Read each service in full",
     startTitle: "How it starts",
@@ -116,13 +126,13 @@ const en = {
     {
       name: "Connect",
       when: "The information already exists in two places that do not talk to each other.",
-      fix: "Link them. No AI involved.",
+      fix: "Link them.",
       example: "A booking form that does not fill the schedule.",
     },
     {
       name: "Automate",
       when: "The task follows the same rule every time.",
-      fix: "A fixed rule that runs by itself. Still no AI.",
+      fix: "A fixed rule that runs by itself.",
       example: "A reminder sent 24 hours before every appointment.",
     },
     {
@@ -138,23 +148,27 @@ const en = {
       name: "Free session",
       detail:
         "45 minutes, in Arabic or English. We pick one workflow together and work out, with your numbers, what it costs the clinic each month.",
+      short: "We cost one workflow with your numbers.",
       price: "Free",
     },
     {
       name: "One-workflow assessment",
       detail:
-        "We map that one workflow, score it with TIFDA, and tell you which layer fixes it. You get the cost calculation, the score and a fixed quote for the build. If the honest answer is that it is not worth building, we say so.",
+        "We map that one workflow, score it with TIFDA, and tell you which layer fixes it. You get the cost calculation, the score and a fixed quote for the build. If it is not worth building, the assessment says so.",
+      short: "We map it, score it and quote a fixed price for the fix.",
       price: "$500",
     },
     {
       name: "Build",
       detail:
         "We build the fix inside the tools you already use, with acceptance criteria you sign off before we start.",
+      short: "We build inside the tools you already use.",
       price: "Quoted after the assessment",
     },
     {
       name: "Monthly care",
       detail: "We check the workflow every month, fix what drifts, and send you one page showing what it did.",
+      short: "We check it every month and report what it did.",
       price: "Quoted with the build",
     },
   ],
@@ -167,7 +181,7 @@ const en = {
         {
           name: "Enquiry replies on WhatsApp and Instagram",
           layer: 2,
-          text: "Answers price, availability and location questions within minutes, including after closing, and hands anything clinical to a person.",
+          text: "Replies to price, availability and location questions, including after closing, and hands anything clinical to a person.",
         },
         {
           name: "Confirmations and filling cancelled slots",
@@ -236,7 +250,7 @@ const en = {
     },
     {
       title: "Knowing your numbers",
-      recovers: "Decisions made on time",
+      recovers: "The week's numbers in one message",
       items: [
         {
           name: "The owner's weekly page",
@@ -255,14 +269,14 @@ const en = {
     {
       key: "A",
       name: "Available data",
-      what: "Does the information it needs already exist somewhere reachable?",
+      what: "Is the information it needs already stored somewhere you can get to?",
       score: "0 or 1",
     },
   ],
 
   services: {
     h1: "What we build, and how we decide whether to build it",
-    lede: "Every item below is a workflow we assess and build for clinics. None of it is sold as a package. We score the task first, and if the lightest fix is switching on a feature you already pay for, that is what we will tell you.",
+    lede: "Every item below is a workflow we assess and build for clinics. None of it is sold as a package. We score the task first, and if the simplest fix is switching on a feature you already pay for, that is what we will tell you.",
     stepsTitle: "The four steps",
     stepsSub: "You can stop after any of them.",
     buildTitle: "Workflows we build for clinics",
@@ -276,14 +290,15 @@ const en = {
     formula1: "Priority = (T + I + F) × D × A",
     formula2: "Highest possible: 15. If D or A is 0, priority is 0.",
     methodNote:
-      "A task can be painful and still score zero. If nobody has written down how it is done, or the information it needs cannot be reached, there is nothing repeatable to build on. That is not a reason to give up on it. It is a reason to fix the process or the data first, then score it again.",
+      "A task can be painful and still score zero. If nobody has written down how it is done, or the information it needs is not available, there is nothing repeatable to build on. Write the process down or gather the information in one place, then score it again.",
+    scorerLink: "Score a task from your clinic",
     accTitle: "What we stay responsible for",
     acc: [
       "Acceptance criteria are written and signed off before a build starts, so both of us know what \"working\" means.",
       "We agree in writing which information a build may read before it reads anything.",
       "A person at the clinic approves anything involving money or clinical details before it is sent.",
       "The AI does not give medical advice. Clinical questions go to your staff.",
-      "Each month we check the workflow, fix what has drifted, and send one page showing what it did.",
+      "Monthly care is described in step 4 above.",
     ],
     faqLink: "More questions answered",
   },
@@ -304,7 +319,7 @@ const en = {
       i: { name: "Impact", hint: "How much it hurts when it goes wrong or is skipped" },
       f: { name: "Frequency", hint: "How often it happens" },
     },
-    gates: { d: "Is the process written down?", a: "Is the information it needs reachable?" },
+    gates: { d: "Is the process written down?", a: "Is the information it needs easy to get?" },
     yes: "Yes",
     no: "No",
     needQ: "What does the task mostly involve?",
@@ -317,7 +332,7 @@ const en = {
     blockedHead: "Not ready to build yet.",
     blockedIntro: "However much it hurts, there is nothing repeatable to build on. First:",
     missingD: "write the process down once, by hand",
-    missingA: "get the information it needs into one reachable place",
+    missingA: "gather the information it needs in one place",
     blockedOutro: "Then score it again.",
     first: "Fix this one first.",
     closer: "Worth a closer look.",
@@ -430,7 +445,7 @@ const en = {
     items: [
       {
         q: "What does WIPS Tech do?",
-        a: "We help clinics work out what a manual workflow costs each month, then fix it with the lightest thing that works. Sometimes that is linking two tools, sometimes a fixed automation, and sometimes an AI agent. After it is built we check it every month.",
+        a: "We help clinics work out what a manual workflow costs each month, then fix it with the simplest tool that does the job. Sometimes that is linking two tools, sometimes a fixed automation, and sometimes an AI agent. After it is built we check it every month.",
       },
       {
         q: "Who is it for?",
@@ -442,7 +457,7 @@ const en = {
       },
       {
         q: "What is TIFDA?",
-        a: "It is how we decide which task to fix first. Time, Impact and Frequency are scored 1 to 5 and added. Documented and Available data are scored 0 or 1 and multiplied. If the process is not written down or the data cannot be reached, the score is zero and we fix that first.",
+        a: "It is how we decide which task to fix first. Time, Impact and Frequency are scored 1 to 5 and added. Documented and Available data are scored 0 or 1 and multiplied. If the process is not written down or the information is not available, the score is zero and we fix that first.",
       },
       {
         q: "What happens in the free session?",
@@ -504,8 +519,7 @@ const en = {
         list: [
           "AI is worth paying for only where it helps the business grow and pays back.",
           "Most fixes are simpler than AI, and we would rather build the simple one.",
-          "A number you calculated yourself is worth more than one a vendor quoted you.",
-          "If we have not done something yet, the site should say so.",
+          "We calculate every number with you, from your own records, so you can check it.",
         ],
       },
       {
