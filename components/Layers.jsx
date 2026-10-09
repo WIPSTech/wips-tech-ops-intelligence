@@ -1,6 +1,6 @@
 import { getContent } from "../lib/i18n";
 
-export default function Layers({ locale }) {
+export default function Layers({ locale, brief = false }) {
   const t = getContent(locale);
   return (
     <ol className="layers">
@@ -9,10 +9,14 @@ export default function Layers({ locale }) {
           <span className="ai-tag">{i < 2 ? t.layersUi.noAi : t.layersUi.ai}</span>
           <h3>{layer.name}</h3>
           <p>{layer.when}</p>
-          <p>{layer.fix}</p>
-          <p className="eg">
-            {t.layersUi.example} {layer.example}
-          </p>
+          {!brief && (
+            <>
+              <p>{layer.fix}</p>
+              <p className="eg">
+                {t.layersUi.example} {layer.example}
+              </p>
+            </>
+          )}
         </li>
       ))}
     </ol>

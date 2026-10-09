@@ -35,7 +35,7 @@ export default function TifdaScorer({ s, compact = false, methodHref, contactHre
   const sendHref = `${contactHref}?task=${encodeURIComponent(taskLabel)}&score=${score}&tifda=${v.t}-${v.i}-${v.f}-${v.d}-${v.a}`;
 
   return (
-    <div className="scorer">
+    <div className="scorer" id="scorer">
       <p className="scorer-title">{s.title}</p>
       <p className="scorer-note">{s.note}</p>
 
@@ -132,13 +132,14 @@ export default function TifdaScorer({ s, compact = false, methodHref, contactHre
             <p>{s.blockedOutro}</p>
           </>
         )}
-        {compact ? (
-          <Link href={methodHref} className="textlink verdict-link">
-            {s.how}
-          </Link>
-        ) : (
+        {!compact && (
           <Link href={sendHref} className="btn btn-primary">
             {s.send}
+          </Link>
+        )}
+        {methodHref && (
+          <Link href={methodHref} className="textlink verdict-link">
+            {s.how}
           </Link>
         )}
       </div>

@@ -88,7 +88,7 @@ export function InsightsArticle({ locale, article }) {
           </div>
         </div>
       </article>
-      <Closing locale={locale} />
+      <Closing locale={locale} title={t.closings.article.title} text={t.closings.article.text} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
     </>
   );

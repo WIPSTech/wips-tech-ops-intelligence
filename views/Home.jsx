@@ -24,7 +24,7 @@ export default function Home({ locale }) {
               </Link>
             </div>
           </div>
-          <TifdaScorer s={t.scorer} compact methodHref={`${href(locale, "/services")}#method`} contactHref={href(locale, "/contact")} />
+          <TifdaScorer s={t.scorer} methodHref={`${href(locale, "/services")}#method`} contactHref={href(locale, "/contact")} />
         </div>
       </section>
 
@@ -48,7 +48,12 @@ export default function Home({ locale }) {
             <h2 id="layers-title">{h.layersTitle}</h2>
             <p>{h.layersText}</p>
           </div>
-          <Layers locale={locale} />
+          <Layers locale={locale} brief />
+          <p className="after-rows">
+            <Link href={`${href(locale, "/services")}#layers-title`} className="textlink">
+              {h.layersLink}
+            </Link>
+          </p>
         </div>
       </section>
 
@@ -84,7 +89,7 @@ export default function Home({ locale }) {
             {t.steps.map((s) => (
               <li key={s.name}>
                 <h3>{s.name}</h3>
-                <p>{s.detail}</p>
+                <p>{s.short}</p>
                 <span className="price">{s.price}</span>
               </li>
             ))}

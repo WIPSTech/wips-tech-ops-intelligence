@@ -16,7 +16,7 @@ export const articles = [
         p: [
           "Almost every organisation now uses AI somewhere, and few can point to money it made them. In McKinsey's 2026 global survey, 89% of respondents reported regular AI use in at least one business function, while 37% said it had contributed to profit. Only 6% reported a profit effect of 5% or more, and nearly three-quarters of that group had redesigned the workflow around the tool.",
           "The pattern for small firms is similar. The OECD's 2026 survey of small and medium businesses in 12 countries found that 61% use at least one AI application and that 76% of those users are still at an early stage.",
-          "Neither survey covers Lebanon. They are still the best evidence available for a simple point: buying the tool is the easy part, and the return comes from fixing the workflow first.",
+          "Neither survey covers Lebanon. Both point the same way: the firms that reported a profit effect had mostly redesigned the workflow around the tool.",
         ],
       },
       {
@@ -41,7 +41,7 @@ export const articles = [
       {
         h: "What to do with the answer",
         p: [
-          "Write down one task that bothers you and answer the three questions. If you stop at question 1 or 2, you probably do not need AI for it. If you reach question 3, check two more things before spending money: that the process is written down, and that the information it needs can be reached.",
+          "Write down one task that bothers you and answer the three questions. If you stop at question 1 or 2, you probably do not need AI for it. If you reach question 3, check two more things before spending money: that the process is written down, and that the information it needs is available.",
         ],
       },
     ],
