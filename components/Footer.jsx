@@ -46,6 +46,16 @@ export default function Footer({ locale }) {
                   LinkedIn
                 </a>
               </li>
+              <li>
+                <a href={site.instagram} rel="noopener noreferrer" target="_blank">
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a href={site.facebook} rel="noopener noreferrer" target="_blank">
+                  Facebook
+                </a>
+              </li>
             </ul>
           </div>
         </div>
