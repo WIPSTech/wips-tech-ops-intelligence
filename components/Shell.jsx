@@ -46,7 +46,7 @@ export default function Shell({ locale, children }) {
       "AI agents for small businesses",
       "AI search visibility",
     ],
-    sameAs: [site.linkedin],
+    sameAs: [site.linkedin, site.instagram, site.facebook],
   };
 
   return (
